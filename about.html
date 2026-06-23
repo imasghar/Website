@@ -7,9 +7,9 @@
   <meta name="description" content="Learn about Avanta AI Solutions, a premium software engineering studio building web apps, mobile apps, databases, and AI systems under one roof.">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/styles.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/css/animations.css">
   <style>
     /* Global Map Styling */
@@ -100,7 +100,7 @@
         <a class="navbar-brand fs-4 fw-bold d-flex align-items-center" href="index.html">
           <img class="logo-light" src="assets/img/avanta-logo-light.svg" alt="Avanta AI Solutions"><img class="logo-dark" src="assets/img/avanta-logo-dark.svg" alt="Avanta AI Solutions">
         </a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+        <button class="navbar-toggler" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#navcol-1">
           <span class="visually-hidden">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -174,10 +174,10 @@
           <div class="col-lg-5">
             <div class="row g-3">
               <div class="col-6">
-                <img class="img-fluid rounded-4 shadow-sm" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Avanta developers collaborating">
+                <img loading="lazy" class="img-fluid rounded-4 shadow-sm" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Avanta developers collaborating">
               </div>
               <div class="col-6 mt-4">
-                <img class="img-fluid rounded-4 shadow-sm" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="UI UX Design process">
+                <img loading="lazy" class="img-fluid rounded-4 shadow-sm" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="UI UX Design process">
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@
             <div class="d-flex flex-column gap-4">
               <!-- Office 1 -->
               <div class="d-flex align-items-center gap-3 p-3 office-card">
-                <img class="office-img" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=120&q=80" alt="Dera Ghazi Khan office">
+                <img loading="lazy" class="office-img" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=120&q=80" alt="Dera Ghazi Khan office">
                 <div>
                   <h3 class="h6 fw-bold mb-1 text-white-contrast">Office - Pakistan</h3>
                   <a href="#" class="small text-decoration-none text-primary fw-semibold d-block mb-1">2JMR+V23 Sangam chowk, Dera Ghazi Khan, Pakistan</a>
@@ -208,7 +208,7 @@
               </div>
               <!-- Office 2 -->
               <div class="d-flex align-items-center gap-3 p-3 office-card">
-                <img class="office-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=120&q=80" alt="Amsterdam office">
+                <img loading="lazy" class="office-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=120&q=80" alt="Amsterdam office">
                 <div>
                   <h3 class="h6 fw-bold mb-1 text-white-contrast">Office - Netherlands</h3>
                   <a href="#" class="small text-decoration-none text-primary fw-semibold d-block mb-1">Amsterdam, Weesperplein 61, 1018 VN</a>
@@ -304,7 +304,7 @@
           <div class="col">
             <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
               <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar3.jpg" alt="Dr. Sarah L.">
+                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar3.jpg" alt="Dr. Sarah L.">
               </div>
               <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">Dr. Sarah L.</strong>
@@ -316,7 +316,7 @@
           <div class="col">
             <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
               <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar2.jpg" alt="Mark T.">
+                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar2.jpg" alt="Mark T.">
               </div>
               <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">Mark T.</strong>
@@ -328,7 +328,7 @@
           <div class="col">
             <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
               <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar1.jpg" alt="Elena R.">
+                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar1.jpg" alt="Elena R.">
               </div>
               <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">Elena R.</strong>
@@ -340,7 +340,7 @@
           <div class="col">
             <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
               <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar2.jpg" alt="David K.">
+                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar2.jpg" alt="David K.">
               </div>
               <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">David K.</strong>
@@ -426,11 +426,11 @@
       </div>
     </div>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/script.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="assets/js/animations.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/js/script.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="assets/js/animations.js" defer></script>
 </body>
 </html>
