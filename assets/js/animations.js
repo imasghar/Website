@@ -40,6 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeAnimations();
   } else {
     console.warn("GSAP or ScrollTrigger CDNs are not loaded. Animations disabled.");
+    // Fallback: instantly reveal everything and set numerical stats to target values
+    document.querySelectorAll(".gsap-reveal").forEach(el => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
+    document.querySelectorAll(".stat-number").forEach(stat => {
+      const targetVal = stat.getAttribute("data-target-value");
+      if (targetVal !== null) {
+        stat.textContent = targetVal;
+      }
+    });
   }
 
   // 3. Interactive Card Cursor-Glow Trail
@@ -53,6 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 6. Interactive Services Stepper (Services Page)
   initializeServicesStepper();
+
+  // Refresh ScrollTrigger on window load to ensure correct positions after all assets (images, fonts, custom logos) are loaded
+  window.addEventListener("load", () => {
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+    }
+  });
 });
 
 // Cursor-Glow effect
@@ -127,6 +145,15 @@ function initializeAnimations() {
   if (window.innerWidth < 768) {
     // Just reveal everything instantly on mobile to avoid layout locks
     gsap.set(".gsap-reveal", { opacity: 1, y: 0 });
+    
+    // Instantly set numerical stats to their target values on mobile
+    const statNumbers = document.querySelectorAll(".stat-number");
+    statNumbers.forEach(stat => {
+      const targetVal = stat.getAttribute("data-target-value");
+      if (targetVal !== null) {
+        stat.textContent = targetVal;
+      }
+    });
     return;
   }
 
@@ -376,20 +403,24 @@ function initializeAnimations() {
     statNumbers.forEach(stat => {
       const targetVal = parseInt(stat.getAttribute("data-target-value"), 10) || 0;
       
-      gsap.fromTo(stat, 
-        { textContent: 0 },
-        {
-          textContent: targetVal,
-          duration: 2.2,
-          ease: "power2.out",
-          snap: { textContent: 1 },
-          scrollTrigger: {
-            trigger: stat.closest(".stats-grid") || stat,
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
+      // Initialize textContent to 0
+      stat.textContent = "0";
+      
+      // Tween a dummy object to ensure robust number updating across all GSAP environments
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: targetVal,
+        duration: 2.2,
+        ease: "power2.out",
+        onUpdate: () => {
+          stat.textContent = Math.round(obj.val);
+        },
+        scrollTrigger: {
+          trigger: stat.closest(".stats-grid") || stat,
+          start: "top 85%",
+          toggleActions: "play none none none"
         }
-      );
+      });
     });
   }
 
