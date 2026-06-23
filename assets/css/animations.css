@@ -2728,32 +2728,60 @@ html[data-bs-theme="dark"] .navbar-brand .logo-dark {
 }
 
 /* Color Contrast and Accessibility Fixes */
+
+/* Light Mode Footer Text and Links (Light Background) */
+html[data-bs-theme="light"] footer h4.footer-heading {
+  color: #0c0822 !important; /* dark indigo */
+}
+
+html[data-bs-theme="light"] footer p,
+html[data-bs-theme="light"] footer .text-muted {
+  color: #374151 !important; /* dark grey */
+}
+
 html[data-bs-theme="light"] .footer-links li a,
-html[data-bs-theme="dark"] .footer-links li a {
-  color: #cbd5e1 !important; /* light slate color */
+html[data-bs-theme="light"] footer a.text-reset {
+  color: #374151 !important; /* dark grey links */
 }
 
 html[data-bs-theme="light"] .footer-links li a:hover,
-html[data-bs-theme="dark"] .footer-links li a:hover {
-  color: #ffffff !important;
+html[data-bs-theme="light"] footer a.text-reset:hover {
+  color: #6a4fe2 !important;
 }
 
-html[data-bs-theme="light"] footer h4.footer-heading,
+html[data-bs-theme="light"] footer .social-links a {
+  color: #374151 !important;
+}
+
+html[data-bs-theme="light"] footer .social-links a:hover {
+  color: #6a4fe2 !important;
+}
+
+/* Dark Mode Footer Text and Links (Dark Background) */
 html[data-bs-theme="dark"] footer h4.footer-heading {
   color: #ffffff !important;
 }
 
-footer .text-muted {
-  color: #94a3b8 !important; /* high contrast slate text */
+html[data-bs-theme="dark"] footer p,
+html[data-bs-theme="dark"] footer .text-muted {
+  color: #cbd5e1 !important; /* light slate text */
 }
 
-footer a.text-reset {
+html[data-bs-theme="dark"] .footer-links li a,
+html[data-bs-theme="dark"] footer a.text-reset {
   color: #cbd5e1 !important;
-  text-decoration: none;
-  transition: color 0.2s ease;
 }
 
-footer a.text-reset:hover {
+html[data-bs-theme="dark"] .footer-links li a:hover,
+html[data-bs-theme="dark"] footer a.text-reset:hover {
+  color: #ffffff !important;
+}
+
+html[data-bs-theme="dark"] footer .social-links a {
+  color: #cbd5e1 !important;
+}
+
+html[data-bs-theme="dark"] footer .social-links a:hover {
   color: #ffffff !important;
 }
 
@@ -2789,5 +2817,29 @@ html[data-bs-theme="light"] .orange-check-list li {
 
 html[data-bs-theme="dark"] .orange-check-list li {
   color: #f1f5f9 !important; /* slate-100 */
+}
+
+/* Navbar link contrast fixes */
+html[data-bs-theme="light"] .navbar .nav-link {
+  color: #1a153b !important; /* dark high contrast */
+  font-weight: 600;
+}
+html[data-bs-theme="light"] .navbar .nav-link.active,
+html[data-bs-theme="light"] .navbar .nav-link:hover {
+  color: #6a4fe2 !important;
+}
+
+html[data-bs-theme="dark"] .navbar .nav-link {
+  color: #cbd5e1 !important; /* slate link color */
+  font-weight: 600;
+}
+html[data-bs-theme="dark"] .navbar .nav-link.active,
+html[data-bs-theme="dark"] .navbar .nav-link:hover {
+  color: #9c6cfd !important;
+}
+
+/* General high contrast badges */
+.badge.bg-light {
+  color: #1e1b4b !important; /* always high contrast indigo text on light-gray badge */
 }
 
