@@ -1,0 +1,15 @@
+{
+  "name": "avanta-ai-website",
+  "version": "1.0.0",
+  "description": "Avanta AI Solutions static corporate website",
+  "main": "index.html",
+  "scripts": {
+    "lint:html": "htmlhint *.html",
+    "lint:links": "node scripts/link-checker.js",
+    "test": "npm run lint:html && npm run lint:links"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.9.2"
+  },
+  "private": true
+}
