@@ -2678,11 +2678,31 @@ html[data-bs-theme="light"] .glass-card-4 .phase-description {
   height: 32px;
 }
 
+/* Brand Logo theme-aware toggle */
+html[data-bs-theme="light"] .navbar-brand .logo-dark {
+  display: none !important;
+}
+html[data-bs-theme="light"] .navbar-brand .logo-light {
+  display: block !important;
+}
+html[data-bs-theme="dark"] .navbar-brand .logo-light {
+  display: none !important;
+}
+html[data-bs-theme="dark"] .navbar-brand .logo-dark {
+  display: block !important;
+}
+
+.navbar-brand img {
+  height: 44px !important;
+  width: auto !important;
+  display: block;
+}
+
 /* Mobile Header and Top Bar Optimizations */
 @media (max-width: 767.98px) {
   /* Reduce header height by scaling the logo and padding */
   .navbar-brand img {
-    height: 52px !important;
+    height: 38px !important;
     width: auto !important;
   }
   .navbar {
@@ -2690,11 +2710,10 @@ html[data-bs-theme="light"] .glass-card-4 .phase-description {
     padding-bottom: 0.35rem !important;
   }
 
-  /* Optimize top-bar for mobile views: center content and stack if necessary */
+  /* Optimize top-bar for mobile views: center content and keep it clean */
   .top-bar .container {
     justify-content: center !important;
-    flex-direction: column !important;
-    gap: 6px !important;
+    gap: 8px !important;
     padding-top: 6px !important;
     padding-bottom: 6px !important;
   }
@@ -2702,11 +2721,6 @@ html[data-bs-theme="light"] .glass-card-4 .phase-description {
     justify-content: center !important;
     gap: 12px !important;
     width: 100%;
-  }
-  .top-bar-right {
-    justify-content: center !important;
-    width: 100%;
-    margin-top: 2px;
   }
   .top-bar a {
     font-size: 0.72rem !important;
