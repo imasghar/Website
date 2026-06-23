@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
 <head>
@@ -12,6 +12,87 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    /* Recruitment Timeline Styling */
+    .timeline-wrapper {
+      position: relative;
+      padding: 3rem 0;
+    }
+    .timeline-wrapper::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(106, 79, 226, 0.18);
+      transform: translateX(-50%);
+    }
+    html[data-bs-theme="dark"] .timeline-wrapper::before {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 4.5rem;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #6a4fe2;
+      border: 4px solid var(--bs-body-bg);
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 0 15px rgba(106, 79, 226, 0.5);
+    }
+    @media (max-width: 767.98px) {
+      .timeline-wrapper::before {
+        left: 20px;
+      }
+      .timeline-dot {
+        left: 20px;
+      }
+      .timeline-item {
+        padding-left: 45px;
+        text-align: left !important;
+      }
+    }
+
+    /* Culture Icons */
+    .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    /* Open Roles styling adjustments */
+    .role-card {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(106, 79, 226, 0.12) !important;
+      background: rgba(var(--bs-body-bg-rgb), 0.5) !important;
+      backdrop-filter: blur(10px);
+      border-radius: 20px !important;
+    }
+    html[data-bs-theme="light"] .role-card {
+      background: rgba(255, 255, 255, 0.8) !important;
+      border-color: rgba(106, 79, 226, 0.15) !important;
+    }
+    .role-card:hover {
+      border-color: rgba(106, 79, 226, 0.4) !important;
+      transform: translateY(-4px);
+    }
+  </style>
 </head>
 
 <body>
@@ -83,201 +164,285 @@
   </header>
 
   <main>
-    <!-- Section 1: Hero Banner -->
-    <section class="py-5 services-hero bg-custom-gradient text-center">
-      <div class="container py-4">
-        <div class="hero-content max-width-800 mx-auto">
-          <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-3"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> JOIN THE TEAM</span>
-          <h1 class="display-4 fw-bold mb-3 text-white-contrast">Build the Future of Enterprise AI &amp; Software Systems</h1>
-          <p class="lead text-muted-contrast">We engineer high-performance codebases, scalable database infrastructures, and compliant AI solutions. Explore our open roles and build systems that matter.</p>
-        </div>
+    <!-- Section 1: Hero Banner (Parallax stacked) -->
+    <section class="position-relative overflow-hidden py-5 hero-parallax-section bg-custom-gradient" data-hero-parallax="">
+      <div class="hero-overlay-curtain"></div>
+      <div class="hero-parallax" aria-hidden="true">
+        <span class="parallax-shape shape-one" data-direction="1" data-speed="0.08"></span>
+        <span class="parallax-shape shape-two" data-direction="-1" data-speed="0.12"></span>
+        <span class="parallax-shape shape-three" data-direction="1" data-speed="0.05"></span>
       </div>
-    </section>
-
-    <!-- Section 2: Core Culture & Values -->
-    <section class="py-5 bg-body-tertiary">
-      <div class="container px-md-5">
-        <div class="row mb-5 text-center">
-          <div class="col-md-8 mx-auto">
-            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-dark">OUR CULTURE</span>
-            <h2 class="display-6 fw-bold mb-3 text-white-contrast">Designed for High Autonomy &amp; Engineering Pride</h2>
-            <p class="lead fs-6 text-muted-contrast">We value product ownership, technical depth, and clean architectures. Here is how we operate daily.</p>
-          </div>
-        </div>
-        
-        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4">
-          <div class="col">
-            <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-              <div class="icon-circle mb-3"><i class="bi bi-person-fill-check"></i></div>
-              <h4 class="fw-bold h5 mb-3">High Autonomy</h4>
-              <p class="small text-muted mb-0">We hire seasoned engineers and trust them to run. No arbitrary timelines or micromanagement.</p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-              <div class="icon-circle mb-3"><i class="bi bi-code-square"></i></div>
-              <h4 class="fw-bold h5 mb-3">Clean Velocity</h4>
-              <p class="small text-muted mb-0">We move fast, but we prioritize robust engineering, modular designs, automated tests, and compliance baselines.</p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-              <div class="icon-circle mb-3"><i class="bi bi-globe-americas"></i></div>
-              <h4 class="fw-bold h5 mb-3">Remote-First</h4>
-              <p class="small text-muted mb-0">Collaborate with architects from anywhere. We support asynchronous workflows, flexible hours, and home setups.</p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-              <div class="icon-circle mb-3"><i class="bi bi-arrow-up-circle"></i></div>
-              <h4 class="fw-bold h5 mb-3">Continuous Growth</h4>
-              <p class="small text-muted mb-0">Dedicated annual learning budgets, tech talk Fridays, and a collaborative team that pushes your technical limits.</p>
-            </div>
+      <div class="container px-md-5 py-4 py-md-5 text-center">
+        <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-3 parallax-text"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> JOIN THE TEAM</span>
+        <h1 class="display-4 fw-bold mb-3 parallax-text text-white-contrast">
+          Build the Future of Enterprise AI &amp; Software Systems
+        </h1>
+        <p class="lead fs-5 mb-4 mx-auto parallax-text max-width-800 text-muted-contrast">
+          We engineer high-performance codebases, scalable database infrastructures, and compliant AI solutions. Explore our open roles and build systems that matter.
+        </p>
+        <div class="text-center mb-2 mx-auto parallax-text">
+          <div class="d-flex flex-column justify-content-center align-items-center gap-3 flex-sm-row">
+            <a class="btn btn-dark-blue rounded-pill px-4 py-2" href="#roles">Explore Open Roles&nbsp;&nbsp;<i class="bi bi-arrow-down-short fs-5 align-middle"></i></a>
+            <a class="btn btn-glass-outline rounded-pill px-4 py-2" href="#apply">Quick Apply</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Open Roles Directory -->
-    <section class="py-5">
-      <div class="container px-md-5">
-        <div class="row mb-5 text-center">
-          <div class="col-md-8 mx-auto">
-            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-dark">CURRENT OPPORTUNITIES</span>
-            <h2 class="display-6 fw-bold mb-3 text-white-contrast">Find Your Next Technical Challenge</h2>
-            <p class="lead fs-6 text-muted-contrast">We are expanding our core team. All positions are fully remote or location-flexible as specified.</p>
-          </div>
-        </div>
-
-        <div class="row g-4 justify-content-center">
-          <!-- Role 1 -->
-          <div class="col-lg-10">
-            <div class="card p-4 border-0 card-hover-lift shadow-sm">
-              <div class="row align-items-center g-4">
-                <div class="col-md-8">
-                  <span class="badge bg-primary-subtle text-primary mb-2">Web Engineering</span>
-                  <h3 class="fw-bold h4 mb-2">Senior React / Next.js Engineer</h3>
-                  <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Remote (US / Canada / Europe Timezones)</p>
-                  <p class="mb-0 small">Own the development of our highly interactive, performance-focused client platforms. You will deploy Next.js static and SSR pipelines, manage GSAP web animations, and audit core web vital performance metrics.</p>
-                </div>
-                <div class="col-md-4 text-md-end">
-                  <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'nextjs-engineer';">Apply For Role</a>
-                </div>
-              </div>
+    <!-- Wrapper for overlap content sliding up over the pinned hero -->
+    <div class="main-content-overlap">
+      <!-- Section 2: Core Culture & Values -->
+      <section class="py-5 bg-body-tertiary">
+        <div class="container px-md-5">
+          <div class="row mb-5 text-center">
+            <div class="col-md-8 mx-auto">
+              <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">OUR CULTURE</span>
+              <h2 class="display-6 fw-bold mb-3 text-white-contrast">Designed for High Autonomy &amp; Engineering Pride</h2>
+              <p class="lead fs-6 text-muted-contrast">We value product ownership, technical depth, and clean architectures. Here is how we operate daily.</p>
             </div>
           </div>
-
-          <!-- Role 2 -->
-          <div class="col-lg-10">
-            <div class="card p-4 border-0 card-hover-lift shadow-sm">
-              <div class="row align-items-center g-4">
-                <div class="col-md-8">
-                  <span class="badge bg-success-subtle text-success mb-2">AI Integrations</span>
-                  <h3 class="fw-bold h4 mb-2">Lead AI/LLM Integration Architect</h3>
-                  <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Hybrid (Austin, TX office availability)</p>
-                  <p class="mb-0 small">Design secure cognitive automation pipelines. You will coordinate OpenAI/Anthropic model integrations, configure vector database RAG structures, implement OCR parsing engines, and enforce compliance guidelines.</p>
-                </div>
-                <div class="col-md-4 text-md-end">
-                  <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'ai-architect';">Apply For Role</a>
-                </div>
+          
+          <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <!-- Card 1 -->
+            <div class="col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
+                <div class="icon-circle bg-primary-subtle text-primary mb-3"><i class="bi bi-person-fill-check"></i></div>
+                <h4 class="fw-bold h5 mb-3">High Autonomy</h4>
+                <p class="small text-muted mb-0">We hire seasoned engineers and trust them to run. No arbitrary timelines or micromanagement.</p>
               </div>
             </div>
-          </div>
-
-          <!-- Role 3 -->
-          <div class="col-lg-10">
-            <div class="card p-4 border-0 card-hover-lift shadow-sm">
-              <div class="row align-items-center g-4">
-                <div class="col-md-8">
-                  <span class="badge bg-warning-subtle text-warning mb-2">Database &amp; Compliance</span>
-                  <h3 class="fw-bold h4 mb-2">Senior Database Security Specialist</h3>
-                  <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Remote (Global)</p>
-                  <p class="mb-0 small">Secure database transactional architectures and enforce SOC2/HIPAA compliance standards. You will manage encrypted database layers, configure user auth policies, and maintain comprehensive compliance audit trails.</p>
-                </div>
-                <div class="col-md-4 text-md-end">
-                  <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'db-specialist';">Apply For Role</a>
-                </div>
+            <!-- Card 2 -->
+            <div class="col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
+                <div class="icon-circle bg-success-subtle text-success mb-3"><i class="bi bi-code-square"></i></div>
+                <h4 class="fw-bold h5 mb-3">Clean Velocity</h4>
+                <p class="small text-muted mb-0">We move fast, but we prioritize robust engineering, modular designs, automated tests, and compliance baselines.</p>
               </div>
             </div>
-          </div>
-
-          <!-- Role 4 -->
-          <div class="col-lg-10">
-            <div class="card p-4 border-0 card-hover-lift shadow-sm">
-              <div class="row align-items-center g-4">
-                <div class="col-md-8">
-                  <span class="badge bg-info-subtle text-info mb-2">Mobile Apps</span>
-                  <h3 class="fw-bold h4 mb-2">Senior Flutter Developer</h3>
-                  <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Hybrid (Austin, TX office availability)</p>
-                  <p class="mb-0 small">Architect cross-platform mobile apps for iOS and Android. You will integrate native features (biometrics, secure vaults), optimize background tasks, manage offline sync layers, and orchestrate app publishing pipelines.</p>
-                </div>
-                <div class="col-md-4 text-md-end">
-                  <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'flutter-developer';">Apply For Role</a>
-                </div>
+            <!-- Card 3 -->
+            <div class="col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
+                <div class="icon-circle bg-info-subtle text-info mb-3"><i class="bi bi-globe-americas"></i></div>
+                <h4 class="fw-bold h5 mb-3">Remote-First</h4>
+                <p class="small text-muted mb-0">Collaborate with architects from anywhere. We support asynchronous workflows, flexible hours, and home setups.</p>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
+                <div class="icon-circle bg-warning-subtle text-warning mb-3"><i class="bi bi-arrow-up-circle"></i></div>
+                <h4 class="fw-bold h5 mb-3">Continuous Growth</h4>
+                <p class="small text-muted mb-0">Dedicated annual learning budgets, tech talk Fridays, and a collaborative team that pushes your technical limits.</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section 4: Application Form -->
-    <section class="py-5 bg-custom-gradient" id="apply">
-      <div class="container px-md-5">
-        <div class="row justify-content-center">
-          <div class="col-xl-8">
-            <div class="contact-highlight p-4 p-md-5 shadow-lg">
-              <div class="text-center mb-4">
-                <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-2"><i class="bi bi-send-fill text-warning me-1"></i> QUICK APPLY</span>
-                <h2 class="display-6 fw-bold mb-2">Submit Your Application</h2>
-                <p class="text-muted-contrast mb-0">Fill in the fields below. Our recruiting team responds to qualified candidates within 48 business hours.</p>
-              </div>
-              <form id="careersForm" action="success.html" method="GET">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label for="applyName" class="form-label small fw-bold">Full Name</label>
-                    <input type="text" class="form-control rounded-pill px-3" id="applyName" required placeholder="John Doe">
+      <!-- Section 3: Open Roles Directory -->
+      <section class="py-5" id="roles">
+        <div class="container px-md-5">
+          <div class="row mb-5 text-center">
+            <div class="col-md-8 mx-auto">
+              <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">CURRENT OPPORTUNITIES</span>
+              <h2 class="display-6 fw-bold mb-3 text-white-contrast">Find Your Next Technical Challenge</h2>
+              <p class="lead fs-6 text-muted-contrast">We are expanding our core team. All positions are fully remote or location-flexible as specified.</p>
+            </div>
+          </div>
+
+          <div class="row g-4 justify-content-center">
+            <!-- Role 1 -->
+            <div class="col-lg-10">
+              <div class="card p-4 border-0 role-card shadow-sm">
+                <div class="row align-items-center g-4">
+                  <div class="col-md-8">
+                    <span class="badge bg-primary-subtle text-primary mb-2">Web Engineering</span>
+                    <h3 class="fw-bold h4 mb-2">Senior React / Next.js Engineer</h3>
+                    <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Remote (US / Canada / Europe Timezones)</p>
+                    <p class="mb-0 small text-muted">Own the development of our highly interactive, performance-focused client platforms. You will deploy Next.js static and SSR pipelines, manage GSAP web animations, and audit core web vital performance metrics.</p>
                   </div>
-                  <div class="col-md-6">
-                    <label for="applyEmail" class="form-label small fw-bold">Email Address</label>
-                    <input type="email" class="form-control rounded-pill px-3" id="applyEmail" required placeholder="john.doe@example.com">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="applyPhone" class="form-label small fw-bold">Phone Number</label>
-                    <input type="tel" class="form-control rounded-pill px-3" id="applyPhone" placeholder="(214) 736-3533">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="applyRole" class="form-label small fw-bold">Role of Interest</label>
-                    <select class="form-select rounded-pill px-3" id="applyRole" required>
-                      <option value="">-- Select a Position --</option>
-                      <option value="nextjs-engineer">Senior React / Next.js Engineer</option>
-                      <option value="ai-architect">Lead AI/LLM Integration Architect</option>
-                      <option value="db-specialist">Senior Database Security Specialist</option>
-                      <option value="flutter-developer">Senior Flutter Developer</option>
-                    </select>
-                  </div>
-                  <div class="col-12">
-                    <label for="applyPortfolio" class="form-label small fw-bold">Portfolio or LinkedIn URL</label>
-                    <input type="url" class="form-control rounded-pill px-3" id="applyPortfolio" required placeholder="https://linkedin.com/in/username">
-                  </div>
-                  <div class="col-12">
-                    <label for="applyResume" class="form-label small fw-bold">Link to Resume (Google Drive, Dropbox, PDF)</label>
-                    <input type="url" class="form-control rounded-pill px-3" id="applyResume" required placeholder="https://drive.google.com/file/d/your-resume-link">
-                  </div>
-                  <div class="col-12">
-                    <label for="applyNote" class="form-label small fw-bold">Short Note (Optional)</label>
-                    <textarea class="form-control p-3 rounded-4" id="applyNote" rows="3" placeholder="Tell us why you're a great fit..."></textarea>
-                  </div>
-                  <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 fw-semibold" data-bss-hover-animate="pulse">Submit My Application</button>
+                  <div class="col-md-4 text-md-end">
+                    <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'nextjs-engineer';">Apply For Role</a>
                   </div>
                 </div>
-              </form>
+              </div>
+            </div>
+
+            <!-- Role 2 -->
+            <div class="col-lg-10">
+              <div class="card p-4 border-0 role-card shadow-sm">
+                <div class="row align-items-center g-4">
+                  <div class="col-md-8">
+                    <span class="badge bg-success-subtle text-success mb-2">AI Integrations</span>
+                    <h3 class="fw-bold h4 mb-2">Lead AI/LLM Integration Architect</h3>
+                    <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Hybrid (Austin, TX office availability)</p>
+                    <p class="mb-0 small text-muted">Design secure cognitive automation pipelines. You will coordinate OpenAI/Anthropic model integrations, configure vector database RAG structures, implement OCR parsing engines, and enforce compliance guidelines.</p>
+                  </div>
+                  <div class="col-md-4 text-md-end">
+                    <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'ai-architect';">Apply For Role</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Role 3 -->
+            <div class="col-lg-10">
+              <div class="card p-4 border-0 role-card shadow-sm">
+                <div class="row align-items-center g-4">
+                  <div class="col-md-8">
+                    <span class="badge bg-warning-subtle text-warning mb-2">Database &amp; Compliance</span>
+                    <h3 class="fw-bold h4 mb-2">Senior Database Security Specialist</h3>
+                    <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Remote (Global)</p>
+                    <p class="mb-0 small text-muted">Secure database transactional architectures and enforce SOC2/HIPAA compliance standards. You will manage encrypted database layers, configure user auth policies, and maintain comprehensive compliance audit trails.</p>
+                  </div>
+                  <div class="col-md-4 text-md-end">
+                    <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'db-specialist';">Apply For Role</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Role 4 -->
+            <div class="col-lg-10">
+              <div class="card p-4 border-0 role-card shadow-sm">
+                <div class="row align-items-center g-4">
+                  <div class="col-md-8">
+                    <span class="badge bg-info-subtle text-info mb-2">Mobile Apps</span>
+                    <h3 class="fw-bold h4 mb-2">Senior Flutter Developer</h3>
+                    <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Hybrid (Austin, TX office availability)</p>
+                    <p class="mb-0 small text-muted">Architect cross-platform mobile apps for iOS and Android. You will integrate native features (biometrics, secure vaults), optimize background tasks, manage offline sync layers, and orchestrate app publishing pipelines.</p>
+                  </div>
+                  <div class="col-md-4 text-md-end">
+                    <a href="#apply" class="btn btn-primary rounded-pill px-4 py-2" onclick="document.getElementById('applyRole').value = 'flutter-developer';">Apply For Role</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Section 4: Recruitment Process (Roadmap) -->
+      <section class="py-5 bg-body-tertiary">
+        <div class="container px-md-5">
+          <div class="row mb-5 text-center">
+            <div class="col-md-8 mx-auto">
+              <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">RECRUITMENT PROCESS</span>
+              <h2 class="display-6 fw-bold mb-3 text-white-contrast">How We Hire</h2>
+              <p class="lead fs-6 text-muted-contrast">A transparent, direct path from application to offer. We respect your time and focus on technical conversations.</p>
+            </div>
+          </div>
+          <div class="timeline-wrapper position-relative">
+            <!-- Step 1 -->
+            <div class="timeline-item row g-4 align-items-center">
+              <div class="col-md-6 text-md-end pe-md-5">
+                <span class="badge bg-primary-subtle text-primary mb-2">STEP 01</span>
+                <h3 class="fw-bold h4 text-white-contrast">Resume Screening</h3>
+                <p class="small text-muted mb-0">Our engineering leads review your portfolio, GitHub, and LinkedIn directly. No automated keyword bot filters.</p>
+              </div>
+              <div class="col-md-6 ps-md-5">
+                <div class="timeline-dot bg-primary"></div>
+                <span class="text-muted small"><i class="bi bi-clock me-1"></i> Response within 48h</span>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="timeline-item row g-4 align-items-center">
+              <div class="col-md-6 text-md-end pe-md-5">
+                <div class="timeline-dot bg-success"></div>
+                <span class="text-muted small"><i class="bi bi-chat-dots me-1"></i> 30-Minute Google Meet</span>
+              </div>
+              <div class="col-md-6 ps-md-5">
+                <span class="badge bg-success-subtle text-success mb-2">STEP 02</span>
+                <h3 class="fw-bold h4 text-white-contrast">Initial Alignment Call</h3>
+                <p class="small text-muted mb-0">A casual conversation to check cultural alignment, clarify technical experience, and align on salary expectations.</p>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="timeline-item row g-4 align-items-center">
+              <div class="col-md-6 text-md-end pe-md-5">
+                <span class="badge bg-info-subtle text-info mb-2">STEP 03</span>
+                <h3 class="fw-bold h4 text-white-contrast">Practical Deep Dive</h3>
+                <p class="small text-muted mb-0">An online architecture session where we pair program or walk through a real system setup. No useless trivia riddles.</p>
+              </div>
+              <div class="col-md-6 ps-md-5">
+                <div class="timeline-dot bg-info"></div>
+                <span class="text-muted small"><i class="bi bi-code-slash me-1"></i> 60-Minute Session</span>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="timeline-item row g-4 align-items-center">
+              <div class="col-md-6 text-md-end pe-md-5">
+                <div class="timeline-dot bg-warning"></div>
+                <span class="text-muted small"><i class="bi bi-envelope-heart me-1"></i> Decisive Feedback</span>
+              </div>
+              <div class="col-md-6 ps-md-5">
+                <span class="badge bg-warning-subtle text-warning mb-2">STEP 04</span>
+                <h3 class="fw-bold h4 text-white-contrast">Formal Offer</h3>
+                <p class="small text-muted mb-0">We present a competitive salary offer, remote work budget guidelines, and details on collaborative growth paths.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Application Form -->
+      <section class="py-5 bg-custom-gradient" id="apply">
+        <div class="container px-md-5">
+          <div class="row justify-content-center">
+            <div class="col-xl-8">
+              <div class="contact-highlight p-4 p-md-5 shadow-lg">
+                <div class="text-center mb-4">
+                  <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-2"><i class="bi bi-send-fill text-warning me-1"></i> QUICK APPLY</span>
+                  <h2 class="display-6 fw-bold mb-2 text-white-contrast">Submit Your Application</h2>
+                  <p class="text-muted-contrast mb-0">Fill in the fields below. Our recruiting team responds to qualified candidates within 48 business hours.</p>
+                </div>
+                <form id="careersForm" action="success.html" method="GET">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="applyName" class="form-label small fw-bold">Full Name</label>
+                      <input type="text" class="form-control rounded-pill px-3" id="applyName" required placeholder="John Doe">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="applyEmail" class="form-label small fw-bold">Email Address</label>
+                      <input type="email" class="form-control rounded-pill px-3" id="applyEmail" required placeholder="john.doe@example.com">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="applyPhone" class="form-label small fw-bold">Phone Number</label>
+                      <input type="tel" class="form-control rounded-pill px-3" id="applyPhone" placeholder="(214) 736-3533">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="applyRole" class="form-label small fw-bold">Role of Interest</label>
+                      <select class="form-select rounded-pill px-3" id="applyRole" required>
+                        <option value="">-- Select a Position --</option>
+                        <option value="nextjs-engineer">Senior React / Next.js Engineer</option>
+                        <option value="ai-architect">Lead AI/LLM Integration Architect</option>
+                        <option value="db-specialist">Senior Database Security Specialist</option>
+                        <option value="flutter-developer">Senior Flutter Developer</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="applyPortfolio" class="form-label small fw-bold">Portfolio or LinkedIn URL</label>
+                      <input type="url" class="form-control rounded-pill px-3" id="applyPortfolio" required placeholder="https://linkedin.com/in/username">
+                    </div>
+                    <div class="col-12">
+                      <label for="applyResume" class="form-label small fw-bold">Link to Resume (Google Drive, Dropbox, PDF)</label>
+                      <input type="url" class="form-control rounded-pill px-3" id="applyResume" required placeholder="https://drive.google.com/file/d/your-resume-link">
+                    </div>
+                    <div class="col-12">
+                      <label for="applyNote" class="form-label small fw-bold">Short Note (Optional)</label>
+                      <textarea class="form-control p-3 rounded-4" id="applyNote" rows="3" placeholder="Tell us why you're a great fit..."></textarea>
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                      <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 fw-semibold" data-bss-hover-animate="pulse">Submit My Application</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="py-5">
