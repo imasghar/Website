@@ -1,0 +1,2650 @@
+/* Glassmorphism Interactive Custom Animations Styles */
+
+/* 1. Fix Double Underline on Active Navbar Links */
+.navbar .nav-link, 
+.navbar .nav-link.active,
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* 2. Circular Theme Switcher Button (No dropdown caret arrow) */
+.theme-toggle-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(106, 79, 226, 0.3) !important;
+  background: rgba(8, 9, 32, 0.4) !important;
+  color: var(--bs-body-color) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(106, 79, 226, 0.2) !important;
+  border-color: rgba(106, 79, 226, 0.65) !important;
+  transform: scale(1.05);
+}
+
+.theme-toggle-btn::after {
+  display: none !important; /* Removes Bootstrap's default caret indicator */
+}
+
+/* Toggle Sun/Moon SVG visibility based on data-bs-theme */
+html[data-bs-theme="dark"] .theme-icon-light {
+  display: none !important;
+}
+html[data-bs-theme="light"] .theme-icon-dark {
+  display: none !important;
+}
+html[data-bs-theme="dark"] .theme-icon-dark {
+  display: block !important;
+}
+html[data-bs-theme="light"] .theme-icon-light {
+  display: block !important;
+}
+
+/* Glassmorphism Dropdown Menus */
+.navbar .dropdown-menu {
+  background: rgba(8, 9, 32, 0.95) !important;
+  border: 1px solid rgba(106, 79, 226, 0.25) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 12px !important;
+  padding: 0.5rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.navbar .dropdown-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.navbar .dropdown-item:hover, 
+.navbar .dropdown-item.active {
+  background: rgba(106, 79, 226, 0.2) !important;
+  color: #fff !important;
+}
+
+/* 3. Cursor-Tracking Radial Gradient Glow (Hover border trails) */
+.card-hover-lift, .contact-highlight, .card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
+}
+
+.card-hover-lift::before, .contact-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(106, 79, 226, 0.6) 0%,
+    rgba(106, 79, 226, 0.15) 45%,
+    transparent 80%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-hover-lift:hover::before, .contact-highlight:hover::before {
+  opacity: 1;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  box-shadow: 0 30px 70px rgba(106, 79, 226, 0.25) !important;
+  border-color: rgba(106, 79, 226, 0.5) !important;
+}
+
+/* 4. Success Checkmark Keyframes */
+.success-checkmark-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(40, 167, 69, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border: 2px solid rgba(40, 167, 69, 0.3);
+}
+
+.success-checkmark-svg {
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+
+.checkmark-circle-path {
+  stroke: #28a745;
+  stroke-width: 2.5;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+}
+
+.checkmark-check-path {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #28a745;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+/* 5. Custom Glassmorphic Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(8, 9, 32, 0.98);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(106, 79, 226, 0.25);
+  border-radius: 6px;
+  border: 2px solid rgba(8, 9, 32, 0.98);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(106, 79, 226, 0.55);
+}
+
+/* 6. Scroll Reveal Preparation */
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* 7. Parallax Shapes & Section Overflow fixes */
+.hero-parallax-section {
+  overflow: hidden !important;
+  z-index: 1;
+}
+
+.hero-parallax {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.parallax-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  transform: translateY(var(--parallax-y, 0px));
+  will-change: transform;
+}
+
+.shape-one {
+  background: radial-gradient(circle, rgba(106, 79, 226, 0.2) 0%, rgba(106, 79, 226, 0) 70%);
+  width: 350px;
+  height: 350px;
+  top: -10%;
+  left: -5%;
+}
+
+.shape-two {
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, rgba(0, 180, 216, 0) 70%);
+  width: 450px;
+  height: 450px;
+  bottom: -15%;
+  right: -10%;
+}
+
+.shape-three {
+  background: radial-gradient(circle, rgba(106, 79, 226, 0.15) 0%, rgba(106, 79, 226, 0) 70%);
+  width: 250px;
+  height: 250px;
+  top: 35%;
+  left: 45%;
+}
+
+/* 8. Extra Micro-Animations */
+.tech-logos img {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+  opacity: 0.8;
+}
+
+.tech-logos img:hover {
+  transform: translateY(-6px) scale(1.15);
+  opacity: 1;
+}
+
+.navbar-brand img {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Glass card styling improvements for contact */
+.contact-highlight {
+  background: rgba(12, 8, 34, 0.6) !important;
+  border: 1px solid rgba(106, 79, 226, 0.2) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 1.5rem !important;
+}
+
+/* Accordion glass fixes */
+.accordion-item {
+  background: rgba(12, 8, 34, 0.4) !important;
+  border: 1px solid rgba(106, 79, 226, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+}
+
+.accordion-button {
+  background: transparent !important;
+  color: var(--bs-body-color) !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.1) !important;
+}
+
+.accordion-button.collapsed {
+  border-bottom: none !important;
+}
+
+
+/* ==========================================
+   9. DARK MODE CONTRAST & READABILITY OVERRIDES
+   ========================================== */
+
+html[data-bs-theme="dark"] {
+  --bs-body-color: #f3f4f6 !important;
+  --bs-body-color-rgb: 243, 244, 246 !important;
+}
+
+html[data-bs-theme="dark"] body {
+  color: #f3f4f6 !important;
+}
+
+/* Force high contrast text on all glass cards in dark mode */
+html[data-bs-theme="dark"] .card,
+html[data-bs-theme="dark"] .card-body,
+html[data-bs-theme="dark"] .card-hover-lift,
+html[data-bs-theme="dark"] .contact-highlight,
+html[data-bs-theme="dark"] .team-info {
+  background: rgba(14, 11, 38, 0.82) !important; /* Richer, more opaque dark glass background */
+  color: #e5e7eb !important;
+  border: 1px solid rgba(106, 79, 226, 0.35) !important; /* Visible, solid borders for card boundaries */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4) !important; /* High-contrast dropdown shadows */
+}
+
+/* Force titles inside cards to render white */
+html[data-bs-theme="dark"] .card h3,
+html[data-bs-theme="dark"] .card h4,
+html[data-bs-theme="dark"] .card h5,
+html[data-bs-theme="dark"] .card h6,
+html[data-bs-theme="dark"] .card-title,
+html[data-bs-theme="dark"] .contact-highlight h1,
+html[data-bs-theme="dark"] .contact-highlight h2,
+html[data-bs-theme="dark"] .contact-highlight h3,
+html[data-bs-theme="dark"] .team-info h4 {
+  color: #ffffff !important;
+}
+
+/* Force descriptions inside cards to render light grey (contrast ratio > 4.5:1) */
+html[data-bs-theme="dark"] .card p,
+html[data-bs-theme="dark"] .card-text,
+html[data-bs-theme="dark"] .card-body p,
+html[data-bs-theme="dark"] .contact-highlight p,
+html[data-bs-theme="dark"] .contact-highlight .text-muted,
+html[data-bs-theme="dark"] .team-info p,
+html[data-bs-theme="dark"] .text-muted {
+  color: #cbd5e1 !important; /* highly legible slate grey */
+}
+
+/* Timeline text overrides */
+html[data-bs-theme="dark"] .timeline-item,
+html[data-bs-theme="dark"] .timeline-item .entry,
+html[data-bs-theme="dark"] .timeline-item h5,
+html[data-bs-theme="dark"] .timeline-item p,
+html[data-bs-theme="dark"] .timeline-item h4 {
+  color: #e5e7eb !important;
+}
+
+html[data-bs-theme="dark"] .timeline-item h5,
+html[data-bs-theme="dark"] .timeline-item h4 {
+  color: #ffffff !important;
+}
+
+html[data-bs-theme="dark"] .timeline-item p {
+  color: #cbd5e1 !important;
+}
+
+/* Testimonial slider contrast improvements */
+html[data-bs-theme="dark"] #testimonials .card strong,
+html[data-bs-theme="dark"] #testimonials .card small,
+html[data-bs-theme="dark"] #testimonials .card p {
+  color: #cbd5e1 !important;
+}
+
+html[data-bs-theme="dark"] #testimonials .card strong {
+  color: #ffffff !important;
+}
+
+/* Accordion body responses */
+html[data-bs-theme="dark"] .accordion-body,
+html[data-bs-theme="dark"] .accordion-body p {
+  color: #cbd5e1 !important;
+}
+
+/* Text links color adjustments (no dark-blue links on dark backgrounds) */
+html[data-bs-theme="dark"] a:not(.btn):not(.nav-link):not(.dropdown-item) {
+  color: #ada2ff !important; /* bright lavender */
+}
+
+html[data-bs-theme="dark"] a:not(.btn):not(.nav-link):not(.dropdown-item):hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* Footer elements visibility */
+html[data-bs-theme="dark"] footer,
+html[data-bs-theme="dark"] footer p,
+html[data-bs-theme="dark"] footer h4,
+html[data-bs-theme="dark"] footer h5,
+html[data-bs-theme="dark"] footer a {
+  color: #e5e7eb !important;
+}
+
+html[data-bs-theme="dark"] footer a:hover {
+  color: #ffffff !important;
+}
+
+
+/* ==========================================
+   10. LIGHT THEME GLASSMORPHISM & READABILITY
+   ========================================== */
+
+/* Frosted glass cards in Light Mode */
+html[data-bs-theme="light"] .card,
+html[data-bs-theme="light"] .card-hover-lift,
+html[data-bs-theme="light"] .contact-highlight,
+html[data-bs-theme="light"] .team-info,
+html[data-bs-theme="light"] .timeline-item .entry {
+  background: rgba(255, 255, 255, 0.78) !important; /* More opaque white glass to stand out on light background */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(106, 79, 226, 0.18) !important; /* Visible theme-colored border for card boundaries */
+  box-shadow: 0 15px 35px rgba(106, 79, 226, 0.08) !important; /* Soft theme-colored shadow */
+  color: rgb(12, 8, 34) !important;
+}
+
+/* Force dark purple text for headings in light mode cards */
+html[data-bs-theme="light"] .card h3,
+html[data-bs-theme="light"] .card h4,
+html[data-bs-theme="light"] .card h5,
+html[data-bs-theme="light"] .card h6,
+html[data-bs-theme="light"] .card-title,
+html[data-bs-theme="light"] .contact-highlight h1,
+html[data-bs-theme="light"] .contact-highlight h2,
+html[data-bs-theme="light"] .contact-highlight h3,
+html[data-bs-theme="light"] .team-info h4,
+html[data-bs-theme="light"] .timeline-item h5,
+html[data-bs-theme="light"] .timeline-item h4 {
+  color: rgb(12, 8, 34) !important;
+}
+
+/* Force dark slate text for descriptions/paragraphs in light mode cards */
+html[data-bs-theme="light"] .card p,
+html[data-bs-theme="light"] .card-text,
+html[data-bs-theme="light"] .card-body p,
+html[data-bs-theme="light"] .contact-highlight p,
+html[data-bs-theme="light"] .contact-highlight .text-muted,
+html[data-bs-theme="light"] .team-info p,
+html[data-bs-theme="light"] .timeline-item p,
+html[data-bs-theme="light"] .text-muted {
+  color: rgba(12, 8, 34, 0.75) !important; /* high legibility dark grey */
+}
+
+/* Accordion light glass theme */
+html[data-bs-theme="light"] .accordion-item {
+  background: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(12, 8, 34, 0.08) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+html[data-bs-theme="light"] .accordion-button {
+  color: rgb(12, 8, 34) !important;
+  border-bottom: 1px solid rgba(12, 8, 34, 0.08) !important;
+}
+
+html[data-bs-theme="light"] .accordion-body,
+html[data-bs-theme="light"] .accordion-body p {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+/* Testimonial slider light theme fixes */
+html[data-bs-theme="light"] #testimonials .card strong,
+html[data-bs-theme="light"] #testimonials .card small,
+html[data-bs-theme="light"] #testimonials .card p {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+html[data-bs-theme="light"] #testimonials .card strong {
+  color: rgb(12, 8, 34) !important;
+}
+
+/* Glow hover adjustments in light mode */
+html[data-bs-theme="light"] .card-hover-lift::before,
+html[data-bs-theme="light"] .contact-highlight::before {
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(106, 79, 226, 0.25) 0%,
+    rgba(106, 79, 226, 0.05) 50%,
+    transparent 80%
+  ) !important;
+}
+
+
+/* ==========================================
+   11. TOP UTILITY PRE-HEADER BAR STYLING
+   ========================================== */
+
+.top-bar {
+  font-size: 0.78rem !important;
+  padding: 5px 0 !important;
+  position: relative;
+  z-index: 1035;
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode Top Bar Colors */
+html[data-bs-theme="dark"] .top-bar {
+  background: rgba(8, 9, 32, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.25) !important;
+}
+
+html[data-bs-theme="dark"] .top-bar a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html[data-bs-theme="dark"] .top-bar a:hover {
+  color: #ffffff !important;
+}
+
+html[data-bs-theme="dark"] .top-bar i {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Light Mode Top Bar Colors */
+html[data-bs-theme="light"] .top-bar {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.15) !important;
+}
+
+html[data-bs-theme="light"] .top-bar a {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+html[data-bs-theme="light"] .top-bar a:hover {
+  color: rgb(106, 79, 226) !important;
+}
+
+html[data-bs-theme="light"] .top-bar i {
+  color: rgb(106, 79, 226) !important;
+}
+
+.top-bar a {
+  text-decoration: none !important;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.top-bar i {
+  font-size: 0.85rem;
+}
+
+.top-bar-divider {
+  width: 1px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px;
+  display: inline-block;
+  align-self: center;
+}
+
+html[data-bs-theme="light"] .top-bar-divider {
+  background-color: rgba(12, 8, 34, 0.15);
+}
+
+/* Alignment spacers for the content containers */
+.top-bar .gap-4 {
+  gap: 1.5rem !important;
+}
+
+/* Sticky Header navigation container wrapping both top-bar and navbar */
+.header-navigation.sticky-top {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1030 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: transform 0.3s ease;
+}
+
+/* Clear sticky margin constraints from default navbar */
+.navbar.sticky-top {
+  position: relative !important;
+  top: auto !important;
+  z-index: 1025 !important;
+}
+
+/* ==========================================
+   12. LENIS SMOOTH SCROLL STYLES
+   ========================================== */
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================
+   13. CARD ICON CIRCLE OVERRIDES
+   ========================================== */
+
+/* Premium theme-colored background for icon circles inside cards instead of generic gray */
+html[data-bs-theme="dark"] .card-hover-lift .icon-circle,
+html[data-bs-theme="dark"] .card .icon-circle {
+  background: rgba(106, 79, 226, 0.18) !important;
+}
+
+html[data-bs-theme="dark"] .card-hover-lift .icon-circle i,
+html[data-bs-theme="dark"] .card .icon-circle i {
+  color: #ada2ff !important;
+}
+
+html[data-bs-theme="light"] .card-hover-lift .icon-circle,
+html[data-bs-theme="light"] .card .icon-circle {
+  background: rgba(106, 79, 226, 0.08) !important;
+}
+
+html[data-bs-theme="light"] .card-hover-lift .icon-circle i,
+html[data-bs-theme="light"] .card .icon-circle i {
+  color: #6a4fe2 !important;
+}
+
+/* ==========================================
+   14. ACCENTED FOOTER DESIGN STYLES
+   ========================================== */
+
+footer h4.footer-heading {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: capitalize;
+}
+
+footer h4.footer-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 35px;
+  height: 2px;
+  background-color: var(--bs-primary); /* matches the theme violet */
+}
+
+/* Footer links styling */
+.footer-links li a {
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  display: inline-block;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+}
+
+.footer-links li a:hover {
+  color: #ffffff !important;
+  padding-left: 4px;
+}
+
+/* In light mode, override footer link hover styles */
+html[data-bs-theme="light"] .footer-links li a {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+html[data-bs-theme="light"] .footer-links li a:hover {
+  color: var(--bs-primary) !important;
+}
+html[data-bs-theme="light"] footer h4.footer-heading {
+  color: rgb(12, 8, 34) !important;
+}
+
+/* ==========================================
+   15. ABOUT PAGE STATS COUNTERS & LISTS
+   ========================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.stat-card {
+  padding: 1.5rem;
+  border-radius: 1rem !important;
+  text-align: center;
+  background: rgba(14, 11, 38, 0.6) !important;
+  border: 1px solid rgba(106, 79, 226, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+html[data-bs-theme="light"] .stat-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(106, 79, 226, 0.15) !important;
+  box-shadow: 0 10px 30px rgba(106, 79, 226, 0.04) !important;
+}
+
+.stat-number-wrapper {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff !important;
+  margin-bottom: 0.5rem;
+}
+
+html[data-bs-theme="dark"] .stat-number-wrapper {
+  text-shadow: 0 0 15px rgba(106, 79, 226, 0.4);
+}
+
+html[data-bs-theme="light"] .stat-number-wrapper {
+  color: #6a4fe2 !important;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #cbd5e1;
+}
+
+html[data-bs-theme="light"] .stat-label {
+  color: rgba(12, 8, 34, 0.7);
+}
+
+/* Custom Checkbox list styles */
+.about-checkbox-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.about-checkbox-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.about-checkbox-list li::before {
+  content: '\F272'; /* Bootstrap Icon check-lg code */
+  font-family: 'bootstrap-icons';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #28a745; /* Success Green */
+}
+
+/* Tech Partner Logo Grid */
+.partner-logo-grid img {
+  max-height: 38px;
+  opacity: 0.65;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.partner-logo-grid img:hover {
+  opacity: 1;
+  filter: none;
+}
+
+/* ==========================================
+   16. GLASSMORPHIC FORM INPUTS
+   ========================================== */
+
+/* Dark Mode Glass Inputs */
+html[data-bs-theme="dark"] .contact-highlight .form-control,
+html[data-bs-theme="dark"] .contact-highlight .form-select {
+  background: rgba(8, 9, 32, 0.6) !important;
+  border: 1px solid rgba(106, 79, 226, 0.3) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+html[data-bs-theme="dark"] .contact-highlight .form-control:focus,
+html[data-bs-theme="dark"] .contact-highlight .form-select:focus {
+  background: rgba(8, 9, 32, 0.8) !important;
+  border-color: rgba(106, 79, 226, 0.7) !important;
+  box-shadow: 0 0 12px rgba(106, 79, 226, 0.4) !important;
+}
+
+html[data-bs-theme="dark"] .contact-highlight .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+html[data-bs-theme="dark"] .contact-highlight .form-select option {
+  background: #080920 !important;
+  color: #ffffff !important;
+}
+
+/* Light Mode Glass Inputs */
+html[data-bs-theme="light"] .contact-highlight .form-control,
+html[data-bs-theme="light"] .contact-highlight .form-select {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border: 1px solid rgba(106, 79, 226, 0.22) !important;
+  color: rgb(12, 8, 34) !important;
+  transition: all 0.3s ease;
+}
+
+html[data-bs-theme="light"] .contact-highlight .form-control:focus,
+html[data-bs-theme="light"] .contact-highlight .form-select:focus {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(106, 79, 226, 0.55) !important;
+  box-shadow: 0 0 12px rgba(106, 79, 226, 0.2) !important;
+}
+
+html[data-bs-theme="light"] .contact-highlight .form-control::placeholder {
+  color: rgba(12, 8, 34, 0.5) !important;
+}
+
+html[data-bs-theme="light"] .contact-highlight .form-select option {
+  background: #ffffff !important;
+  color: rgb(12, 8, 34) !important;
+}
+
+/* ==========================================
+   17. INTERACTIVE SHOWCASE TABS (HOMEPAGE)
+   ========================================== */
+
+.showcase_tabs_btns {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.s_tab_btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  border: 1px solid rgba(106, 79, 226, 0.2) !important;
+}
+
+/* Dark theme tab buttons */
+html[data-bs-theme="dark"] .s_tab_btn {
+  background: rgba(8, 9, 32, 0.4) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html[data-bs-theme="dark"] .s_tab_btn:hover {
+  background: rgba(106, 79, 226, 0.15) !important;
+  color: #ffffff !important;
+  border-color: rgba(106, 79, 226, 0.5) !important;
+}
+
+html[data-bs-theme="dark"] .s_tab_btn.active {
+  background: linear-gradient(135deg, #6a4fe2 0%, #4f3bb0 100%) !important;
+  color: #ffffff !important;
+  border-color: #6a4fe2 !important;
+  box-shadow: 0 0 15px rgba(106, 79, 226, 0.45) !important;
+}
+
+/* Light theme tab buttons */
+html[data-bs-theme="light"] .s_tab_btn {
+  background: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+html[data-bs-theme="light"] .s_tab_btn:hover {
+  background: rgba(106, 79, 226, 0.08) !important;
+  color: rgb(12, 8, 34) !important;
+  border-color: rgba(106, 79, 226, 0.4) !important;
+}
+
+html[data-bs-theme="light"] .s_tab_btn.active {
+  background: linear-gradient(135deg, #6a4fe2 0%, #5039cc 100%) !important;
+  color: #ffffff !important;
+  border-color: #6a4fe2 !important;
+  box-shadow: 0 8px 20px rgba(106, 79, 226, 0.2) !important;
+}
+
+/* Tab Wrapper & Contents */
+.s_tab_wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.s_tab {
+  display: none;
+  opacity: 0;
+}
+
+.s_tab.active-tab {
+  display: block;
+  opacity: 1;
+}
+
+.tab_content {
+  padding: 2rem;
+  border-radius: 1.5rem !important;
+}
+
+/* List details inside tab content */
+.tab-detail-list {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.tab-detail-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.tab-detail-list li::before {
+  content: '\F272'; /* check-lg icon */
+  font-family: 'bootstrap-icons';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Callout Ribbon */
+.callout-ribbon {
+  background: linear-gradient(90deg, rgba(106, 79, 226, 0.15) 0%, rgba(0, 180, 216, 0.08) 100%);
+  border-top: 1px solid rgba(106, 79, 226, 0.2);
+  border-bottom: 1px solid rgba(106, 79, 226, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* ==========================================
+   18. GLASSY LIGHTNING BADGE & IMAGE 4 & 5 COMPONENTS
+   ========================================== */
+
+/* Lightning glass badge style (Image 5) */
+.glassy-lightning-badge {
+  background: rgba(106, 79, 226, 0.12) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.2rem !important;
+  font-size: 0.85rem !important;
+  border-radius: 50px !important;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(106, 79, 226, 0.15) !important;
+}
+
+html[data-bs-theme="light"] .glassy-lightning-badge {
+  background: rgba(106, 79, 226, 0.08) !important;
+  border: 1px solid rgba(106, 79, 226, 0.3) !important;
+  color: rgb(12, 8, 34) !important;
+  box-shadow: 0 8px 24px rgba(106, 79, 226, 0.05) !important;
+}
+
+/* Custom dark blue filled button and glass outline button (Image 4) */
+.btn-dark-blue {
+  background-color: #0f3567 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.75rem 2rem !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none !important;
+}
+
+.btn-dark-blue:hover {
+  background-color: #174d92 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 53, 103, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.btn-glass-outline {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 0.75rem 2rem !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.btn-glass-outline:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+html[data-bs-theme="light"] .btn-glass-outline {
+  color: rgb(12, 8, 34) !important;
+  border-color: rgba(12, 8, 34, 0.3) !important;
+  background-color: rgba(12, 8, 34, 0.04) !important;
+}
+
+html[data-bs-theme="light"] .btn-glass-outline:hover {
+  background-color: rgba(12, 8, 34, 0.1) !important;
+  border-color: rgba(12, 8, 34, 0.6) !important;
+  color: rgb(12, 8, 34) !important;
+}
+
+/* Orange checkmarked list styling (Image 4) */
+.orange-check-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.orange-check-list li {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.orange-check-list li::before {
+  content: '\F272'; /* check-lg */
+  font-family: 'bootstrap-icons';
+  color: #ffa200 !important; /* Premium orange checkmark */
+  font-weight: 900;
+  margin-right: 0.5rem;
+  font-size: 1.05rem;
+}
+
+/* ==========================================
+   19. HOMEPAGE BLOG NEWS CARDS (IMAGE 2)
+   ========================================== */
+
+.homepage-blog-card {
+  border-radius: 16px !important;
+  border: 1px solid rgba(106, 79, 226, 0.2) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.2rem 1.8rem !important;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+html[data-bs-theme="dark"] .homepage-blog-card {
+  background: rgba(14, 11, 38, 0.45) !important;
+  border: 1px solid rgba(106, 79, 226, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+html[data-bs-theme="light"] .homepage-blog-card {
+  background: rgba(240, 244, 255, 0.6) !important;
+  border: 1px solid rgba(106, 79, 226, 0.18) !important;
+  box-shadow: 0 8px 24px rgba(106, 79, 226, 0.05) !important;
+}
+
+.homepage-blog-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(106, 79, 226, 0.65) !important;
+  box-shadow: 0 20px 40px rgba(106, 79, 226, 0.2) !important;
+}
+
+/* Card Watermark pattern (subtle dot grid in corner) */
+.dot-grid-watermark {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 140px;
+  height: 140px;
+  opacity: 0.15;
+  background-image: radial-gradient(var(--bs-primary) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+html[data-bs-theme="light"] .dot-grid-watermark {
+  opacity: 0.25;
+  background-image: radial-gradient(#6a4fe2 1.5px, transparent 1.5px);
+}
+
+.homepage-blog-card .card-date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--bs-primary) !important;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  z-index: 2;
+}
+
+html[data-bs-theme="light"] .homepage-blog-card .card-date {
+  color: #6a4fe2 !important;
+}
+
+.homepage-blog-card .card-title-center {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff !important;
+  margin: auto 0;
+  z-index: 2;
+  transition: color 0.3s ease;
+  text-decoration: none !important;
+}
+
+html[data-bs-theme="light"] .homepage-blog-card .card-title-center {
+  color: #0f3567 !important;
+}
+
+.homepage-blog-card:hover .card-title-center {
+  color: var(--bs-primary) !important;
+}
+
+html[data-bs-theme="light"] .homepage-blog-card:hover .card-title-center {
+  color: #6a4fe2 !important;
+}
+
+/* ==========================================
+   20. SERVICES STEPPER PAGE COMPONENTS (IMAGE 3)
+   ========================================== */
+
+.services-stepper-container {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+/* Horizontal stepper line running behind the nodes */
+.services-stepper-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: rgba(106, 79, 226, 0.2);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+html[data-bs-theme="light"] .services-stepper-container::before {
+  background: rgba(12, 8, 34, 0.08);
+}
+
+.services-stepper-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.services-stepper-row::-webkit-scrollbar {
+  display: none;
+}
+
+.services-stepper-item {
+  flex: 1;
+  text-align: center;
+  min-width: 150px;
+  padding: 0 10px;
+}
+
+/* Tab button styled as stepper capsule node */
+.stepper-btn {
+  background: #ffffff !important;
+  color: #0f3567 !important;
+  border: 1px solid rgba(12, 8, 34, 0.12) !important;
+  padding: 0.65rem 1.5rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.stepper-btn:hover {
+  background-color: rgba(106, 79, 226, 0.05) !important;
+  border-color: rgba(106, 79, 226, 0.4) !important;
+  color: #6a4fe2 !important;
+}
+
+/* Active stepper item */
+.stepper-btn.active {
+  background-color: #2283c6 !important;
+  color: #ffffff !important;
+  border-color: #2283c6 !important;
+  box-shadow: 0 8px 25px rgba(34, 131, 198, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+/* Light / Dark Mode tab adjustments */
+html[data-bs-theme="dark"] .stepper-btn {
+  background: rgba(8, 9, 32, 0.85) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(106, 79, 226, 0.3) !important;
+}
+
+html[data-bs-theme="dark"] .stepper-btn:hover {
+  background-color: rgba(106, 79, 226, 0.15) !important;
+  color: #ffffff !important;
+}
+
+html[data-bs-theme="dark"] .stepper-btn.active {
+  background-color: #2283c6 !important;
+  color: #ffffff !important;
+  border-color: #2283c6 !important;
+}
+
+/* Stepper Content Panel */
+.stepper-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.stepper-panel.active-panel {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Bullet list with blue squares */
+.stepper-bullet-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.stepper-bullet-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.stepper-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  background-color: #2283c6; /* Medical billing blue square marker */
+  border-radius: 2px;
+}
+
+/* ==========================================
+   21. BLOG ARCHIVE PAGE STYLING (MAXREMIND STYLE)
+   ========================================== */
+
+.blog-grid-item {
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 2rem);
+}
+
+.blog-grid-item .image-box {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+
+.blog-grid-item .image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-grid-item:hover .image-box img {
+  transform: scale(1.08);
+}
+
+.blog-grid-item .category-badge {
+  position: absolute;
+  left: 1.5rem;
+  bottom: -12px;
+  background: #2283c6 !important;
+  color: #ffffff !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(34, 131, 198, 0.25);
+  text-decoration: none !important;
+}
+
+.blog-grid-item .blog-body {
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-grid-item .blog-date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bs-primary) !important;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+html[data-bs-theme="light"] .blog-grid-item .blog-date {
+  color: #6a4fe2 !important;
+}
+
+.blog-grid-item .blog-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+}
+
+.blog-grid-item .blog-title a {
+  color: var(--bs-body-color);
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.blog-grid-item .blog-title a:hover {
+  color: var(--bs-primary) !important;
+}
+
+html[data-bs-theme="light"] .blog-grid-item .blog-title a:hover {
+  color: #6a4fe2 !important;
+}
+
+/* Author Box style from MaxRemind */
+.blog-author-box {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(106, 79, 226, 0.15);
+}
+
+html[data-bs-theme="light"] .blog-author-box {
+  border-top-color: rgba(12, 8, 34, 0.08);
+}
+
+.blog-author-box img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  border: 1px solid rgba(106, 79, 226, 0.25);
+}
+
+.blog-author-box .author-info {
+  line-height: 1.2;
+}
+
+.blog-author-box .author-info span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  font-weight: 700;
+  display: block;
+}
+
+html[data-bs-theme="light"] .blog-author-box .author-info span {
+  color: rgba(12, 8, 34, 0.5);
+}
+
+.blog-author-box .author-info h6 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--bs-body-color);
+}
+
+/* Sidebar Widgets */
+.sidebar-widget {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+}
+
+.sidebar-widget-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar-widget-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--bs-primary);
+}
+
+html[data-bs-theme="light"] .sidebar-widget-title::after {
+  background-color: #6a4fe2;
+}
+
+/* Category Sidebar List */
+.sidebar-category-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.sidebar-category-list li {
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.12);
+  padding-bottom: 0.55rem;
+}
+
+.sidebar-category-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sidebar-category-list a {
+  color: var(--bs-body-color);
+  text-decoration: none !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.sidebar-category-list a:hover {
+  color: var(--bs-primary) !important;
+  padding-left: 4px;
+}
+
+html[data-bs-theme="light"] .sidebar-category-list a:hover {
+  color: #6a4fe2 !important;
+}
+
+/* Recent Posts widget */
+.sidebar-recent-post-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-recent-post-item:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-recent-post-item img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 0.75rem;
+  border: 1px solid rgba(106, 79, 226, 0.2);
+}
+
+.sidebar-recent-post-item .post-info h6 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-recent-post-item .post-info h6 a {
+  color: var(--bs-body-color);
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.sidebar-recent-post-item .post-info h6 a:hover {
+  color: var(--bs-primary) !important;
+}
+
+html[data-bs-theme="light"] .sidebar-recent-post-item .post-info h6 a:hover {
+  color: #6a4fe2 !important;
+}
+
+.sidebar-recent-post-item .post-info span {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+html[data-bs-theme="light"] .sidebar-recent-post-item .post-info span {
+  color: rgba(12, 8, 34, 0.5);
+}
+
+/* Pagination container */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagination-list {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  gap: 0.5rem;
+}
+
+.pagination-list li a,
+.pagination-list li span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none !important;
+  border: 1px solid rgba(106, 79, 226, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--bs-body-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+html[data-bs-theme="dark"] .pagination-list li a,
+html[data-bs-theme="dark"] .pagination-list li span {
+  background: rgba(14, 11, 38, 0.45);
+}
+
+html[data-bs-theme="light"] .pagination-list li a,
+html[data-bs-theme="light"] .pagination-list li span {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(106, 79, 226, 0.15);
+  color: rgb(12, 8, 34);
+}
+
+.pagination-list li a:hover {
+  background-color: rgba(106, 79, 226, 0.15);
+  border-color: var(--bs-primary);
+  color: #ffffff;
+}
+
+html[data-bs-theme="light"] .pagination-list li a:hover {
+  background-color: rgba(106, 79, 226, 0.08);
+  border-color: #6a4fe2;
+  color: #6a4fe2;
+}
+
+.pagination-list li .current {
+  background-color: #2283c6 !important;
+  color: #ffffff !important;
+  border-color: #2283c6 !important;
+  box-shadow: 0 4px 12px rgba(34, 131, 198, 0.3);
+}
+
+/* ==========================================
+   22. HOMEPAGE CIRCULAR STEPPER TABS (IMAGE 6)
+   ========================================== */
+
+#showcase .showcase_tabs_btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 3.5rem auto;
+  max-width: 900px;
+}
+
+#showcase .showcase_tabs_btns::before {
+  content: '';
+  position: absolute;
+  top: 30px; /* middle of 60px circle */
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: rgba(106, 79, 226, 0.25);
+  z-index: 1;
+}
+
+#showcase .showcase_tabs_btns li {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  flex: 1;
+}
+
+#showcase .s_tab_btn {
+  background: rgba(8, 9, 32, 0.6) !important;
+  border: 2px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: 1.25rem !important;
+  box-shadow: none !important;
+}
+
+#showcase .s_tab_btn:hover {
+  border-color: rgba(168, 85, 247, 0.5) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  transform: scale(1.05);
+}
+
+#showcase .s_tab_btn.active {
+  background: rgba(106, 79, 226, 0.1) !important;
+  border: 2px solid #a855f7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.65) !important;
+  transform: translateY(0);
+}
+
+#showcase .stepper-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.3s ease;
+}
+
+#showcase .s_tab_btn.active + .stepper-label {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+html[data-bs-theme="light"] #showcase .showcase_tabs_btns::before {
+  background: rgba(12, 8, 34, 0.1);
+}
+
+html[data-bs-theme="light"] #showcase .s_tab_btn {
+  background: #ffffff !important;
+  border: 2px solid rgba(12, 8, 34, 0.12) !important;
+  color: rgba(12, 8, 34, 0.45) !important;
+}
+
+html[data-bs-theme="light"] #showcase .s_tab_btn:hover {
+  border-color: rgba(106, 79, 226, 0.4) !important;
+  color: rgb(106, 79, 226) !important;
+}
+
+html[data-bs-theme="light"] #showcase .s_tab_btn.active {
+  background: #ffffff !important;
+  border: 2px solid #6a4fe2 !important;
+  color: #6a4fe2 !important;
+  box-shadow: 0 8px 24px rgba(106, 79, 226, 0.2) !important;
+}
+
+html[data-bs-theme="light"] #showcase .stepper-label {
+  color: rgba(12, 8, 34, 0.5);
+}
+
+html[data-bs-theme="light"] #showcase .s_tab_btn.active + .stepper-label {
+  color: rgb(12, 8, 34) !important;
+}
+
+/* Custom list override to prevent double checkmark icons */
+#showcase .tab-clean-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+#showcase .tab-clean-list li {
+  position: relative !important;
+  padding-left: 0 !important;
+  margin-bottom: 0.75rem !important;
+  font-size: 0.95rem !important;
+  display: flex;
+  align-items: center;
+}
+
+#showcase .tab-clean-list li::before {
+  display: none !important; /* Disable check-lg icon prefix from global style */
+}
+
+/* ==========================================
+   23. CONTACT US REDESIGN STYLES
+   ========================================== */
+.contact-banner {
+  background: radial-gradient(circle at top right, rgba(106, 79, 226, 0.18), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(0, 180, 216, 0.12), transparent 50%),
+              rgba(8, 9, 32, 0.98) !important;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.18) !important;
+}
+
+html[data-bs-theme="light"] .contact-banner {
+  background: radial-gradient(circle at top right, rgba(106, 79, 226, 0.08), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(0, 180, 216, 0.05), transparent 50%),
+              rgba(248, 249, 250, 1) !important;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.1) !important;
+}
+
+.contact-banner-img {
+  max-height: 280px;
+  object-fit: cover;
+  border: 1px solid rgba(106, 79, 226, 0.25);
+  box-shadow: 0 15px 35px rgba(106, 79, 226, 0.15) !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.contact-banner-img:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 45px rgba(106, 79, 226, 0.3) !important;
+}
+
+@media (max-width: 992px) {
+  .contact-banner-img-col {
+    margin-top: 1.5rem;
+  }
+}
+
+.contact-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 1rem !important;
+}
+
+.contact-info-card .icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2283c6 !important;
+  color: #ffffff !important;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+html[data-bs-theme="dark"] .contact-info-card .icon-box {
+  background: #2283c6 !important;
+  color: #ffffff !important;
+}
+
+.contact-social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: var(--bs-body-color) !important;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-decoration: none !important;
+}
+
+.contact-social-btn:hover {
+  background: #2283c6 !important;
+  border-color: #2283c6 !important;
+  color: #ffffff !important;
+  transform: scale(1.1) translateY(-2px);
+}
+
+html[data-bs-theme="light"] .contact-social-btn {
+  background: rgba(8, 9, 32, 0.05) !important;
+  border: 1px solid rgba(8, 9, 32, 0.1) !important;
+}
+
+.contact-map-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(106, 79, 226, 0.2);
+  height: 350px;
+  margin-top: 1.5rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.contact-map-wrapper.full-width-map {
+  height: 450px;
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 1px solid rgba(106, 79, 226, 0.2) !important;
+  border-bottom: 1px solid rgba(106, 79, 226, 0.2) !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-bs-theme="light"] .contact-map-wrapper {
+  border-color: rgba(106, 79, 226, 0.15);
+  box-shadow: 0 10px 30px rgba(106, 79, 226, 0.06);
+}
+
+.contact-map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.bg-body-tertiary-tint {
+  background: rgba(8, 9, 32, 0.3) !important;
+  border-top: 1px solid rgba(106, 79, 226, 0.1);
+  border-bottom: 1px solid rgba(106, 79, 226, 0.1);
+}
+
+html[data-bs-theme="light"] .bg-body-tertiary-tint {
+  background: rgba(248, 249, 250, 1) !important;
+  border-top: 1px solid rgba(12, 8, 34, 0.05);
+  border-bottom: 1px solid rgba(12, 8, 34, 0.05);
+}
+
+.contact-highlight .btn-primary {
+  background: #2283c6 !important;
+  border-color: #2283c6 !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+  border-radius: 8px !important;
+}
+
+.contact-highlight .btn-primary:hover {
+  background: #1b6da7 !important;
+  border-color: #1b6da7 !important;
+  box-shadow: 0 8px 24px rgba(34, 131, 198, 0.35) !important;
+  transform: translateY(-2px);
+}
+
+.contact-highlight .form-label {
+  font-size: 0.75rem !important;
+  letter-spacing: 1px;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* Contact page specific headings and subtext readability overrides */
+.contact-banner h1 {
+  color: #ffffff !important;
+}
+.contact-banner p.lead {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.col-lg-5 h2 {
+  color: #ffffff !important;
+}
+.col-lg-5 p {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Vertical and horizontal cards header and text colors */
+.contact-info-card h4 {
+  color: #ffffff !important;
+}
+.contact-info-card .card-label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.contact-info-card .card-value {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.contact-info-card .card-value a {
+  color: #ada2ff !important;
+}
+
+/* Light mode styling overrides for high contrast readability */
+html[data-bs-theme="light"] .contact-banner h1 {
+  color: rgb(12, 8, 34) !important;
+}
+html[data-bs-theme="light"] .contact-banner p.lead {
+  color: rgba(12, 8, 34, 0.8) !important;
+}
+html[data-bs-theme="light"] .col-lg-5 h2 {
+  color: rgb(12, 8, 34) !important;
+}
+html[data-bs-theme="light"] .col-lg-5 p {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+html[data-bs-theme="light"] .contact-info-card h4 {
+  color: rgb(12, 8, 34) !important;
+}
+html[data-bs-theme="light"] .contact-info-card .card-label {
+  color: rgba(12, 8, 34, 0.6) !important;
+}
+html[data-bs-theme="light"] .contact-info-card .card-value {
+  color: rgba(12, 8, 34, 0.85) !important;
+}
+html[data-bs-theme="light"] .contact-info-card .card-value a {
+  color: #6a4fe2 !important;
+}
+html[data-bs-theme="light"] .contact-highlight .form-label {
+  color: rgba(12, 8, 34, 0.8) !important;
+}
+
+/* Ensure proper alignment for card items */
+.contact-info-card {
+  align-items: center !important;
+}
+
+/* Make tech logos colorful by default & force single row layout */
+.tech-logos {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+}
+
+.tech-logos img {
+  filter: none !important;
+  opacity: 1 !important;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease !important;
+}
+
+.tech-logos img:hover {
+  transform: translateY(-6px) scale(1.15) !important;
+}
+
+@media (max-width: 767px) {
+  .tech-logos {
+    overflow-x: auto !important;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+  }
+  .tech-logos::-webkit-scrollbar {
+    height: 4px;
+  }
+  .tech-logos::-webkit-scrollbar-thumb {
+    background: rgba(106, 79, 226, 0.3);
+    border-radius: 2px;
+  }
+}
+
+/* ==========================================
+   23. ALTERNATING SERVICES LAYOUT STYLES
+   ========================================== */
+
+.service-block-row {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .service-block-row {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+}
+
+.service-bullet-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.service-bullet-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+html[data-bs-theme="light"] .service-bullet-list li {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+.service-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 7px;
+  height: 7px;
+  background-color: #6a4fe2;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(106, 79, 226, 0.8);
+}
+
+html[data-bs-theme="light"] .service-bullet-list li::before {
+  background-color: #2283c6;
+  box-shadow: 0 0 6px rgba(34, 131, 198, 0.4);
+}
+
+/* Service Mockup Card (Floating Glass Frame) */
+.service-mockup-card {
+  background: rgba(14, 11, 38, 0.5) !important;
+  border: 1px solid rgba(106, 79, 226, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35) !important;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease, box-shadow 0.4s ease !important;
+  position: relative;
+  overflow: hidden;
+  padding: 1.25rem !important;
+}
+
+html[data-bs-theme="light"] .service-mockup-card {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(106, 79, 226, 0.18) !important;
+  box-shadow: 0 20px 40px rgba(106, 79, 226, 0.08) !important;
+}
+
+.service-mockup-card:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  border-color: rgba(106, 79, 226, 0.6) !important;
+  box-shadow: 0 30px 75px rgba(106, 79, 226, 0.3) !important;
+}
+
+html[data-bs-theme="light"] .service-mockup-card:hover {
+  border-color: rgba(106, 79, 226, 0.4) !important;
+  box-shadow: 0 25px 50px rgba(106, 79, 226, 0.15) !important;
+}
+
+/* Mockup glow border trail */
+.service-mockup-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(106, 79, 226, 0.6) 0%,
+    rgba(106, 79, 226, 0.15) 45%,
+    transparent 80%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.service-mockup-card:hover::before {
+  opacity: 1;
+}
+
+/* Mockup Image Container inside Glass Frame */
+.mockup-img-container {
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.parallax-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Text Heading contrast rules */
+.text-white-contrast {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
+
+html[data-bs-theme="light"] .text-white-contrast {
+  color: rgb(12, 8, 34) !important;
+}
+
+/* Text Muted contrast rules */
+.text-muted-contrast {
+  color: #cbd5e1 !important;
+  transition: color 0.3s ease;
+}
+
+html[data-bs-theme="light"] .text-muted-contrast {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+/* Services Page Light Theme Contrast Overrides */
+html[data-bs-theme="light"] .services-content .service-text-col p.lead,
+html[data-bs-theme="light"] .services-content .service-text-col p {
+  color: rgba(12, 8, 34, 0.82) !important;
+}
+
+html[data-bs-theme="light"] .services-content .service-text-col h5.text-primary {
+  color: #2283c6 !important;
+}
+
+html[data-bs-theme="light"] .services-content .service-text-col h5.text-success {
+  color: #198754 !important;
+}
+
+/* ==========================================
+   24. HOMEPAGE HERO PINNING & OVERLAP STYLES
+   ========================================== */
+
+/* Hero curtain overlay to dim the hero background as user scrolls down */
+.hero-overlay-curtain {
+  position: absolute;
+  inset: 0;
+  background-color: #030312;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.1s ease-out;
+}
+
+html[data-bs-theme="light"] .hero-overlay-curtain {
+  background-color: #f8f9fa;
+}
+
+/* Main Content Overlap slides over the pinned hero banner */
+.main-content-overlap {
+  position: relative;
+  z-index: 10;
+  background-color: #080920; /* Matches dark body color */
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.4);
+}
+
+html[data-bs-theme="light"] .main-content-overlap {
+  background-color: #f8f9fa;
+  box-shadow: 0 -20px 40px rgba(106, 79, 226, 0.05);
+}
+
+/* Adjust general body background styling to support pinned stack overlap */
+body.home-page-stacked {
+  background-attachment: scroll !important;
+}
+
+/* ==========================================
+   16. SEQUENTIAL UNSTACKING TESTIMONIALS
+   ========================================== */
+
+.pin-master {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.text-section {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Custom horizontal scroll wrapper */
+.cards-scroll-wrapper {
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 30px 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.cards-scroll-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Horizontal track container */
+.cards-track {
+  position: relative;
+  height: 380px;
+  display: block;
+  will-change: transform;
+}
+
+/* Redesigned Testimonial Glass Card */
+.testimonial-card {
+  position: absolute;
+  top: 15px;
+  left: 5vw;
+  width: 420px;
+  height: 320px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  padding: 2.2rem !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center center;
+  will-change: transform;
+  
+  /* Frosted Glass */
+  background: rgba(15, 15, 35, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Radial Glow Border Trail */
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(106, 79, 226, 0.3) 0%,
+    rgba(106, 79, 226, 0.05) 50%,
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.testimonial-card:hover::before {
+  opacity: 1;
+}
+
+/* Card hover glow */
+.testimonial-card:hover {
+  border-color: rgba(106, 79, 226, 0.4) !important;
+  box-shadow: 0 25px 50px rgba(106, 79, 226, 0.18) !important;
+}
+
+/* Star rating custom colors */
+.testimonial-card .review-stars i {
+  color: #ffb703 !important; /* Premium Amber Gold */
+  margin-right: 3px;
+  font-size: 1.05rem;
+}
+
+/* Text and details contrast inside card */
+.testimonial-card strong {
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+
+.testimonial-card small {
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
+
+.testimonial-card .card-text-val {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #d1d5db !important;
+}
+
+/* Light theme overrides for high legibility */
+html[data-bs-theme="light"] .testimonial-card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(106, 79, 226, 0.16) !important;
+  box-shadow: 0 15px 35px rgba(106, 79, 226, 0.06) !important;
+}
+
+html[data-bs-theme="light"] .testimonial-card::before {
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(106, 79, 226, 0.22) 0%,
+    rgba(106, 79, 226, 0.04) 50%,
+    transparent 80%
+  );
+}
+
+html[data-bs-theme="light"] .testimonial-card strong {
+  color: #0f0b29 !important;
+}
+
+html[data-bs-theme="light"] .testimonial-card small {
+  color: rgb(106, 79, 226) !important;
+}
+
+html[data-bs-theme="light"] .testimonial-card .card-text-val {
+  color: rgba(15, 11, 41, 0.8) !important;
+}
+
+/* ==========================================
+   17. MOBILE RESPONSIVE SCROLL FALLBACK
+   ========================================== */
+@media (max-width: 991.98px) {
+  .cards-scroll-wrapper {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    padding: 20px 0 35px 0;
+  }
+  
+  .cards-track {
+    display: flex !important;
+    flex-direction: row !important;
+    height: auto !important;
+    width: max-content !important;
+    padding: 10px 5vw !important;
+    gap: 1.5rem !important;
+    transform: none !important;
+  }
+  
+  .testimonial-card {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    flex: 0 0 auto !important;
+    width: 320px !important;
+    height: auto !important;
+    min-height: 250px !important;
+    transform: none !important;
+    scroll-snap-align: start !important;
+    margin-right: 0 !important;
+  }
+  
+  .testimonial-card:nth-child(n) {
+    transform: none !important;
+    z-index: 1 !important;
+  }
+}
+
+/* ==========================================
+   18. HORIZONTAL WAVY ROADMAP TIMELINE
+   ========================================== */
+
+#roadmap-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 750px;
+  box-sizing: border-box;
+  padding-top: 100px; /* Offset for sticky navbar */
+  padding-bottom: 20px;
+  overflow: hidden;
+  background-color: var(--bs-body-bg);
+}
+
+/* 1. Main Header Layout Styles */
+.intro-text {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 30;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+/* 2. Track & SVG Width Stretching */
+.roadmap-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 600px;
+}
+
+.roadmap-track {
+  width: 3800px;
+  height: 600px;
+  position: relative;
+  display: block;
+}
+
+#svg-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3800px;
+  height: 600px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.dim-path {
+  stroke: rgba(106, 79, 226, 0.15);
+  stroke-width: 6px;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+html[data-bs-theme="light"] .dim-path {
+  stroke: rgba(106, 79, 226, 0.1);
+}
+
+.laser-path {
+  stroke: url(#roadmap-gradient);
+  stroke-width: 8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 3. Element Repositioning - Nodes & Cards */
+.phase-node {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6a4fe2;
+  border: 4px solid var(--bs-body-bg);
+  box-shadow: 0 0 20px rgba(106, 79, 226, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.5);
+  z-index: 25;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.phase-node:hover {
+  background: #9c6cfd;
+  box-shadow: 0 0 30px rgba(106, 79, 226, 1), 0 0 10px #9c6cfd;
+}
+
+.phase-node-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Phase vertical positions */
+.phase-node-1, .phase-node-3 {
+  top: 150px;
+}
+.phase-node-2, .phase-node-4 {
+  top: 450px;
+}
+
+/* Glass cards layout */
+.glass-card-1, .glass-card-2, .glass-card-3, .glass-card-4 {
+  position: absolute;
+  width: 340px;
+  height: 380px;
+  border-radius: 24px;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35) !important;
+  z-index: 20;
+  transform: translateX(-50%);
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+.glass-card-1 .phase-title, 
+.glass-card-2 .phase-title, 
+.glass-card-3 .phase-title, 
+.glass-card-4 .phase-title {
+  color: #ffffff !important;
+}
+
+.glass-card-1 .phase-description, 
+.glass-card-2 .phase-description, 
+.glass-card-3 .phase-description, 
+.glass-card-4 .phase-description {
+  color: #cbd5e1 !important;
+}
+
+.glass-card-1:hover, .glass-card-2:hover, .glass-card-3:hover, .glass-card-4:hover {
+  border-color: rgba(106, 79, 226, 0.6) !important;
+  box-shadow: 0 30px 60px rgba(106, 79, 226, 0.35) !important;
+}
+
+/* Glass Cards vertical alternating positions */
+.glass-card-1, .glass-card-3 {
+  top: 190px;
+}
+.glass-card-2, .glass-card-4 {
+  top: 90px;
+}
+
+/* Card details design */
+.glass-card-img-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.glass-card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.glass-card-1:hover .glass-card-img-wrapper img,
+.glass-card-2:hover .glass-card-img-wrapper img,
+.glass-card-3:hover .glass-card-img-wrapper img,
+.glass-card-4:hover .glass-card-img-wrapper img {
+  transform: scale(1.1);
+}
+
+.glass-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 24px;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 9, 32, 0) 0%,
+    rgba(8, 9, 32, 0.5) 20%,
+    rgba(8, 9, 32, 0.85) 60%,
+    rgba(8, 9, 32, 0.98) 100%
+  ) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-content .phase-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9c6cfd;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.glass-card-content .phase-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.glass-card-content .phase-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Light Theme Styling for Glass Cards */
+html[data-bs-theme="light"] .glass-card-1,
+html[data-bs-theme="light"] .glass-card-2,
+html[data-bs-theme="light"] .glass-card-3,
+html[data-bs-theme="light"] .glass-card-4 {
+  background: transparent !important;
+  border: 1px solid rgba(106, 79, 226, 0.2) !important;
+  box-shadow: 0 20px 45px rgba(106, 79, 226, 0.08) !important;
+}
+
+html[data-bs-theme="light"] .glass-card-content {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.85) 60%,
+    rgba(255, 255, 255, 0.98) 100%
+  ) !important;
+  border-top: 1px solid rgba(106, 79, 226, 0.1);
+}
+
+html[data-bs-theme="light"] .glass-card-1 .phase-title,
+html[data-bs-theme="light"] .glass-card-2 .phase-title,
+html[data-bs-theme="light"] .glass-card-3 .phase-title,
+html[data-bs-theme="light"] .glass-card-4 .phase-title {
+  color: rgb(12, 8, 34) !important;
+}
+
+html[data-bs-theme="light"] .glass-card-1 .phase-description,
+html[data-bs-theme="light"] .glass-card-2 .phase-description,
+html[data-bs-theme="light"] .glass-card-3 .phase-description,
+html[data-bs-theme="light"] .glass-card-4 .phase-description {
+  color: rgba(12, 8, 34, 0.75) !important;
+}
+
+/* Responsive styles for tablets and mobiles */
+@media (max-width: 991.98px) {
+  #roadmap-section {
+    min-height: auto;
+    height: auto;
+    padding: 60px 0;
+    display: block;
+  }
+  .roadmap-viewport {
+    height: auto;
+    overflow: visible;
+  }
+  .roadmap-track {
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    transform: none !important;
+  }
+  #svg-track {
+    display: none;
+  }
+  .phase-node {
+    display: none;
+  }
+  .glass-card-1, .glass-card-2, .glass-card-3, .glass-card-4 {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .glass-card-1:hover, .glass-card-2:hover, .glass-card-3:hover, .glass-card-4:hover {
+    transform: translateY(-5px) !important;
+  }
+}
+
+

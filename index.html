@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Avanta AI Solutions - Web, Mobile and AI Software Development</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/styles.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+
+<body>
+  <header class="sticky-top header-navigation">
+    <div class="top-bar">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <a href="tel:+18005550199" class="d-flex align-items-center gap-2"><i class="bi bi-telephone-fill"></i> <span class="d-none d-sm-inline">+1 (800) 555-0199</span></a>
+          <a href="mailto:info@avantaai.com" class="d-flex align-items-center gap-2"><i class="bi bi-envelope-at-fill"></i> <span class="d-none d-md-inline">info@avantaai.com</span><span class="d-inline d-md-none">Email</span></a>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <a href="contacts.html" class="d-flex align-items-center gap-2"><i class="bi bi-chat-left-dots-fill"></i> Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-md py-2">
+      <div class="container">
+        <a class="navbar-brand fs-4 fw-bold d-flex align-items-center" href="index.html">
+          <img width="101" height="99" src="assets/img/avanta-ai-log.png" alt="Avanta AI Solutions">
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+          <span class="visually-hidden">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav mb-4 mb-md-0 mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html" id="nav-link-home">Home</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="services.html" role="button" id="nav-link-services">Services</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item fw-semibold text-primary" href="services.html">All Services</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="services-web-development.html">Web Development</a></li>
+                <li><a class="dropdown-item" href="services-mobile-apps.html">Mobile Apps</a></li>
+                <li><a class="dropdown-item" href="services-custom-software.html">Custom Software</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" id="nav-link-industries">Industries</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="industry-healthcare-tech.html">Healthcare Tech</a></li>
+                <li><a class="dropdown-item" href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="about.html" id="nav-link-about">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="careers.html" id="nav-link-careers">Careers</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <div class="dropdown">
+              <button class="btn theme-toggle-btn" aria-expanded="false" data-bs-toggle="dropdown" id="themeDropdownToggle" type="button" aria-label="Change theme">
+                <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="1.15em" height="1.15em" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"></path>
+                </svg>
+                <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="1.15em" height="1.15em" fill="currentColor" viewBox="0 0 16 16" style="display:none;">
+                  <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278z"></path>
+                </svg>
+                <span class="visually-hidden">Theme: Auto</span>
+              </button>
+              <ul aria-labelledby="themeDropdownToggle" class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item" data-theme-value="auto" type="button">Auto</button></li>
+                <li><button class="dropdown-item" data-theme-value="light" type="button">Light</button></li>
+                <li><button class="dropdown-item" data-theme-value="dark" type="button">Dark</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- Section 1: Hero Banner -->
+    <section class="position-relative overflow-hidden py-5 hero-parallax-section bg-custom-gradient" data-aos="fade" data-hero-parallax="">
+      <div class="hero-overlay-curtain"></div>
+      <div class="hero-parallax" aria-hidden="true">
+        <span class="parallax-shape shape-one" data-direction="1" data-speed="0.08"></span>
+        <span class="parallax-shape shape-two" data-direction="-1" data-speed="0.12"></span>
+        <span class="parallax-shape shape-three" data-direction="1" data-speed="0.05"></span>
+      </div>
+      <div class="container px-md-5 py-4 py-md-5 text-center">
+        <span class="badge glassy-lightning-badge mb-3"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> 10+ Years of Engineering Excellence</span>
+        <h1 class="display-4 fw-bold mb-3 parallax-text" data-aos="fade-right" data-aos-duration="1400" data-aos-delay="100">
+          Maximize Your Product Velocity <span style="color:rgb(106, 79, 226);">While We Engineer the Rest</span>
+        </h1>
+        <p class="lead fs-5 mb-4 mx-auto parallax-text max-width-800" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          Avanta AI Solutions engineers custom web applications, cross-platform mobile experiences, secure database infrastructures, and compliant AI integrations. Let us manage your code so you can dominate your market.
+        </p>
+        <div class="text-center mb-5 mx-auto parallax-text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+          <div class="d-flex flex-column justify-content-center align-items-center gap-3 flex-sm-row">
+            <a class="btn btn-dark-blue" role="button" href="#showcase">Explore Our Showcase&nbsp;&nbsp;<i class="bi bi-arrow-right-short fs-5 align-middle"></i></a>
+            <a class="btn btn-glass-outline" role="button" href="#booking">Book a Scoped Call</a>
+          </div>
+          <ul class="orange-check-list">
+            <li>NDA Protected</li>
+            <li>Scoped Deliverables</li>
+            <li>100% IP Ownership</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-content-overlap">
+      <!-- Section 2: Master Technologies Grid -->
+      <section class="py-4 border-bottom border-light-subtle bg-body-tertiary overflow-hidden">
+      <div class="container text-center">
+        <small class="text-uppercase fw-bold d-block mb-3 text-muted" style="letter-spacing: 1px;">TECHNOLOGIES WE MASTER</small>
+        <div class="row justify-content-center">
+          <div class="col col-lg-12 d-flex justify-content-center align-items-center flex-nowrap gap-4 tech-logos">
+            <a href="#" aria-label="React"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="35" alt="React"></a>
+            <a href="#" aria-label="Next.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="35" alt="Next.js" class="theme-icon-light"></a>
+            <a href="#" aria-label="Angular"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" height="35" alt="Angular"></a>
+            <a href="#" aria-label="Node.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" height="35" alt="Node.js"></a>
+            <a href="#" aria-label=".NET"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" height="35" alt=".NET"></a>
+            <a href="#" aria-label="SQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" height="35" alt="SQL"></a>
+            <a href="#" aria-label="MongoDB"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg" height="35" alt="MongoDB"></a>
+            <a href="#" aria-label="Flutter"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" height="35" alt="Flutter"></a>
+            <a href="#" aria-label="Bootstrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" height="35" alt="Bootstrap"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: How We Build Your Vision (Horizontal Wavy Pipeline) -->
+    <section id="roadmap-section">
+      <div class="intro-text">
+        <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">OUR PROCESS</span>
+        <h2 class="display-5 fw-bold mb-3">How We Build Your Vision</h2>
+        <p class="lead fs-5 mx-auto">We follow a rigorous, transparent development cycle to ensure your software is
+          delivered on time, highly secure, and perfectly aligned with your business goals.</p>
+      </div>
+      <div class="roadmap-viewport">
+        <div class="roadmap-track">
+          <!-- Wavy SVG Track -->
+          <svg id="svg-track" viewBox="0 0 3800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="roadmap-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#6a4fe2" />
+                <stop offset="50%" stop-color="#9c6cfd" />
+                <stop offset="100%" stop-color="#00d2ff" />
+              </linearGradient>
+            </defs>
+            <!-- Dim path (background track) -->
+            <path class="dim-path" d="M 0 300 C 250 300, 350 150, 600 150 C 900 150, 1100 450, 1400 450 C 1700 450, 1900 150, 2200 150 C 2500 150, 2700 450, 3000 450 C 3300 450, 3500 300, 3800 300" />
+            <!-- Laser path (animating active track) -->
+            <path class="laser-path" d="M 0 300 C 250 300, 350 150, 600 150 C 900 150, 1100 450, 1400 450 C 1700 450, 1900 150, 2200 150 C 2500 150, 2700 450, 3000 450 C 3300 450, 3500 300, 3800 300" />
+          </svg>
+
+          <!-- Phase 1 -->
+          <div class="phase-node phase-node-1" style="left: 600px;">
+            <div class="phase-node-dot"></div>
+          </div>
+          <div class="glass-card-1" style="left: 600px;">
+            <div class="glass-card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Discovery & Strategy">
+            </div>
+            <div class="glass-card-content">
+              <span class="phase-number">PHASE 01</span>
+              <h3 class="phase-title text-white">Discovery &amp; Strategy</h3>
+              <p class="phase-description">We analyze your requirements, define the architecture, and select the optimal tech stack to ensure scalability and compliance.</p>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="phase-node phase-node-2" style="left: 1400px;">
+            <div class="phase-node-dot"></div>
+          </div>
+          <div class="glass-card-2" style="left: 1400px;">
+            <div class="glass-card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=80" alt="UI/UX & Prototyping">
+            </div>
+            <div class="glass-card-content">
+              <span class="phase-number">PHASE 02</span>
+              <h3 class="phase-title text-white">UI/UX &amp; Prototyping</h3>
+              <p class="phase-description">Our designers craft sleek, modern interfaces featuring intuitive navigation and engaging aesthetics tailored to your brand.</p>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="phase-node phase-node-3" style="left: 2200px;">
+            <div class="phase-node-dot"></div>
+          </div>
+          <div class="glass-card-3" style="left: 2200px;">
+            <div class="glass-card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80" alt="Agile Engineering">
+            </div>
+            <div class="glass-card-content">
+              <span class="phase-number">PHASE 03</span>
+              <h3 class="phase-title text-white">Agile Engineering</h3>
+              <p class="phase-description">We build your application using modern frameworks like React, Angular, and .NET, providing you with regular sprint updates and working prototypes.</p>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="phase-node phase-node-4" style="left: 3000px;">
+            <div class="phase-node-dot"></div>
+          </div>
+          <div class="glass-card-4" style="left: 3000px;">
+            <div class="glass-card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80" alt="Deployment & Support">
+            </div>
+            <div class="glass-card-content">
+              <span class="phase-number">PHASE 04</span>
+              <h3 class="phase-title text-white">Deployment &amp; Support</h3>
+              <p class="phase-description">After rigorous testing, we launch your product to the world and provide continuous support, updates, and performance monitoring.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Section 3: Interactive Tabs Showcase -->
+    <section class="py-5" id="showcase">
+      <div class="container px-md-5">
+        <div class="row mb-5">
+          <div class="col-md-10 text-center mx-auto">
+            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">CAPABILITIES</span>
+            <h2 class="display-5 fw-bold mb-3">Get All Your Software &amp; AI Needs In One Place</h2>
+            <p class="lead fs-5 mx-auto max-width-700">Explore our specialized development tracks and see how we align with your technical requirements.</p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <!-- Tabs Headers - Circular Stepper (Image Style) -->
+            <ul class="showcase_tabs_btns">
+              <li>
+                <button class="s_tab_btn active" data-tab="#tab-web"><i class="bi bi-code-slash"></i></button>
+                <span class="stepper-label">Web</span>
+              </li>
+              <li>
+                <button class="s_tab_btn" data-tab="#tab-mobile"><i class="bi bi-phone"></i></button>
+                <span class="stepper-label">Mobile</span>
+              </li>
+              <li>
+                <button class="s_tab_btn" data-tab="#tab-ai"><i class="bi bi-cpu"></i></button>
+                <span class="stepper-label">AI Integrations</span>
+              </li>
+              <li>
+                <button class="s_tab_btn" data-tab="#tab-enterprise"><i class="bi bi-diagram-3"></i></button>
+                <span class="stepper-label">Enterprise</span>
+              </li>
+              <li>
+                <button class="s_tab_btn" data-tab="#tab-security"><i class="bi bi-shield-check"></i></button>
+                <span class="stepper-label">Security</span>
+              </li>
+            </ul>
+            
+            <!-- Tabs Wrapper -->
+            <div class="s_tab_wrapper mt-5">
+              
+              <!-- Tab 1: Web -->
+              <div class="s_tab active-tab show" id="tab-web">
+                <div class="tab_content card p-4 p-md-5">
+                  <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                      <div class="device-mockup-wrapper card border-0 shadow-lg p-2" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);">
+                        <img class="img-fluid rounded-3" src="assets/img/web-stepper-mockup.png" alt="Web Engineering Pipeline Mockup">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <h3 class="h3 fw-bold mb-3 text-white">Web Engineering Pipeline</h3>
+                      <p class="lead fs-6 text-muted mb-4">Our proprietary, cloud-native baseline structure designed to accelerate system initialization and automate standard DevOps monitoring pipelines using React and Next.js.</p>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-primary mb-3">Key Features</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Automated unit test coverage</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Kubernetes-driven auto-scaling</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Built-in telemetry &amp; logging</li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-success mb-3">Value &amp; ROI</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-lightning-charge-fill text-warning me-2 fs-5"></i>Up to 35% faster build times</li>
+                            <li><i class="bi bi-graph-up-arrow text-info me-2 fs-5"></i>Lower infrastructure costs</li>
+                            <li><i class="bi bi-shield-check text-success me-2 fs-5"></i>Zero deployment downtime</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tab 2: Mobile -->
+              <div class="s_tab" id="tab-mobile">
+                <div class="tab_content card p-4 p-md-5">
+                  <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                      <div class="device-mockup-wrapper card border-0 shadow-lg p-2" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);">
+                        <img class="img-fluid rounded-3" src="assets/img/mobile-stepper-mockup.png" alt="Mobile Application Mockup">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <h3 class="h3 fw-bold mb-3 text-white">Mobile Application Frameworks</h3>
+                      <p class="lead fs-6 text-muted mb-4">High-performance cross-platform mobile solutions built on Flutter and React Native, featuring offline-first storage and biometric sync pipelines.</p>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-primary mb-3">Key Features</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>React Native &amp; Flutter codebases</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Offline local database sync</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Biometric face/fingerprint auth</li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-success mb-3">Value &amp; ROI</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-lightning-charge-fill text-warning me-2 fs-5"></i>Up to 40% reduction in dev cost</li>
+                            <li><i class="bi bi-graph-up-arrow text-info me-2 fs-5"></i>Single codebase deployment</li>
+                            <li><i class="bi bi-shield-check text-success me-2 fs-5"></i>Consistent performance</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 3: AI Integrations -->
+              <div class="s_tab" id="tab-ai">
+                <div class="tab_content card p-4 p-md-5">
+                  <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                      <div class="device-mockup-wrapper card border-0 shadow-lg p-2" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);">
+                        <img class="img-fluid rounded-3" src="assets/img/ai-stepper-mockup.png" alt="AI & Automation Mockup">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <h3 class="h3 fw-bold mb-3 text-white">Intelligent Automation &amp; AI Integration</h3>
+                      <p class="lead fs-6 text-muted mb-4">We implement machine learning, large language models (LLMs), and intelligent workflows directly into your business software to automate manual labor.</p>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-primary mb-3">Key Features</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>OpenAI &amp; custom LLM integrations</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Smart vector databases &amp; RAG</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Natural language database search</li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-success mb-3">Value &amp; ROI</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-lightning-charge-fill text-warning me-2 fs-5"></i>50% decrease in manual ops</li>
+                            <li><i class="bi bi-graph-up-arrow text-info me-2 fs-5"></i>24/7 autonomous support agents</li>
+                            <li><i class="bi bi-shield-check text-success me-2 fs-5"></i>Context-aware analytics</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 4: Enterprise -->
+              <div class="s_tab" id="tab-enterprise">
+                <div class="tab_content card p-4 p-md-5">
+                  <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                      <div class="device-mockup-wrapper card border-0 shadow-lg p-2" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);">
+                        <img class="img-fluid rounded-3" src="assets/img/enterprise-stepper-mockup.png" alt="Enterprise Systems Mockup">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <h3 class="h3 fw-bold mb-3 text-white">Bespoke Administrative Systems</h3>
+                      <p class="lead fs-6 text-muted mb-4">We construct bespoke Management Information Systems (MIS), Point-of-Sale (POS) platforms, and real-time business intelligence dashboards.</p>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-primary mb-3">Key Features</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>High-speed transaction engines</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Analytical telemetry dashboards</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Role-based granular permissions</li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-success mb-3">Value &amp; ROI</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-lightning-charge-fill text-warning me-2 fs-5"></i>99.99% transaction reliability</li>
+                            <li><i class="bi bi-graph-up-arrow text-info me-2 fs-5"></i>Consolidated admin workflows</li>
+                            <li><i class="bi bi-shield-check text-success me-2 fs-5"></i>Instant analytical reporting</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 5: Security -->
+              <div class="s_tab" id="tab-security">
+                <div class="tab_content card p-4 p-md-5">
+                  <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                      <div class="device-mockup-wrapper card border-0 shadow-lg p-2" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);">
+                        <img class="img-fluid rounded-3" src="assets/img/security-stepper-mockup.png" alt="Security & Compliance Mockup">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <h3 class="h3 fw-bold mb-3 text-white">SOC2 Compliance &amp; Guardrails</h3>
+                      <p class="lead fs-6 text-muted mb-4">We safeguard user data with enterprise-level encryption, designing topologies compliant with HIPAA, SOC2, and global GDPR parameters.</p>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-primary mb-3">Key Features</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>End-to-end AES-256 encryption</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>OIDC routing &amp; MFA protection</li>
+                            <li><i class="bi bi-check-lg text-success me-2 fs-5"></i>Continuous vulnerability patches</li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6">
+                          <h4 class="h6 fw-bold text-success mb-3">Value &amp; ROI</h4>
+                          <ul class="tab-clean-list mb-0">
+                            <li><i class="bi bi-lightning-charge-fill text-warning me-2 fs-5"></i>SOC2 &amp; HIPAA compliance setup</li>
+                            <li><i class="bi bi-graph-up-arrow text-info me-2 fs-5"></i>Mitigated intrusion risks</li>
+                            <li><i class="bi bi-shield-check text-success me-2 fs-5"></i>Automated security audit logs</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Success in Numbers (Counters Grid) -->
+    <section class="py-5 bg-custom-gradient">
+      <div class="container px-md-5">
+        <div class="row mb-5 text-center">
+          <div class="col">
+            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">METRICS</span>
+            <h2 class="display-5 fw-bold">Avanta's Success in Numbers</h2>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card card-hover-lift">
+            <div class="stat-number-wrapper"><span class="stat-number" data-target-value="98">0</span>%</div>
+            <div class="stat-label">Client Retention</div>
+          </div>
+          <div class="stat-card card-hover-lift">
+            <div class="stat-number-wrapper"><span class="stat-number" data-target-value="99">0</span>%</div>
+            <div class="stat-label">Clean Code Delivery</div>
+          </div>
+          <div class="stat-card card-hover-lift">
+            <div class="stat-number-wrapper"><span class="stat-number" data-target-value="35">0</span>%</div>
+            <div class="stat-label">Dev Time Reduction</div>
+          </div>
+          <div class="stat-card card-hover-lift">
+            <div class="stat-number-wrapper"><span class="stat-number" data-target-value="23">0</span>%</div>
+            <div class="stat-label">Revenue Improvement</div>
+          </div>
+          <div class="stat-card card-hover-lift">
+            <div class="stat-number-wrapper"><span class="stat-number" data-target-value="2">0</span>x</div>
+            <div class="stat-label">Turnaround Speed (TAT)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Intermediate Callout Ribbon -->
+    <section class="py-5 callout-ribbon">
+      <div class="container text-center py-3">
+        <h3 class="display-6 fw-bold mb-4">Ready to Accelerate Your Development Cycles?</h3>
+        <a class="btn btn-primary rounded-pill shadow-lg px-5 py-2 fw-semibold" role="button" data-bss-hover-animate="pulse" href="#booking">Yes, I'm Ready!</a>
+      </div>
+    </section>
+
+    <!-- Section 6: Core Benefits (Workflow & Growth) -->
+    <section class="py-5">
+      <div class="container px-md-5">
+        <div class="row mb-5 text-center">
+          <div class="col-md-10 mx-auto">
+            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">BENEFITS</span>
+            <h2 class="display-5 fw-bold mb-3">Streamline Your Workflow &amp; Improve Your Bottom Line</h2>
+            <p class="lead fs-5 text-muted">We build intelligent infrastructures that decrease administrative overhead and scale your service execution.</p>
+          </div>
+        </div>
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4">
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <div class="bg-body-secondary mb-3 icon-circle"><i class="fs-4 text-primary fa-solid fa-laptop-code"></i></div>
+                <h4 class="fw-bold h5 mb-2">Purpose-Built Systems</h4>
+                <p class="small text-muted mb-0">Custom development cycles matching your business operations, avoiding rigid off-the-shelf limits.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <div class="bg-body-secondary mb-3 icon-circle"><i class="fs-4 text-primary fa-solid fa-cogs"></i></div>
+                <h4 class="fw-bold h5 mb-2">Seamless Integration</h4>
+                <p class="small text-muted mb-0">Database and payment pipelines that fit directly into your existing CRM setups and cloud clusters.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <div class="bg-body-secondary mb-3 icon-circle"><i class="fs-4 text-primary fa-solid fa-headset"></i></div>
+                <h4 class="fw-bold h5 mb-2">24/7 Tech Support</h4>
+                <p class="small text-muted mb-0">Round-the-clock DevOps support, system tracking alerts, and database maintenance safeguards.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <div class="bg-body-secondary mb-3 icon-circle"><i class="fs-4 text-primary fa-solid fa-chart-line"></i></div>
+                <h4 class="fw-bold h5 mb-2">Operational ROI</h4>
+                <p class="small text-muted mb-0">Automate manual labor and administration to decrease overhead and maximize B2B margins.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Tailored Solutions for Industries -->
+    <section class="py-5 bg-custom-gradient">
+      <div class="container px-md-5">
+        <div class="row mb-5 align-items-center">
+          <div class="col-md-8 text-start">
+            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">SPECIALTIES</span>
+            <h2 class="display-5 fw-bold mb-0">Tailored Architecture for Regulated Industries</h2>
+          </div>
+          <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <a class="btn btn-primary rounded-pill px-4 py-2 fw-semibold" href="services.html">View All Services</a>
+          </div>
+        </div>
+        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4">
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <h4 class="fw-bold h5 mb-2">Healthcare Tech</h4>
+                <p class="small text-muted mb-3">HIPAA-compliant EHR platforms, WebRTC secure video consult portals, and database enrollments.</p>
+                <a class="small text-primary text-decoration-none fw-bold" href="industry-healthcare-tech.html">Learn More <i class="bi bi-arrow-right align-middle"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <h4 class="fw-bold h5 mb-2">Financial Systems</h4>
+                <p class="small text-muted mb-3">POS interfaces, OIDC-compliant payments routing, and automated accounting auditing databases.</p>
+                <a class="small text-primary text-decoration-none fw-bold" href="services-custom-software.html">Learn More <i class="bi bi-arrow-right align-middle"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <h4 class="fw-bold h5 mb-2">SaaS Product Startups</h4>
+                <p class="small text-muted mb-3">Next.js responsive cloud platforms, React Native cross-platform apps, and automated deployments.</p>
+                <a class="small text-primary text-decoration-none fw-bold" href="services-web-development.html">Learn More <i class="bi bi-arrow-right align-middle"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
+              <div class="card-body">
+                <h4 class="fw-bold h5 mb-2">Enterprise Portals</h4>
+                <p class="small text-muted mb-3">Custom administration tools, employee identity systems, and unified analytics grids.</p>
+                <a class="small text-primary text-decoration-none fw-bold" href="industry-enterprise-dashboards.html">Learn More <i class="bi bi-arrow-right align-middle"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Section 9: Client Success Stories (Horizontal Scroll Pin Layout) -->
+    <section class="py-5 overflow-hidden" id="testimonials">
+      <div class="container px-md-5">
+        <div class="pin-master d-flex flex-column gap-4">
+          <!-- Top Text Section -->
+          <div class="text-section text-center text-lg-start" data-aos="fade-right">
+            <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-3"><i class="bi bi-star-fill text-warning me-1"></i> TESTIMONIALS</span>
+            <h2 class="display-5 fw-bold mb-3 text-white-contrast">Client Success Stories</h2>
+            <p class="lead text-muted-contrast" style="max-width: 1000px;">Discover how we collaborate with startups, healthcare providers, and enterprise engineering teams to deliver high-performance solutions.</p>
+          </div>
+          
+          <!-- Cards Scroll Wrapper -->
+          <div class="cards-scroll-wrapper" data-aos="fade-left">
+            <div class="cards-track">
+              
+              <!-- Review 1 -->
+              <div class="testimonial-card card border-0 p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img class="object-fit-cover rounded-circle flex-shrink-0 me-3 border border-primary-subtle" src="assets/img/avatars/avatar3.jpg" width="55" height="55" alt="Dr. Sarah L.">
+                  <div class="d-flex flex-column">
+                    <strong class="fs-6 text-white-contrast">Dr. Sarah L.</strong>
+                    <small class="text-primary fw-semibold">Telehealth Lead, CareLink</small>
+                  </div>
+                </div>
+                <div class="review-stars mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="card-text-val mb-0">"Avanta AI Solutions completely transformed our clinic. The secure telehealth and EHR platform they built is fast, reliable, and HIPAA-friendly."</p>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="testimonial-card card border-0 p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img class="object-fit-cover rounded-circle flex-shrink-0 me-3 border border-primary-subtle" src="assets/img/avatars/avatar2.jpg" width="55" height="55" alt="Mark T.">
+                  <div class="d-flex flex-column">
+                    <strong class="fs-6 text-white-contrast">Mark T.</strong>
+                    <small class="text-primary fw-semibold">Tech Lead, Enterprise MIS</small>
+                  </div>
+                </div>
+                <div class="review-stars mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="card-text-val mb-0">"Their expertise in Next.js, Node.js, and database scaling helped us launch our internal administration system months ahead of schedule."</p>
+              </div>
+
+              <!-- Review 3 -->
+              <div class="testimonial-card card border-0 p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img class="object-fit-cover rounded-circle flex-shrink-0 me-3 border border-primary-subtle" src="assets/img/avatars/avatar1.jpg" width="55" height="55" alt="Elena R.">
+                  <div class="d-flex flex-column">
+                    <strong class="fs-6 text-white-contrast">Elena R.</strong>
+                    <small class="text-primary fw-semibold">Founder, SaaS Mobility</small>
+                  </div>
+                </div>
+                <div class="review-stars mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill-half"></i>
+                </div>
+                <p class="card-text-val mb-0">"From UI/UX design to Flutter deployment, they delivered a flawless cross-platform mobile app experience that our users absolutely love."</p>
+              </div>
+
+              <!-- Review 4 -->
+              <div class="testimonial-card card border-0 p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img class="object-fit-cover rounded-circle flex-shrink-0 me-3 border border-primary-subtle" src="assets/img/avatars/avatar3.jpg" width="55" height="55" alt="David K.">
+                  <div class="d-flex flex-column">
+                    <strong class="fs-6 text-white-contrast">David K.</strong>
+                    <small class="text-primary fw-semibold">VP of Engineering, SecureCorp</small>
+                  </div>
+                </div>
+                <div class="review-stars mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="card-text-val mb-0">"The compliance engineering team at Avanta helped us secure our SOC2 database audit in record time. Their encrypted pipelines are world-class."</p>
+              </div>
+
+              <!-- Review 5 -->
+              <div class="testimonial-card card border-0 p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img class="object-fit-cover rounded-circle flex-shrink-0 me-3 border border-primary-subtle" src="assets/img/avatars/avatar2.jpg" width="55" height="55" alt="Samantha W.">
+                  <div class="d-flex flex-column">
+                    <strong class="fs-6 text-white-contrast">Samantha W.</strong>
+                    <small class="text-primary fw-semibold">Product Director, HealthFlow</small>
+                  </div>
+                </div>
+                <div class="review-stars mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="card-text-val mb-0">"Avanta AI integrated high-precision LLM diagnostic search into our HIPAA EHR system. The response time was cut down by 40%, and accuracy exceeded expectations."</p>
+              </div>
+
+              <!-- Review 6 -->
+              <div class="testimonial-card card border-0 p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img class="object-fit-cover rounded-circle flex-shrink-0 me-3 border border-primary-subtle" src="assets/img/avatars/avatar1.jpg" width="55" height="55" alt="James L.">
+                  <div class="d-flex flex-column">
+                    <strong class="fs-6 text-white-contrast">James L.</strong>
+                    <small class="text-primary fw-semibold">CTO, FinTech Stack</small>
+                  </div>
+                </div>
+                <div class="review-stars mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="card-text-val mb-0">"Scaling our database to support millions of parallel transactions was a breeze with Avanta's backend architecture. Their database engineering is outstanding."</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 10: Careers & Opportunities -->
+    <section class="py-5" id="careers">
+      <div class="container px-md-5">
+        <div class="row mb-4 text-center">
+          <div class="col-md-10 mx-auto">
+            <span class="text-uppercase fw-bold text-primary d-block mb-2" style="letter-spacing: 1px;">CAREERS</span>
+            <h2 class="display-5 fw-bold mb-3 text-white-contrast">Join Our World-Class Engineering Team</h2>
+          </div>
+        </div>
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4">
+          <div class="col">
+            <div class="homepage-blog-card h-100">
+              <div class="dot-grid-watermark"></div>
+              <div class="card-date text-primary fw-semibold">Full-Time / Remote</div>
+              <a href="careers.html" class="card-title-center">Senior React / Next.js Engineer</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="homepage-blog-card h-100">
+              <div class="dot-grid-watermark"></div>
+              <div class="card-date text-primary fw-semibold">Full-Time / Hybrid (Austin)</div>
+              <a href="careers.html" class="card-title-center">Lead AI/LLM Integration Architect</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="homepage-blog-card h-100">
+              <div class="dot-grid-watermark"></div>
+              <div class="card-date text-primary fw-semibold">Full-Time / Remote</div>
+              <a href="careers.html" class="card-title-center">Senior Database Security Specialist</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="homepage-blog-card h-100">
+              <div class="dot-grid-watermark"></div>
+              <div class="card-date text-primary fw-semibold">Full-Time / Hybrid (Austin)</div>
+              <a href="careers.html" class="card-title-center">Senior Flutter Developer</a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <a href="careers.html" class="btn btn-primary px-5 py-2.5 fw-semibold rounded-3" style="background-color: #2283c6; border-color: #2283c6; box-shadow: 0 4px 15px rgba(34, 131, 198, 0.3);">Explore Open Positions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 11: Demo & Consultation Booking Form -->
+    <section class="py-5 bg-custom-gradient" id="booking">
+      <div class="container px-md-5">
+        <div class="row justify-content-center">
+          <div class="col-xl-8">
+            <div class="card border-0 shadow-lg contact-highlight p-4 p-md-5">
+              <div class="text-center mb-4">
+                <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">BOOK A DEMO</span>
+                <h2 class="display-6 fw-bold">Schedule a Scoped Discovery Session</h2>
+                <p class="lead fs-6 text-muted">Submit your project parameters below to schedule a quick 1-on-1 discovery call with our tech architects.</p>
+              </div>
+              <form action="success.html" method="GET">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="bookingName" class="form-label small fw-bold">Full Name</label>
+                    <input type="text" class="form-control rounded-pill px-3" id="bookingName" required placeholder="John Doe">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bookingEmail" class="form-label small fw-bold">Email Address</label>
+                    <input type="email" class="form-control rounded-pill px-3" id="bookingEmail" required placeholder="john@company.com">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bookingPhone" class="form-label small fw-bold">Phone Number</label>
+                    <input type="tel" class="form-control rounded-pill px-3" id="bookingPhone" placeholder="(214) 736-3533">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bookingCompany" class="form-label small fw-bold">Company Name</label>
+                    <input type="text" class="form-control rounded-pill px-3" id="bookingCompany" required placeholder="My Business Inc.">
+                  </div>
+                  <div class="col-12">
+                    <label for="bookingMessage" class="form-label small fw-bold">Project Overview (Optional)</label>
+                    <textarea class="form-control p-3 rounded-4" id="bookingMessage" rows="4" placeholder="Briefly describe your software, database, or AI compliance requirements..."></textarea>
+                  </div>
+                  <div class="col-12 text-center mt-4">
+                    <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 fw-semibold" data-bss-hover-animate="pulse">Schedule My Scoped Call</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+<footer class="py-5">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <!-- Column 1: About Company -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <h4 class="footer-heading text-white">About Company</h4>
+          <p class="text-muted small mb-3">Avanta AI Solutions engineers modern web applications, cross-platform mobile experiences, and secure software systems tailored for startup, healthcare, and enterprise teams globally.</p>
+          <div class="fs-5 d-flex gap-3 social-links">
+            <a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+            <a class="link-body-emphasis" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+        <!-- Column 2: Services -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <h4 class="footer-heading text-white">Services</h4>
+          <ul class="list-unstyled footer-links">
+            <li class="mb-2"><a href="services-web-development.html">Web Development</a></li>
+            <li class="mb-2"><a href="services-mobile-apps.html">Mobile Apps</a></li>
+            <li class="mb-2"><a href="services-custom-software.html">Custom Software</a></li>
+          </ul>
+        </div>
+        <!-- Column 3: Industries & Solutions -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <h4 class="footer-heading text-white">Industries &amp; Solutions</h4>
+          <ul class="list-unstyled footer-links">
+            <li class="mb-2"><a href="industry-healthcare-tech.html">Healthcare Tech</a></li>
+            <li class="mb-2"><a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
+            <li class="mb-2"><a href="expert.html">Book a Consultation</a></li>
+            <li class="mb-2"><a href="contacts.html#faq">Client Support</a></li>
+          </ul>
+        </div>
+        <!-- Column 4: Quick Links -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <h4 class="footer-heading text-white">Quick Links</h4>
+          <ul class="list-unstyled footer-links">
+            <li class="mb-2"><a href="index.html">Home</a></li>
+            <li class="mb-2"><a href="about.html">About Us</a></li>
+            <li class="mb-2"><a href="careers.html">Careers</a></li>
+            <li class="mb-2"><a href="authors.html">Our Team</a></li>
+            <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
+            <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-light-subtle d-flex flex-column justify-content-between align-items-center flex-lg-row pt-4 border-top">
+        <p class="text-muted mb-2 mb-lg-0"><small>Â© 2026 Avanta AI Solutions. All rights reserved.</small></p>
+        <div class="d-flex justify-content-center align-items-center flex-wrap justify-content-sm-start">
+          <a class="text-reset mx-2" href="privacy.html">Privacy Policy</a>
+          <a class="text-reset mx-2" href="terms.html">Terms of Service</a>
+          <a class="text-reset mx-2" href="cookies.html">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="assets/js/script.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/js/animations.js"></script>
+</body>
+
+</html>
+
