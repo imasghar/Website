@@ -2677,3 +2677,38 @@ html[data-bs-theme="light"] .glass-card-4 .phase-description {
   width: 32px;
   height: 32px;
 }
+
+/* Mobile Header and Top Bar Optimizations */
+@media (max-width: 767.98px) {
+  /* Reduce header height by scaling the logo and padding */
+  .navbar-brand img {
+    height: 52px !important;
+    width: auto !important;
+  }
+  .navbar {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+
+  /* Optimize top-bar for mobile views: center content and stack if necessary */
+  .top-bar .container {
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+  .top-bar-left {
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100%;
+  }
+  .top-bar-right {
+    justify-content: center !important;
+    width: 100%;
+    margin-top: 2px;
+  }
+  .top-bar a {
+    font-size: 0.72rem !important;
+  }
+}
