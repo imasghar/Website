@@ -627,9 +627,10 @@ function initializeAnimations() {
       // 1. Calculate moveAmount exactly as requested
       const moveAmount = 3000 - (window.innerWidth / 2) + 200;
       
+      let pathLength = 0;
       // 2. Initialize SVG path drawing (start pre-drawn up to Phase 1 at 600px)
       if (laserPath) {
-        const pathLength = laserPath.getTotalLength();
+        pathLength = laserPath.getTotalLength();
         gsap.set(laserPath, {
           strokeDasharray: pathLength,
           strokeDashoffset: pathLength - 600
@@ -662,6 +663,71 @@ function initializeAnimations() {
         }
       }
 
+      // Set up the wave-rider cursor
+      const svgTrack = document.querySelector("#svg-track");
+      let waveRider = null;
+      if (svgTrack) {
+        waveRider = svgTrack.querySelector("#wave-rider");
+        if (!waveRider) {
+          waveRider = document.createElementNS("http://www.w3.org/2000/svg", "g");
+          waveRider.setAttribute("id", "wave-rider");
+          
+          let defs = svgTrack.querySelector("defs");
+          if (defs) {
+            let glowFilter = defs.querySelector("#rider-glow");
+            if (!glowFilter) {
+              glowFilter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+              glowFilter.setAttribute("id", "rider-glow");
+              glowFilter.setAttribute("x", "-50%");
+              glowFilter.setAttribute("y", "-50%");
+              glowFilter.setAttribute("width", "200%");
+              glowFilter.setAttribute("height", "200%");
+              
+              const blur = document.createElementNS("http://www.w3.org/2000/svg", "feGaussianBlur");
+              blur.setAttribute("stdDeviation", "4");
+              blur.setAttribute("result", "blur");
+              
+              const merge = document.createElementNS("http://www.w3.org/2000/svg", "feMerge");
+              const mergeNode1 = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+              mergeNode1.setAttribute("in", "blur");
+              const mergeNode2 = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+              mergeNode2.setAttribute("in", "SourceGraphic");
+              
+              merge.appendChild(mergeNode1);
+              merge.appendChild(mergeNode2);
+              glowFilter.appendChild(blur);
+              glowFilter.appendChild(merge);
+              defs.appendChild(glowFilter);
+            }
+          }
+          
+          // Pulse Ring
+          const pulseRing = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          pulseRing.setAttribute("class", "rider-pulse-ring");
+          pulseRing.setAttribute("r", "16");
+          pulseRing.setAttribute("fill", "none");
+          pulseRing.setAttribute("stroke", "url(#roadmap-gradient)");
+          pulseRing.setAttribute("stroke-width", "2");
+          pulseRing.setAttribute("opacity", "0.8");
+          
+          // Middle glowing core
+          const middleCore = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          middleCore.setAttribute("r", "8");
+          middleCore.setAttribute("fill", "url(#roadmap-gradient)");
+          middleCore.setAttribute("filter", "url(#rider-glow)");
+          
+          // Inner core
+          const innerCore = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          innerCore.setAttribute("r", "4");
+          innerCore.setAttribute("fill", "#ffffff");
+          
+          waveRider.appendChild(pulseRing);
+          waveRider.appendChild(middleCore);
+          waveRider.appendChild(innerCore);
+          svgTrack.appendChild(waveRider);
+        }
+      }
+
       // 4. Create ScrollTrigger timeline
       const roadmapTL = gsap.timeline({
         scrollTrigger: {
@@ -671,6 +737,17 @@ function initializeAnimations() {
           end: "+=4000", // exact requirement
           scrub: 1,
           invalidateOnRefresh: true
+        },
+        onUpdate: () => {
+          if (laserPath && pathLength > 0 && waveRider) {
+            const currentOffset = parseFloat(gsap.getProperty(laserPath, "strokeDashoffset"));
+            const currentLength = pathLength - currentOffset;
+            
+            if (currentLength >= 0 && currentLength <= pathLength) {
+              const point = laserPath.getPointAtLength(currentLength);
+              waveRider.setAttribute("transform", `translate(${point.x.toFixed(1)}, ${point.y.toFixed(1)})`);
+            }
+          }
         }
       });
 
