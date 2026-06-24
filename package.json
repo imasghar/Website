@@ -4,7 +4,7 @@
   "description": "Avanta AI Solutions static corporate website",
   "main": "index.html",
   "scripts": {
-    "lint:html": "htmlhint *.html",
+    "lint:html": "htmlhint --ignore google1dbbf3b12e7d9991.html *.html",
     "lint:links": "node scripts/link-checker.js",
     "test": "npm run lint:html && npm run lint:links"
   },
