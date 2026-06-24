@@ -582,6 +582,23 @@ html[data-bs-theme="light"] .top-bar-divider {
   z-index: 1025 !important;
 }
 
+/* Glassmorphism navbar styling when scrolled past 80px */
+html[data-bs-theme="light"] .navbar.navbar-glass {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(12, 8, 34, 0.06) !important;
+  box-shadow: 0 10px 30px rgba(12, 8, 34, 0.03) !important;
+}
+
+html[data-bs-theme="dark"] .navbar.navbar-glass {
+  background: rgba(5, 5, 15, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
 /* ==========================================
    12. LENIS SMOOTH SCROLL STYLES
    ========================================== */
