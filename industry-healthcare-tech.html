@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/styles.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 
@@ -87,25 +88,46 @@
 
   <main>
     <!-- Section 1: Hero Banner -->
-    <section class="py-5 bg-custom-gradient">
-      <div class="container px-md-5 py-4 py-md-5">
+    <section class="service-hero" data-service="web">
+      <div class="service-hero-bg healthcare-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="hero-overlay position-absolute inset-0 z-0"></div>
+      <div class="container position-relative z-1 py-4 py-md-5">
         <div class="row align-items-center gy-5">
           <div class="col-lg-7 text-start">
-            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">DIGITAL HEALTHCARE SOLUTIONS</span>
-            <h1 class="display-4 fw-bold mb-3 text-white-contrast">
+            <span class="service-eyebrow">Digital Healthcare Solutions</span>
+            <h1 class="service-hero-h1 display-4 fw-bold mb-3 text-white-contrast">
               Secure Custom Engineering for Modern Healthcare
             </h1>
-            <p class="lead fs-5 mb-4 text-muted-contrast">
+            <p class="service-hero-sub lead fs-5 mb-4 text-muted-contrast">
               We build EHR, PHR, telehealth portals, hospital management systems (HMS), and healthcare MIS platforms. Our HIPAA-compliant, secure architectures translate clinical complexity into powerful, unified digital experiences.
             </p>
             <div class="d-flex flex-column flex-sm-row gap-3">
               <a class="btn btn-primary rounded-pill px-4 py-2" href="expert.html">Discuss Clinical Software&nbsp;&nbsp;<i class="bi bi-chat-text align-middle"></i></a>
-              <a class="btn btn-glass-outline rounded-pill px-4 py-2" href="#capabilities">Explore Capabilities</a>
+              <a class="btn btn-outline-secondary rounded-pill px-4 py-2" href="#capabilities">Explore Capabilities</a>
+            </div>
+            <!-- Compliance badges -->
+            <div class="compliance-badges mt-4">
+              <span class="comp-badge"><i class="ti ti-shield-check"></i> HIPAA Compliant</span>
+              <span class="comp-badge"><i class="ti ti-lock"></i> AES-256 Encryption</span>
+              <span class="comp-badge"><i class="ti ti-certificate"></i> SOC2 Ready</span>
+              <span class="comp-badge"><i class="ti ti-eye-off"></i> GDPR Aligned</span>
             </div>
           </div>
-          <div class="col-lg-5">
-            <div class="card border-0 shadow-lg p-2 bg-custom-dark-card">
-              <img loading="lazy" class="img-fluid rounded-3" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80" alt="Clinicians collaborating using digital medical software tablet">
+          <div class="col-lg-5 d-none d-lg-block">
+            <!-- Simulated HL7 parser code window mockup -->
+            <div class="code-window-mockup">
+              <div class="code-window-bar">
+                <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+                <span class="code-window-title">hl7_parser.py</span>
+              </div>
+              <div class="code-window-body">
+                <div class="code-line"><span class="code-kw">import</span> <span class="code-var">hl7</span></div>
+                <div class="code-line"><span class="code-kw">def</span> <span class="code-fn">parse_patient_id</span>(payload):</div>
+                <div class="code-line pl-3"><span class="code-var">msg</span> = <span class="code-var">hl7</span>.<span class="code-fn">parse</span>(payload)</div>
+                <div class="code-line pl-3"><span class="code-kw">return</span> <span class="code-var">msg</span>[<span class="code-str">'PID'</span>][<span class="code-num">3</span>]</div>
+                <div class="code-line">}</div>
+                <div class="code-line blink-cursor">▋</div>
+              </div>
             </div>
           </div>
         </div>
@@ -118,69 +140,57 @@
         <div class="row mb-5 text-center">
           <div class="col-lg-8 mx-auto">
             <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">SYSTEM PORTFOLIO</span>
-            <h2 class="display-5 fw-bold mb-3 text-white-contrast">Clinical &amp; Administrative Systems We Build</h2>
+            <h2 class="display-5 fw-bold mb-3">Clinical &amp; Administrative Systems We Build</h2>
             <p class="lead fs-5 text-muted-contrast">From complex patient database backbones to external integrations, we digitize clinical workflows securely.</p>
           </div>
         </div>
-        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3 systems-grid">
           <!-- Card 1: EHR & PHR Systems -->
           <div class="col">
-            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
-              <div class="card-body">
-                <div class="mb-3 icon-circle bg-primary-subtle text-primary"><i class="fs-4 fa-solid fa-file-waveform"></i></div>
-                <h3 class="fw-bold h5 mb-2">EHR &amp; PHR Systems</h3>
-                <p class="small text-muted mb-0">Longitudinal health history, medical records, patient progress notes, and diagnostic indexing in audit-safe cloud storage.</p>
-              </div>
+            <div class="feature-card system-card" data-service="mobile">
+              <div class="feature-card-icon"><i class="ti ti-medical-cross"></i></div>
+              <h3 class="fw-bold h5 mb-2">EHR &amp; PHR Systems</h3>
+              <p>Longitudinal health history, medical records, patient progress notes, and diagnostic indexing in audit-safe cloud storage.</p>
             </div>
           </div>
           <!-- Card 2: Telehealth & Remote Care -->
           <div class="col">
-            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
-              <div class="card-body">
-                <div class="mb-3 icon-circle bg-success-subtle text-success"><i class="fs-4 fa-solid fa-video"></i></div>
-                <h3 class="fw-bold h5 mb-2">Telehealth &amp; Remote Care</h3>
-                <p class="small text-muted mb-0">High-performance WebRTC video consulting, embedded secure chat, digital onboarding intakes, and calendar syncing.</p>
-              </div>
+            <div class="feature-card system-card" data-service="mobile">
+              <div class="feature-card-icon"><i class="ti ti-video"></i></div>
+              <h3 class="fw-bold h5 mb-2">Telehealth &amp; Remote Care</h3>
+              <p>High-performance WebRTC video consulting, embedded secure chat, digital onboarding intakes, and calendar syncing.</p>
             </div>
           </div>
           <!-- Card 3: HMS & Hospital MIS -->
           <div class="col">
-            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
-              <div class="card-body">
-                <div class="mb-3 icon-circle bg-warning-subtle text-warning"><i class="fs-4 fa-solid fa-hospital"></i></div>
-                <h3 class="fw-bold h5 mb-2">HMS &amp; Administrative MIS</h3>
-                <p class="small text-muted mb-0">Comprehensive hospital management systems covering ward capacity tracking, administrative staffing, and clinical invoicing.</p>
-              </div>
+            <div class="feature-card system-card" data-service="mobile">
+              <div class="feature-card-icon"><i class="ti ti-building-hospital"></i></div>
+              <h3 class="fw-bold h5 mb-2">HMS &amp; Administrative MIS</h3>
+              <p>Comprehensive hospital management systems covering ward capacity tracking, administrative staffing, and clinical invoicing.</p>
             </div>
           </div>
           <!-- Card 4: Patient Portals -->
           <div class="col">
-            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
-              <div class="card-body">
-                <div class="mb-3 icon-circle bg-info-subtle text-info"><i class="fs-4 fa-solid fa-user-doctor"></i></div>
-                <h3 class="fw-bold h5 mb-2">Patient Portals</h3>
-                <p class="small text-muted mb-0">Client portals allowing appointment self-booking, billing review, digital consent forms, and automated prescription updates.</p>
-              </div>
+            <div class="feature-card system-card" data-service="mobile">
+              <div class="feature-card-icon"><i class="ti ti-user-heart"></i></div>
+              <h3 class="fw-bold h5 mb-2">Patient Portals</h3>
+              <p>Client portals allowing appointment self-booking, billing review, digital consent forms, and automated prescription updates.</p>
             </div>
           </div>
           <!-- Card 5: Integrated Health Systems (IHS) -->
           <div class="col">
-            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
-              <div class="card-body">
-                <div class="mb-3 icon-circle bg-danger-subtle text-danger"><i class="fs-4 fa-solid fa-network-wired"></i></div>
-                <h3 class="fw-bold h5 mb-2">Integrated Health Systems</h3>
-                <p class="small text-muted mb-0">Data orchestration connecting clinical records with pharmacies, insurance brokers, payment processing, and external lab networks.</p>
-              </div>
+            <div class="feature-card system-card" data-service="mobile">
+              <div class="feature-card-icon"><i class="ti ti-network"></i></div>
+              <h3 class="fw-bold h5 mb-2">Integrated Health Systems</h3>
+              <p>Data orchestration connecting clinical records with pharmacies, insurance brokers, payment processing, and external lab networks.</p>
             </div>
           </div>
           <!-- Card 6: Secure Document Management -->
           <div class="col">
-            <div class="card h-100 border-0 shadow-sm card-hover-lift p-3">
-              <div class="card-body">
-                <div class="mb-3 icon-circle bg-secondary-subtle text-secondary"><i class="fs-4 fa-solid fa-folder-open"></i></div>
-                <h3 class="fw-bold h5 mb-2">Secure Document Vault</h3>
-                <p class="small text-muted mb-0">Compliant electronic filing cabinets with automatic OCR metadata extraction, scanner sync, and digital signing triggers.</p>
-              </div>
+            <div class="feature-card system-card" data-service="mobile">
+              <div class="feature-card-icon"><i class="ti ti-file-certificate"></i></div>
+              <h3 class="fw-bold h5 mb-2">Secure Document Vault</h3>
+              <p>Compliant electronic filing cabinets with automatic OCR metadata extraction, scanner sync, and digital signing triggers.</p>
             </div>
           </div>
         </div>
@@ -188,78 +198,74 @@
     </section>
 
     <!-- Section 3: Document Management Workflows (Patient vs Provider) -->
-    <section class="py-5 bg-body-tertiary border-top border-bottom border-light-subtle">
+    <section class="py-5 border-top border-bottom border-light-subtle">
       <div class="container px-md-5">
         <div class="row mb-5 text-center">
           <div class="col-lg-8 mx-auto">
             <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">SECURE WORKFLOWS</span>
-            <h2 class="display-5 fw-bold mb-3 text-white-contrast">Document Management for Patients &amp; Providers</h2>
+            <h2 class="display-5 fw-bold mb-3">Document Management for Patients &amp; Providers</h2>
             <p class="lead fs-5 text-muted-contrast">We build specialized sharing guardrails allowing patients and clinicians to upload, analyze, and sign clinical documentation.</p>
           </div>
         </div>
         <div class="row align-items-stretch g-4">
           <!-- Patient Flow -->
           <div class="col-lg-6">
-            <div class="card h-100 border-0 shadow-sm p-4 card-hover-lift">
-              <div class="card-body">
-                <h3 class="fw-bold h4 mb-3 text-primary"><i class="bi bi-people-fill me-2"></i>Patient Document Portal</h3>
-                <p class="text-muted small mb-4">A simple, mobile-friendly interface designed for patients to organize and share records securely.</p>
-                <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                  <li class="d-flex align-items-start gap-3">
-                    <div class="icon-circle bg-primary-subtle text-primary p-2 mt-1"><i class="bi bi-camera-fill"></i></div>
-                    <div>
-                      <h4 class="h6 fw-bold mb-1">Mobile Scan Capture</h4>
-                      <p class="small text-muted mb-0">Scan driver licenses, insurance cards, and medical histories straight from the phone camera.</p>
-                    </div>
-                  </li>
-                  <li class="d-flex align-items-start gap-3">
-                    <div class="icon-circle bg-primary-subtle text-primary p-2 mt-1"><i class="bi bi-pencil-fill"></i></div>
-                    <div>
-                      <h4 class="h6 fw-bold mb-1">Consent &amp; E-Signatures</h4>
-                      <p class="small text-muted mb-0">Sign clinic agreements, liability release paperwork, and onboarding surveys in-app before appointments.</p>
-                    </div>
-                  </li>
-                  <li class="d-flex align-items-start gap-3">
-                    <div class="icon-circle bg-primary-subtle text-primary p-2 mt-1"><i class="bi bi-cloud-check-fill"></i></div>
-                    <div>
-                      <h4 class="h6 fw-bold mb-1">Encrypted Record Access</h4>
-                      <p class="small text-muted mb-0">Readily view diagnostic imaging reports, physician instructions, and lab panels from anywhere.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div class="doc-panel patient">
+              <h3 class="fw-bold h4 mb-3" style="color: #14b8a6 !important;"><i class="ti ti-users me-2"></i>Patient Document Portal</h3>
+              <p class="text-muted-contrast small mb-4">A simple, mobile-friendly interface designed for patients to organize and share records securely.</p>
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                <li class="d-flex align-items-start gap-3">
+                  <div class="feature-card-icon m-0" style="background: rgba(20,184,166,0.15); color: #2dd4bf; width: 36px; height: 36px; font-size: 16px;"><i class="ti ti-camera"></i></div>
+                  <div>
+                    <h4 class="h6 fw-bold mb-1">Mobile Scan Capture</h4>
+                    <p class="small text-muted mb-0">Scan driver licenses, insurance cards, and medical histories straight from the phone camera.</p>
+                  </div>
+                </li>
+                <li class="d-flex align-items-start gap-3">
+                  <div class="feature-card-icon m-0" style="background: rgba(20,184,166,0.15); color: #2dd4bf; width: 36px; height: 36px; font-size: 16px;"><i class="ti ti-edit"></i></div>
+                  <div>
+                    <h4 class="h6 fw-bold mb-1">Consent &amp; E-Signatures</h4>
+                    <p class="small text-muted mb-0">Sign clinic agreements, liability release paperwork, and onboarding surveys in-app before appointments.</p>
+                  </div>
+                </li>
+                <li class="d-flex align-items-start gap-3">
+                  <div class="feature-card-icon m-0" style="background: rgba(20,184,166,0.15); color: #2dd4bf; width: 36px; height: 36px; font-size: 16px;"><i class="ti ti-lock"></i></div>
+                  <div>
+                    <h4 class="h6 fw-bold mb-1">Encrypted Record Access</h4>
+                    <p class="small text-muted mb-0">Readily view diagnostic imaging reports, physician instructions, and lab panels from anywhere.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <!-- Provider Flow -->
           <div class="col-lg-6">
-            <div class="card h-100 border-0 shadow-sm p-4 card-hover-lift">
-              <div class="card-body">
-                <h3 class="fw-bold h4 mb-3 text-success"><i class="bi bi-journal-medical me-2"></i>Provider Management Pipeline</h3>
-                <p class="text-muted small mb-4">A fast, structured workspace giving clinicians administrative control over records and data flows.</p>
-                <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                  <li class="d-flex align-items-start gap-3">
-                    <div class="icon-circle bg-success-subtle text-success p-2 mt-1"><i class="bi bi-cpu-fill"></i></div>
-                    <div>
-                      <h4 class="h6 fw-bold mb-1">Automated AI OCR Parsing</h4>
-                      <p class="small text-muted mb-0">Parse medical intakes automatically to extract patient metrics, dates, and historical medication listings.</p>
-                    </div>
-                  </li>
-                  <li class="d-flex align-items-start gap-3">
-                    <div class="icon-circle bg-success-subtle text-success p-2 mt-1"><i class="bi bi-shield-lock-fill"></i></div>
-                    <div>
-                      <h4 class="h6 fw-bold mb-1">Granular Security Controls</h4>
-                      <p class="small text-muted mb-0">Enforce strict data-access permissions based on credentials, roles, and facility boundaries.</p>
-                    </div>
-                  </li>
-                  <li class="d-flex align-items-start gap-3">
-                    <div class="icon-circle bg-success-subtle text-success p-2 mt-1"><i class="bi bi-file-earmark-check-fill"></i></div>
-                    <div>
-                      <h4 class="h6 fw-bold mb-1">Discharge Summaries &amp; Sharing</h4>
-                      <p class="small text-muted mb-0">Autogenerate encrypted patient reports and securely share them with insurance companies and partner clinics.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div class="doc-panel provider">
+              <h3 class="fw-bold h4 mb-3" style="color: #3b82f6 !important;"><i class="ti ti-building-hospital me-2"></i>Provider Management Pipeline</h3>
+              <p class="text-muted-contrast small mb-4">A fast, structured workspace giving clinicians administrative control over records and data flows.</p>
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                <li class="d-flex align-items-start gap-3">
+                  <div class="feature-card-icon m-0" style="background: rgba(59,130,246,0.15); color: #60a5fa; width: 36px; height: 36px; font-size: 16px;"><i class="ti ti-cpu"></i></div>
+                  <div>
+                    <h4 class="h6 fw-bold mb-1">Automated AI OCR Parsing</h4>
+                    <p class="small text-muted mb-0">Parse medical intakes automatically to extract patient metrics, dates, and historical medication listings.</p>
+                  </div>
+                </li>
+                <li class="d-flex align-items-start gap-3">
+                  <div class="feature-card-icon m-0" style="background: rgba(59,130,246,0.15); color: #60a5fa; width: 36px; height: 36px; font-size: 16px;"><i class="ti ti-shield-check"></i></div>
+                  <div>
+                    <h4 class="h6 fw-bold mb-1">Granular Security Controls</h4>
+                    <p class="small text-muted mb-0">Enforce strict data-access permissions based on credentials, roles, and facility boundaries.</p>
+                  </div>
+                </li>
+                <li class="d-flex align-items-start gap-3">
+                  <div class="feature-card-icon m-0" style="background: rgba(59,130,246,0.15); color: #60a5fa; width: 36px; height: 36px; font-size: 16px;"><i class="ti ti-file-export"></i></div>
+                  <div>
+                    <h4 class="h6 fw-bold mb-1">Discharge Summaries &amp; Sharing</h4>
+                    <p class="small text-muted mb-0">Autogenerate encrypted patient reports and securely share them with insurance companies and partner clinics.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -267,27 +273,36 @@
     </section>
 
     <!-- Section 4: Security & HIPAA Compliance Callout -->
-    <section class="py-5 overflow-hidden position-relative" style="background: linear-gradient(135deg, #0f0c31 0%, #05041a 100%) !important; border-top: 1px solid rgba(106, 79, 226, 0.2); border-bottom: 1px solid rgba(106, 79, 226, 0.2); color: #ffffff !important;">
-      <div class="container px-md-5 text-center">
+    <section class="hipaa-section overflow-hidden position-relative">
+      <div class="container px-md-5 text-center position-relative z-1">
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <span class="badge bg-white bg-opacity-20 text-white rounded-pill p-2 mb-3 px-3"><i class="bi bi-shield-check me-1 text-warning"></i> HIPAA COMPLIANT ARCHITECTURE</span>
-            <h2 class="display-6 fw-bold mb-4 text-white">Clinically Safe. Architecturally Secure.</h2>
-            <p class="lead mb-5 opacity-90">
+            <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-3"><i class="ti ti-shield-check me-1 text-warning"></i> HIPAA COMPLIANT ARCHITECTURE</span>
+            <h2 class="display-6 fw-bold mb-4 text-white-contrast">Clinically Safe. Architecturally Secure.</h2>
+            <p class="lead mb-5 opacity-90 text-muted-contrast">
               Healthcare data requires strict protection. We build software around secure access guardrails, providing a fully audit-friendly development cycle.
             </p>
             <div class="row g-4 text-start">
               <div class="col-md-4">
-                <h3 class="h6 fw-bold text-warning"><i class="bi bi-lock-fill me-2"></i>E2E Encryption</h3>
-                <p class="small opacity-80">AES-256 state encryption at rest, combined with TLS 1.3 tunnels for transit safety.</p>
+                <div class="feature-card">
+                  <div class="feature-card-icon"><i class="ti ti-shield-lock"></i></div>
+                  <h3 class="h6 fw-bold text-white-contrast"><i class="bi bi-lock-fill me-2 text-warning"></i>E2E Encryption</h3>
+                  <p class="small text-muted-contrast">AES-256 state encryption at rest, combined with TLS 1.3 tunnels for transit safety.</p>
+                </div>
               </div>
               <div class="col-md-4">
-                <h3 class="h6 fw-bold text-warning"><i class="bi bi-key-fill me-2"></i>OAuth2 / OIDC Auth</h3>
-                <p class="small opacity-80">Multi-Factor Authentication (MFA) sync and single sign-on (SSO) integration across care systems.</p>
+                <div class="feature-card">
+                  <div class="feature-card-icon"><i class="ti ti-key"></i></div>
+                  <h3 class="h6 fw-bold text-white-contrast"><i class="bi bi-key-fill me-2 text-warning"></i>OAuth2 Auth</h3>
+                  <p class="small text-muted-contrast">Multi-Factor Authentication (MFA) sync and single sign-on (SSO) integration across care systems.</p>
+                </div>
               </div>
               <div class="col-md-4">
-                <h3 class="h6 fw-bold text-warning"><i class="bi bi-list-check me-2"></i>Immutable Audits</h3>
-                <p class="small opacity-80">Chronological access log recording who, when, and what records were examined.</p>
+                <div class="feature-card">
+                  <div class="feature-card-icon"><i class="ti ti-history"></i></div>
+                  <h3 class="h6 fw-bold text-white-contrast"><i class="bi bi-list-check me-2 text-warning"></i>Immutable Audits</h3>
+                  <p class="small text-muted-contrast">Chronological access log recording who, when, and what records were examined.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -313,65 +328,72 @@
     </section>
   </main>
 
-  <footer class="py-5">
+  <footer class="site-footer">
+  <!-- Top: large brand statement -->
+  <div class="footer-top">
     <div class="container">
-      <div class="row g-4 mb-4">
-        <!-- Column 1: About Company -->
-        <div class="col-12 col-md-6 col-lg-3">
-          <h4 class="footer-heading text-white">About Company</h4>
-          <p class="text-muted small mb-3">Avanta AI Solutions engineers modern web applications, cross-platform mobile experiences, and secure software systems tailored for startup, healthcare, and enterprise teams globally.</p>
-          <div class="fs-5 d-flex gap-3 social-links">
-            <a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-            <a class="link-body-emphasis" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+      <div class="footer-brand-row">
+        <div class="footer-brand-left">
+          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
           </div>
         </div>
-        <!-- Column 2: Services -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Services</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="services-web-development.html">Web Development</a></li>
-            <li class="mb-2"><a href="services-mobile-apps.html">Mobile Apps</a></li>
-            <li class="mb-2"><a href="services-custom-software.html">Custom Software</a></li>
-          </ul>
-        </div>
-        <!-- Column 3: Industries & Solutions -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Industries &amp; Solutions</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="industry-healthcare-tech.html">Healthcare Tech</a></li>
-            <li class="mb-2"><a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
-            <li class="mb-2"><a href="expert.html">Book a Consultation</a></li>
-            <li class="mb-2"><a href="contacts.html#faq">Client Support</a></li>
-          </ul>
-        </div>
-        <!-- Column 4: Quick Links -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Quick Links</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="careers.html">Careers</a></li>
-            <li class="mb-2"><a href="authors.html">Our Team</a></li>
-            <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
-            <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-light-subtle d-flex flex-column justify-content-between align-items-center flex-lg-row pt-4 border-top">
-        <p class="text-muted mb-2 mb-lg-0"><small>© 2026 Avanta AI Solutions. All rights reserved.</small></p>
-        <div class="d-flex justify-content-center align-items-center flex-wrap justify-content-sm-start">
-          <a class="text-reset mx-2" href="privacy.html">Privacy Policy</a>
-          <a class="text-reset mx-2" href="terms.html">Terms of Service</a>
-          <a class="text-reset mx-2" href="cookies.html">Cookie Policy</a>
+        <div class="footer-links-grid">
+          <!-- 4 columns: Services | Industries | Company | Legal -->
+          <div class="footer-col">
+            <div class="footer-col-title">Services</div>
+            <a href="services-web-development.html">Web Development</a>
+            <a href="services-mobile-apps.html">Mobile Apps</a>
+            <a href="services-custom-software.html">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Industries</div>
+            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+            <a href="expert.html">Book Consultation</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="authors.html">Our Team</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-row">
+        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+        <span class="footer-made-with">Built by engineers, for engineers.</span>
+      </div>
+    </div>
+  </div>
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
 </body>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
 <head>
@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
 <body>
@@ -85,70 +86,226 @@
     </nav>
   </header>
 
-  <main>
-    <section class="py-5 bg-custom-gradient"><div class="container px-md-5"><div class="row align-items-center gy-4"><div class="col-lg-7"><span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">Custom Software</span><h1 class="display-5 fw-bold mb-3">Software built around your exact operations</h1><p class="lead fs-5 mb-4">From internal platforms to AI-assisted workflows, we design systems that reduce manual effort, connect existing tools, and give teams reliable data.</p><a class="btn btn-primary rounded-pill px-4" href="expert.html">Map Your Workflow</a></div><div class="col-lg-5"><img loading="lazy" class="img-fluid rounded shadow industry-solution-img w-100" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt="Analytics dashboard on screens"></div></div></div></section>
-    <section class="py-5"><div class="container px-md-5"><div class="row gy-4 row-cols-1 row-cols-md-3"><div class="col"><div class="card border-0 shadow-sm h-100"><div class="card-body p-4"><i class="fa-solid fa-diagram-project fs-3 text-primary mb-3"></i><h3 class="fs-4 fw-bold">Systems Design</h3><p class="text-muted mb-0">Architecture, data modeling, integrations, and permission structures planned before implementation starts.</p></div></div></div><div class="col"><div class="card border-0 shadow-sm h-100"><div class="card-body p-4"><i class="fa-solid fa-robot fs-3 text-primary mb-3"></i><h3 class="fs-4 fw-bold">AI Integrations</h3><p class="text-muted mb-0">Smart search, copilots, document processing, triage queues, and automation with human review where it matters.</p></div></div></div><div class="col"><div class="card border-0 shadow-sm h-100"><div class="card-body p-4"><i class="fa-solid fa-lock fs-3 text-primary mb-3"></i><h3 class="fs-4 fw-bold">Secure Delivery</h3><p class="text-muted mb-0">Role-based access, audit trails, environment separation, and deployment workflows built for long-term ownership.</p></div></div></div></div></div></section>
-  </main>
-
-  <footer class="py-5">
-    <div class="container">
-      <div class="row g-4 mb-4">
-        <!-- Column 1: About Company -->
-        <div class="col-12 col-md-6 col-lg-3">
-          <h4 class="footer-heading text-white">About Company</h4>
-          <p class="text-muted small mb-3">Avanta AI Solutions engineers modern web applications, cross-platform mobile experiences, and secure software systems tailored for startup, healthcare, and enterprise teams globally.</p>
-          <div class="fs-5 d-flex gap-3 social-links">
-            <a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-            <a class="link-body-emphasis" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+  <main data-service="custom">
+    <!-- Hero Section -->
+    <section class="service-hero" data-service="custom">
+      <div class="service-hero-bg"></div>
+      <div class="container position-relative z-1">
+        <div class="row align-items-center min-vh-65">
+          <div class="col-lg-7 text-start">
+            <div class="service-eyebrow">Custom Software</div>
+            <h1 class="service-hero-h1 display-4 fw-bold mb-3">Software built around your exact operations</h1>
+            <p class="service-hero-sub lead fs-5 mb-4">From internal platforms to AI-assisted workflows, we design systems that reduce manual effort, connect existing tools, and give teams reliable data.</p>
+            <div class="service-trust-row">
+              <span class="trust-chip"><i class="ti ti-check"></i> MIS &amp; ERP Systems</span>
+              <span class="trust-chip"><i class="ti ti-check"></i> AI Workflows</span>
+              <span class="trust-chip"><i class="ti ti-check"></i> Audit-ready</span>
+            </div>
+            <div class="hero-cta-group mt-4">
+              <a href="expert.html" class="btn btn-primary rounded-pill px-4 py-2 me-3">Start a Custom Project</a>
+              <a href="services.html" class="btn btn-outline-secondary rounded-pill px-4 py-2">View All Services</a>
+            </div>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block">
+            <!-- Animated mini dashboard mockup using HTML/CSS -->
+            <div class="custom-hero-mockup">
+              <div class="dashboard-preview-card border-0 shadow-lg">
+                <div class="dash-header">
+                  <span class="dash-title">AI Workflow Audit</span>
+                  <span class="dash-period">Realtime telemetry</span>
+                </div>
+                <div class="dash-kpi-row flex-column gap-2">
+                  <div class="dash-kpi d-flex justify-content-between align-items-center bg-body-tertiary p-2 rounded">
+                    <div>
+                      <span class="dash-kpi-label">API Throughput</span>
+                      <span class="dash-kpi-num m-0 fs-6">9,842 req/s</span>
+                    </div>
+                    <span class="dash-kpi-change up text-success"><i class="ti ti-arrow-up-right"></i> +24%</span>
+                  </div>
+                  <div class="dash-kpi d-flex justify-content-between align-items-center bg-body-tertiary p-2 rounded">
+                    <div>
+                      <span class="dash-kpi-label">Queue Latency</span>
+                      <span class="dash-kpi-num m-0 fs-6">1.2ms</span>
+                    </div>
+                    <span class="dash-kpi-change up text-success"><i class="ti ti-arrow-down-right"></i> -18%</span>
+                  </div>
+                </div>
+                <div class="dash-chart mt-3">
+                  <div class="dash-bar" style="--h:40%"></div>
+                  <div class="dash-bar" style="--h:60%"></div>
+                  <div class="dash-bar" style="--h:35%"></div>
+                  <div class="dash-bar" style="--h:75%"></div>
+                  <div class="dash-bar" style="--h:90%"></div>
+                  <div class="dash-bar active" style="--h:85%"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Column 2: Services -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Services</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="services-web-development.html">Web Development</a></li>
-            <li class="mb-2"><a href="services-mobile-apps.html">Mobile Apps</a></li>
-            <li class="mb-2"><a href="services-custom-software.html">Custom Software</a></li>
-          </ul>
-        </div>
-        <!-- Column 3: Industries & Solutions -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Industries &amp; Solutions</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="industry-healthcare-tech.html">Healthcare Tech</a></li>
-            <li class="mb-2"><a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
-            <li class="mb-2"><a href="expert.html">Book a Consultation</a></li>
-            <li class="mb-2"><a href="contacts.html#faq">Client Support</a></li>
-          </ul>
-        </div>
-        <!-- Column 4: Quick Links -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Quick Links</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="careers.html">Careers</a></li>
-            <li class="mb-2"><a href="authors.html">Our Team</a></li>
-            <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
-            <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
-          </ul>
-        </div>
       </div>
-      <div class="border-light-subtle d-flex flex-column justify-content-between align-items-center flex-lg-row pt-4 border-top">
-        <p class="text-muted mb-2 mb-lg-0"><small>Â© 2026 Avanta AI Solutions. All rights reserved.</small></p>
-        <div class="d-flex justify-content-center align-items-center flex-wrap justify-content-sm-start">
-          <a class="text-reset mx-2" href="privacy.html">Privacy Policy</a>
-          <a class="text-reset mx-2" href="terms.html">Terms of Service</a>
-          <a class="text-reset mx-2" href="cookies.html">Cookie Policy</a>
+    </section>
+
+    <!-- Stats Strip -->
+    <div class="stats-strip">
+      <div class="container d-flex flex-column flex-md-row justify-content-center p-0">
+        <div class="stat-item">
+          <div class="stat-number">50%</div>
+          <div class="stat-label">Manual Ops Eliminated</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Transaction Reliability</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Enterprise Portals</div>
         </div>
       </div>
     </div>
-  </footer>
+
+    <!-- Feature Showcase Grid -->
+    <section class="py-5 feature-grid-section">
+      <div class="container px-md-5">
+        <div class="row mb-5 text-center">
+          <div class="col-lg-8 mx-auto">
+            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">WHAT WE BUILD</span>
+            <h2 class="display-5 fw-bold mb-3">Custom Software Features</h2>
+            <p class="lead fs-5 text-muted-contrast">We build secure internal systems, workflows, and integrations tailored to business operations.</p>
+          </div>
+        </div>
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3 feature-grid">
+          <!-- Card 1: MIS Systems -->
+          <div class="col">
+            <div class="feature-card">
+              <div class="feature-card-icon"><i class="ti ti-server"></i></div>
+              <h5>MIS Systems</h5>
+              <p>Centralized administration hubs, customer directories, and analytics dashboards built for business operations.</p>
+            </div>
+          </div>
+          <!-- Card 2: AI Copilots -->
+          <div class="col">
+            <div class="feature-card">
+              <div class="feature-card-icon"><i class="ti ti-robot"></i></div>
+              <h5>AI Copilots</h5>
+              <p>Automated customer sorting, text classification models, and document OCR extraction pipelines.</p>
+            </div>
+          </div>
+          <!-- Card 3: Workflow Automation -->
+          <div class="col">
+            <div class="feature-card">
+              <div class="feature-card-icon"><i class="ti ti-arrows-right-left"></i></div>
+              <h5>Workflow Automation</h5>
+              <p>Integration sync, automatic event handlers, and data sync scripts to connect software nodes.</p>
+            </div>
+          </div>
+          <!-- Card 4: Role-based Access -->
+          <div class="col">
+            <div class="feature-card">
+              <div class="feature-card-icon"><i class="ti ti-shield-lock"></i></div>
+              <h5>Role-based Access</h5>
+              <p>Granular folder visibility rules, security credentials check, and data isolation mechanisms.</p>
+            </div>
+          </div>
+          <!-- Card 5: Legacy Migration -->
+          <div class="col">
+            <div class="feature-card">
+              <div class="feature-card-icon"><i class="ti ti-database"></i></div>
+              <h5>Legacy Migration</h5>
+              <p>Database structure optimization, data transfer scripting, and secure transition pipelines.</p>
+            </div>
+          </div>
+          <!-- Card 6: Audit Trails -->
+          <div class="col">
+            <div class="feature-card">
+              <div class="feature-card-icon"><i class="ti ti-clipboard-list"></i></div>
+              <h5>Audit Trails</h5>
+              <p>Encrypted action logs recording system changes, event timestamps, and operator actions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Band -->
+    <section class="service-cta-band">
+      <div class="container text-center">
+        <p class="cta-eyebrow">READY TO START?</p>
+        <h2 class="cta-headline">Let's scope your project together</h2>
+        <p class="cta-sub">Book a 30-min discovery call. No commitment, no sales pressure. Just an honest look at what we can build for you.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="expert.html" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Book Discovery Call</a>
+          <a href="contacts.html" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2">Ask a Question</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <!-- Top: large brand statement -->
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-brand-row">
+        <div class="footer-brand-left">
+          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <!-- 4 columns: Services | Industries | Company | Legal -->
+          <div class="footer-col">
+            <div class="footer-col-title">Services</div>
+            <a href="services-web-development.html">Web Development</a>
+            <a href="services-mobile-apps.html">Mobile Apps</a>
+            <a href="services-custom-software.html">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Industries</div>
+            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+            <a href="expert.html">Book Consultation</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="authors.html">Our Team</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-row">
+        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+        <span class="footer-made-with">Built by engineers, for engineers.</span>
+      </div>
+    </div>
+  </div>
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
 </body>

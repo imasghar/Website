@@ -34,9 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("Lenis smooth scroll is not loaded. Inertia scrolling disabled.");
   }
 
-  // 2. Register GSAP Plugins
+  // 2. Register GSAP Plugins (incorporating TextPlugin)
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof TextPlugin !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger, TextPlugin);
+    } else {
+      gsap.registerPlugin(ScrollTrigger);
+    }
     initializeAnimations();
   } else {
     console.warn("GSAP or ScrollTrigger CDNs are not loaded. Animations disabled.");
@@ -44,12 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".gsap-reveal").forEach(el => {
       el.style.opacity = "1";
       el.style.transform = "none";
-    });
-    document.querySelectorAll(".stat-number").forEach(stat => {
-      const targetVal = stat.getAttribute("data-target-value");
-      if (targetVal !== null) {
-        stat.textContent = targetVal;
-      }
     });
   }
 
@@ -64,6 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 6. Interactive Services Stepper (Services Page)
   initializeServicesStepper();
+
+  // 7. Initialize Global Upgrades (Cursor, transitions, section reveal stagger, etc.)
+  initializeGlobalUpgrades();
 
   // Refresh ScrollTrigger on window load to ensure correct positions after all assets (images, fonts, custom logos) are loaded
   window.addEventListener("load", () => {
@@ -92,12 +93,10 @@ function initializeCardGlows() {
 function highlightActiveNavLinks() {
   let currentPath = window.location.pathname.split("/").pop();
   
-  // Clean query strings or hash parameters if present
   if (currentPath) {
     currentPath = currentPath.split("?")[0].split("#")[0];
   }
   
-  // If we are at the root path, empty string, folder root, or directory without .html
   if (!currentPath || !currentPath.includes(".") || currentPath.toLowerCase() === "website") {
     currentPath = "index.html";
   }
@@ -114,7 +113,6 @@ function highlightActiveNavLinks() {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
         
-        // Activate parent dropdown link if nested
         const parentDropdown = link.closest(".dropdown");
         if (parentDropdown) {
           const dropdownToggle = parentDropdown.querySelector(".dropdown-toggle");
@@ -125,47 +123,44 @@ function highlightActiveNavLinks() {
       }
     }
   });
-
-  // Specifically highlight Contact active state
-  const contactBtn = document.getElementById("nav-link-contact-btn");
-  if (contactBtn) {
-    let contactHref = contactBtn.getAttribute("href").split("/").pop();
-    if (contactHref) {
-      contactHref = contactHref.split("?")[0].split("#")[0];
-    }
-    if (contactHref === currentPath) {
-      contactBtn.classList.add("active");
-    }
-  }
 }
 
 // GSAP Animations Engine
 function initializeAnimations() {
-  // Disable GSAP ScrollTrigger animations on small mobile screens to optimize performance
-  if (window.innerWidth < 768) {
-    // Just reveal everything instantly on mobile to avoid layout locks
-    gsap.set(".gsap-reveal", { opacity: 1, y: 0 });
-    
-    // Instantly set numerical stats to their target values on mobile
-    const statNumbers = document.querySelectorAll(".stat-number");
-    statNumbers.forEach(stat => {
-      const targetVal = stat.getAttribute("data-target-value");
-      if (targetVal !== null) {
-        stat.textContent = targetVal;
-      }
+  // Prevent duplicate GSAP scroll reveal bindings on overlapping selectors
+  const animatedElements = new Set();
+
+  // Respect reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    // Just reveal everything instantly and bypass animations
+    gsap.set(".gsap-reveal, .roadmap-track, .laser-path, .phase-node, .glass-card-1, .glass-card-2, .glass-card-3, .glass-card-4, .service-eyebrow, .service-hero-h1, .service-hero-sub, .trust-chip, .hero-cta-group, .code-window-mockup, .phone-frame-mockup, .custom-hero-mockup, .feature-card, .comp-badge, .system-card, .hipaa-section, .dash-bar, .footer-tagline, .footer-col, .social-icon", {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      y: 0,
+      scaleY: 1,
+      scaleX: 1,
+      strokeDashoffset: 0
     });
     return;
   }
 
-  // --- A. Text Reveal Animation ---
-  const textSplitElements = document.querySelectorAll(".hero-parallax-section h1, .services-hero h1, .py-5 h2:not(.accordion-header button)");
+  // Disable GSAP ScrollTrigger animations on small mobile screens to optimize performance
+  if (window.innerWidth < 768) {
+    // Just reveal everything instantly on mobile to avoid layout locks
+    gsap.set(".gsap-reveal", { opacity: 1, y: 0 });
+    return;
+  }
+
+  // --- A. Text Reveal Animation (excl. h1 tags for typing animation) ---
+  const textSplitElements = document.querySelectorAll(".py-5 h2:not(.accordion-header button)");
   textSplitElements.forEach(el => {
     const originalText = el.innerText.trim();
     if (originalText.length > 0) {
       // Split text into words wrapped in overflow-hidden containers for clean slide reveals
       const words = originalText.split(" ");
       el.innerHTML = words.map(word => {
-        // preserve coloring styles if present
         if (word.includes("Avanta")) {
           return `<span style="display:inline-block; overflow:hidden;"><span style="display:inline-block; color:rgb(106, 79, 226);" class="gsap-text-word">Avanta</span></span>`;
         }
@@ -222,7 +217,6 @@ function initializeAnimations() {
       }
     });
 
-    // Parallax hero image & texts
     gsap.to(".parallax-image", {
       yPercent: 12,
       ease: "none",
@@ -238,12 +232,9 @@ function initializeAnimations() {
   // --- C. Scroll-Reveal: Cards & Grids ---
   const cardGrids = [
     ".row-cols-lg-3 .col", 
-    ".row-cols-lg-4 .col",
+    ".row-cols-lg-4 .col:not(.culture-card-col):not(#benefits-section .col)", // exclude culture and benefits cards (have custom stagger)
     "#features .col"
   ];
-
-  // Prevent duplicate GSAP scroll reveal bindings on overlapping selectors
-  const animatedElements = new Set();
 
   cardGrids.forEach(selector => {
     const elements = Array.from(document.querySelectorAll(selector)).filter(el => !animatedElements.has(el));
@@ -268,7 +259,7 @@ function initializeAnimations() {
   });
 
   // --- D. Scroll-Reveal: Alternating Timeline Nodes ---
-  const timelineItems = document.querySelectorAll(".timeline-item");
+  const timelineItems = document.querySelectorAll(".timeline-item:not(.careers-timeline-item)");
   timelineItems.forEach((item, index) => {
     const isEven = index % 2 === 0;
     gsap.from(item, {
@@ -402,11 +393,7 @@ function initializeAnimations() {
   if (statNumbers.length > 0) {
     statNumbers.forEach(stat => {
       const targetVal = parseInt(stat.getAttribute("data-target-value"), 10) || 0;
-      
-      // Initialize textContent to 0
       stat.textContent = "0";
-      
-      // Tween a dummy object to ensure robust number updating across all GSAP environments
       const obj = { val: 0 };
       gsap.to(obj, {
         val: targetVal,
@@ -493,7 +480,6 @@ function initializeAnimations() {
       }, "-=0.4");
     }
 
-    // Full-Width Google Map ScrollTrigger
     const fullMap = document.querySelector(".contact-map-wrapper.full-width-map");
     if (fullMap) {
       gsap.from(fullMap, {
@@ -508,7 +494,6 @@ function initializeAnimations() {
       });
     }
 
-    // Horizontal Info Cards ScrollTrigger
     const horizontalCards = document.querySelectorAll(".contact-horizontal-row .contact-info-card");
     if (horizontalCards.length > 0) {
       gsap.from(horizontalCards, {
@@ -525,59 +510,41 @@ function initializeAnimations() {
     }
   }
 
-  // --- L. Master Technologies Horizontal Scroll Parallax ---
-  const techLogos = document.querySelector(".tech-logos");
-  if (techLogos) {
-    gsap.fromTo(techLogos, 
-      { x: "12%" }, 
-      {
-        x: "-12%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: techLogos.closest("section"),
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.2
-        }
-      }
-    );
-  }
+  // --- L. Master Technologies Horizontal Scroll Parallax (REMOVED: replaced by CSS marquee) ---
+  // commented out to avoid conflict
 
   // --- M. Alternating Services Blocks ScrollTrigger Parallax ---
   const serviceBlocks = document.querySelectorAll(".service-block-row");
   if (serviceBlocks.length > 0) {
     serviceBlocks.forEach(row => {
-      const isReversed = row.classList.contains("flex-lg-row-reverse");
       const textCol = row.querySelector(".service-text-col");
       const imgCol = row.querySelector(".service-image-col");
       
       if (textCol && imgCol) {
-        // Slide in staggered columns
         gsap.from(textCol, {
-          x: isReversed ? 60 : -60,
+          x: -80,
           opacity: 0,
-          duration: 1,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: row,
-            start: "top 82%",
+            start: "top 75%",
             toggleActions: "play none none none"
           }
         });
         
         gsap.from(imgCol, {
-          x: isReversed ? -60 : 60,
+          x: 80,
           opacity: 0,
-          duration: 1,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: row,
-            start: "top 82%",
+            start: "top 75%",
             toggleActions: "play none none none"
           }
         });
         
-        // Mockup frame parallax depth shift
         const img = imgCol.querySelector(".parallax-mockup-img");
         if (img) {
           gsap.fromTo(img, 
@@ -606,12 +573,8 @@ function initializeAnimations() {
   
   if (heroSection && overlapContent) {
     const mm = gsap.matchMedia();
-    
-    // Desktop and Tablet pinning effects
     mm.add("(min-width: 768px)", () => {
       document.body.classList.add("home-page-stacked");
-
-      // Pin the hero container
       ScrollTrigger.create({
         trigger: heroSection,
         start: "top top",
@@ -621,8 +584,6 @@ function initializeAnimations() {
         anticipatePin: 1,
         id: "hero-pin"
       });
-
-      // Fade overlay curtain as we scroll down
       if (curtain) {
         gsap.to(curtain, {
           opacity: 0.82,
@@ -635,8 +596,6 @@ function initializeAnimations() {
           }
         });
       }
-
-      // Parallax shift & fade hero content container
       const heroContainer = heroSection.querySelector(".container");
       if (heroContainer) {
         gsap.to(heroContainer, {
@@ -782,112 +741,299 @@ function initializeAnimations() {
     });
   }
 
-  // --- O. Sequential Unstacking Testimonials ScrollTrigger ---
+  // --- O. Sequential Unstacking Testimonials ScrollTrigger (Desktop) ---
   const testimonialsSec = document.querySelector("#testimonials");
   const cards = document.querySelectorAll(".testimonial-card");
   const track = document.querySelector(".cards-track");
   const scrollWrapper = document.querySelector(".cards-scroll-wrapper");
   
   if (testimonialsSec && cards.length > 0 && track && scrollWrapper) {
-    const gap = 450;      // gap offset when unstacked
-    const cardWidth = 420; // card width in pixels
-    const padding = 100;   // padding for track edges
-    
-    // 1. Set track width dynamically for both desktop and JS calculations
+    const gap = 450;
+    const cardWidth = 420;
+    const padding = 100;
     const totalTrackWidth = (cards.length - 1) * gap + cardWidth + padding;
     track.style.width = `${totalTrackWidth}px`;
     
-    // 2. Set up interactive hover scaling/lifting via GSAP to prevent transform conflicts
     cards.forEach(card => {
       card.addEventListener("mouseenter", () => {
-        gsap.to(card, { y: -10, scale: 1.02, duration: 0.35, ease: "power2.out" });
+        if (window.innerWidth >= 992) {
+          gsap.to(card, { y: -10, scale: 1.02, duration: 0.35, ease: "power2.out" });
+        }
       });
       card.addEventListener("mouseleave", () => {
-        gsap.to(card, { y: 0, scale: 1, duration: 0.35, ease: "power2.out" });
+        if (window.innerWidth >= 992) {
+          gsap.to(card, { y: 0, scale: 1, duration: 0.35, ease: "power2.out" });
+        }
       });
     });
     
-    // 3. Desktop Pinning & Unstacking Animation
     const mm = gsap.matchMedia();
     mm.add("(min-width: 992px)", () => {
-      // Set initial rotations and positions (stacked at x: 0)
       const rotations = [-4, 2, -2, 4];
       cards.forEach((card, idx) => {
-        gsap.set(card, { 
-          x: 0, 
-          rotation: rotations[idx % rotations.length] 
-        });
+        gsap.set(card, { x: 0, rotation: rotations[idx % rotations.length] });
       });
-      
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: testimonialsSec,
           pin: true,
-          start: "top 80px", // Pin below the sticky header navbar
+          start: "top 80px",
           end: () => "+=" + (cards.length * 600),
           scrub: 1,
           invalidateOnRefresh: true
         }
       });
-      
-      // Calculate responsive track shifting to keep all cards within the viewport at the end of the scroll
       const totalSpread = (cards.length - 1) * gap;
       const maxTrackX = Math.max(0, totalSpread + cardWidth - (window.innerWidth - 150));
       const trackShiftPerStep = maxTrackX / (cards.length - 1);
-      
-      // Step 1: Straighten the first card
-      tl.to(cards[0], {
-        rotation: 0,
-        duration: 0.5,
-        ease: "power1.inOut"
-      });
-      
-      // Step 2+: Sequentially unstack each subsequent card to the right side
+      tl.to(cards[0], { rotation: 0, duration: 0.5, ease: "power1.inOut" });
       for (let i = 1; i < cards.length; i++) {
         const stepLabel = `step-${i}`;
         const targetCards = Array.from(cards).slice(i);
-        
-        // Move the track to the left dynamically to adjust viewport
-        tl.to(track, {
-          x: -i * trackShiftPerStep,
-          duration: 1,
-          ease: "power2.inOut"
-        }, stepLabel);
-        
-        // Translate all remaining stacked cards to the right
-        tl.to(targetCards, {
-          x: i * gap,
-          rotation: rotations[i % rotations.length],
-          duration: 1,
-          ease: "power2.inOut"
-        }, stepLabel);
-
-        // Straighten the card that has just been unstacked (cards[i])
-        tl.to(cards[i], {
-          rotation: 0,
-          duration: 0.5,
-          ease: "power1.inOut"
-        }, `${stepLabel}+=0.5`);
+        tl.to(track, { x: -i * trackShiftPerStep, duration: 1, ease: "power2.inOut" }, stepLabel);
+        tl.to(targetCards, { x: i * gap, rotation: rotations[i % rotations.length], duration: 1, ease: "power2.inOut" }, stepLabel);
+        tl.to(cards[i], { rotation: 0, duration: 0.5, ease: "power1.inOut" }, `${stepLabel}+=0.5`);
       }
     });
     
-    // Reset positions on mobile resize to prevent layout breaking
     mm.add("(max-width: 991.98px)", () => {
       gsap.killTweensOf([track, cards]);
       gsap.set(track, { clearProps: "all" });
       gsap.set(cards, { clearProps: "all" });
     });
   }
+
+  // --- Q. Benefits Section Stagger Animation (Home Page) ---
+  const benefitsCol = document.querySelectorAll("#benefits-section .col");
+  if (benefitsCol.length > 0) {
+    benefitsCol.forEach(el => animatedElements.add(el));
+    gsap.from(benefitsCol, {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: "#benefits-section",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  // --- R. Team Cards RotateY Flip-in (About Page) ---
+  const teamCards = document.querySelectorAll(".team-member-card");
+  if (teamCards.length > 0) {
+    teamCards.forEach(el => animatedElements.add(el));
+    gsap.from(teamCards, {
+      rotateY: 90,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: ".team-members-row",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  // --- S. Vision Badges Scale-in (About Page) ---
+  const visionBadges = document.querySelectorAll(".badges-list .badge");
+  if (visionBadges.length > 0) {
+    visionBadges.forEach(el => animatedElements.add(el));
+    gsap.from(visionBadges, {
+      scale: 0,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: ".badges-list",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  // --- T. Culture Cards Stagger Entrance (Careers Page) ---
+  const cultureCards = document.querySelectorAll(".culture-card");
+  if (cultureCards.length > 0) {
+    cultureCards.forEach(el => animatedElements.add(el));
+    gsap.from(cultureCards, {
+      scale: 0.85,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power3.out",
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: ".culture-cards-row",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  // --- U. Careers Step Cards Stagger (Careers Page) ---
+  const careersTimelineItems = document.querySelectorAll(".careers-timeline .timeline-item");
+  if (careersTimelineItems.length > 0) {
+    careersTimelineItems.forEach(el => animatedElements.add(el));
+    gsap.from(careersTimelineItems, {
+      x: 60,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: ".careers-timeline",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  // --- V. Services CTA Banner Scale-in ---
+  const ctaBanners = document.querySelectorAll(".cta-banner");
+  if (ctaBanners.length > 0) {
+    ctaBanners.forEach(el => animatedElements.add(el));
+    gsap.from(ctaBanners, {
+      scale: 0.92,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".cta-banner",
+        start: "top 90%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  // --- W. Premium B2B Website Upgrades Animations ---
+  
+  // 1. Service Hero Entrance Animations
+  const serviceHero = document.querySelector('.service-hero');
+  if (serviceHero) {
+    const heroTl = gsap.timeline({ delay: 0.2 });
+    heroTl
+      .from('.service-eyebrow', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' })
+      .from('.service-hero-h1', { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3')
+      .from('.service-hero-sub', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+      .from('.trust-chip', { y: 16, opacity: 0, stagger: 0.1, duration: 0.5 }, '-=0.2')
+      .from('.hero-cta-group', { y: 16, opacity: 0, duration: 0.5 }, '-=0.2')
+      .from('.code-window-mockup', { x: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+      .from('.phone-frame-mockup', { x: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+      .from('.custom-hero-mockup', { x: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+  }
+
+  // 2. Feature grid stagger reveal
+  if (document.querySelector('.feature-grid')) {
+    const featCards = document.querySelectorAll('.feature-card');
+    featCards.forEach(el => animatedElements.add(el));
+    gsap.from(featCards, {
+      y: 40, opacity: 0, stagger: 0.08, duration: 0.65, ease: 'power3.out',
+      scrollTrigger: { trigger: '.feature-grid', start: 'top 80%', toggleActions: 'play none none none' }
+    });
+  }
+
+  // 3. Healthcare compliance badges, systems grid, and HIPAA section scale-in
+  if (document.querySelector('.compliance-badges')) {
+    const compBadges = document.querySelectorAll('.comp-badge');
+    compBadges.forEach(el => animatedElements.add(el));
+    gsap.from(compBadges, {
+      scale: 0.8, opacity: 0, stagger: 0.1, duration: 0.5, ease: 'back.out(1.4)',
+      scrollTrigger: { trigger: '.compliance-badges', start: 'top 85%' }
+    });
+  }
+  if (document.querySelector('.systems-grid')) {
+    const sysCards = document.querySelectorAll('.system-card');
+    sysCards.forEach(el => animatedElements.add(el));
+    gsap.from(sysCards, {
+      y: 40, opacity: 0, stagger: 0.08, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '.systems-grid', start: 'top 80%' }
+    });
+  }
+  if (document.querySelector('.hipaa-section')) {
+    const hipaaSec = document.querySelectorAll('.hipaa-section');
+    hipaaSec.forEach(el => animatedElements.add(el));
+    gsap.from(hipaaSec, {
+      scale: 0.96, opacity: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '.hipaa-section', start: 'top 80%' }
+    });
+  }
+
+  // 4. Enterprise dashboard live preview bar chart animation
+  if (document.querySelector('.dashboard-preview-card')) {
+    ScrollTrigger.create({
+      trigger: '.dashboard-preview-card',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        document.querySelectorAll('.dash-bar').forEach((bar, i) => {
+          gsap.from(bar, { scaleY: 0, transformOrigin: 'bottom', 
+            duration: 0.6, delay: i * 0.08, ease: 'power3.out' });
+        });
+      }
+    });
+  }
+
+  // 5. Redesigned footer animations
+  if (document.querySelector('.site-footer')) {
+    const footTaglines = document.querySelectorAll('.footer-tagline');
+    footTaglines.forEach(el => animatedElements.add(el));
+    gsap.from(footTaglines, {
+      y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '.site-footer', start: 'top 90%' }
+    });
+    const footCols = document.querySelectorAll('.footer-col');
+    footCols.forEach(el => animatedElements.add(el));
+    gsap.from(footCols, {
+      y: 20, opacity: 0, stagger: 0.1, duration: 0.6,
+      scrollTrigger: { trigger: '.footer-links-grid', start: 'top 92%' }
+    });
+    const socIcons = document.querySelectorAll('.social-icon');
+    socIcons.forEach(el => animatedElements.add(el));
+    gsap.from(socIcons, {
+      scale: 0.7, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'back.out(1.6)',
+      scrollTrigger: { trigger: '.footer-social', start: 'top 92%' }
+    });
+  }
 }
 
-// 5. Interactive Homepage Tabs Showcase (Auto-Rotating Carousel Behavior)
+// 5. Interactive Homepage Tabs Showcase
 function initializeHomepageTabs() {
   const tabs = document.querySelectorAll(".showcase_tabs_btns .s_tab_btn");
   const contents = document.querySelectorAll(".s_tab_wrapper .s_tab");
   
   if (tabs.length === 0 || contents.length === 0) return;
 
+  const tabsContainer = document.querySelector(".showcase_tabs_btns");
+  let underline = tabsContainer.querySelector(".tab-underline-indicator");
+  if (!underline) {
+    underline = document.createElement("div");
+    underline.classList.add("tab-underline-indicator");
+    tabsContainer.appendChild(underline);
+  }
+
   let isTransitioning = false;
+  const rotationDelay = 5000;
+  let autoRotateInterval;
+
+  function updateUnderline(activeTabBtn) {
+    const activeLi = activeTabBtn.closest("li");
+    if (!activeLi) return;
+    const rect = activeLi.getBoundingClientRect();
+    const containerRect = tabsContainer.getBoundingClientRect();
+    const left = rect.left - containerRect.left;
+    const width = rect.width;
+    
+    gsap.to(underline, {
+      x: left,
+      width: width,
+      duration: 0.35,
+      ease: "power2.out"
+    });
+  }
 
   function switchTab(index) {
     if (isTransitioning) return;
@@ -898,37 +1044,23 @@ function initializeHomepageTabs() {
     
     if (!targetTab || activeTab === targetTab) return;
     
-    // Update active classes on buttons
     tabs.forEach(btn => btn.classList.remove("active"));
     tab.classList.add("active");
+    updateUnderline(tab);
     
-    // Animate transition using GSAP if available, otherwise fallback to simple class swap
     if (typeof gsap !== "undefined") {
       isTransitioning = true;
       gsap.killTweensOf(contents);
-      
       gsap.to(activeTab, {
         opacity: 0,
-        y: 15,
-        duration: 0.25,
+        y: 20,
+        duration: 0.1,
         onComplete: () => {
-          // Clear active-tab class on all panels to avoid duplicate active tabs
           contents.forEach(c => c.classList.remove("active-tab"));
-          
           targetTab.classList.add("active-tab");
-          
-          // Set initial state for new tab
           gsap.fromTo(targetTab, 
-            { opacity: 0, y: 15 },
-            { 
-              opacity: 1, 
-              y: 0, 
-              duration: 0.45, 
-              ease: "power2.out",
-              onComplete: () => {
-                isTransitioning = false;
-              }
-            }
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", onComplete: () => { isTransitioning = false; } }
           );
         }
       });
@@ -940,35 +1072,29 @@ function initializeHomepageTabs() {
 
   function startAutoRotation() {
     autoRotateInterval = setInterval(() => {
-      // Find current active index
       let activeIndex = 0;
-      tabs.forEach((tab, idx) => {
-        if (tab.classList.contains("active")) {
-          activeIndex = idx;
-        }
-      });
-      
-      // Move to next tab (wrap around)
-      const nextIndex = (activeIndex + 1) % tabs.length;
-      switchTab(nextIndex);
+      tabs.forEach((tab, idx) => { if (tab.classList.contains("active")) activeIndex = idx; });
+      switchTab((activeIndex + 1) % tabs.length);
     }, rotationDelay);
   }
 
-  function resetTimer() {
-    clearInterval(autoRotateInterval);
-    startAutoRotation();
-  }
+  function resetTimer() { clearInterval(autoRotateInterval); startAutoRotation(); }
   
   tabs.forEach((tab, index) => {
-    tab.addEventListener("click", (e) => {
-      e.preventDefault();
-      switchTab(index);
-      resetTimer(); // Reset the 5s timer on manual click to let user read the content
-    });
+    tab.addEventListener("click", (e) => { e.preventDefault(); switchTab(index); resetTimer(); });
   });
 
-  // Start auto-rotation on page load
   startAutoRotation();
+
+  setTimeout(() => {
+    const activeBtn = tabsContainer.querySelector(".s_tab_btn.active") || tabs[0];
+    if (activeBtn) updateUnderline(activeBtn);
+  }, 200);
+
+  window.addEventListener("resize", () => {
+    const activeBtn = tabsContainer.querySelector(".s_tab_btn.active");
+    if (activeBtn) updateUnderline(activeBtn);
+  });
 }
 
 // 6. Services Stepper interactive tab controller
@@ -987,11 +1113,9 @@ function initializeServicesStepper() {
       
       if (!targetPanel || activePanel === targetPanel) return;
       
-      // Update buttons
       stepperBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       
-      // Animate active state using GSAP
       if (typeof gsap !== "undefined") {
         gsap.to(activePanel, {
           opacity: 0,
@@ -1000,35 +1124,18 @@ function initializeServicesStepper() {
           onComplete: () => {
             activePanel.classList.remove("active-panel");
             targetPanel.classList.add("active-panel");
-            
-            // GSAP slide & fade in for content elements
-            gsap.fromTo(targetPanel, 
-              { opacity: 0, y: 15 },
-              { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
-            );
-            
-            // Sub-animations for mockup image sliding in & features list staggered
+            gsap.fromTo(targetPanel, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" });
             const mockup = targetPanel.querySelector(".device-mockup-wrapper");
             const textHeading = targetPanel.querySelector("h3");
             const listHeaders = targetPanel.querySelectorAll("h5");
             const lists = targetPanel.querySelectorAll("ul");
-            
-            if (mockup) {
-              gsap.fromTo(mockup, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "back.out(1.2)" });
-            }
-            if (textHeading) {
-              gsap.fromTo(textHeading, { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
-            }
-            if (listHeaders.length > 0) {
-              gsap.fromTo(listHeaders, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
-            }
-            if (lists.length > 0) {
-              gsap.fromTo(lists, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }, "-=0.2");
-            }
+            if (mockup) gsap.fromTo(mockup, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "back.out(1.2)" });
+            if (textHeading) gsap.fromTo(textHeading, { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
+            if (listHeaders.length > 0) gsap.fromTo(listHeaders, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 });
+            if (lists.length > 0) gsap.fromTo(lists, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }, "-=0.2");
           }
         });
       } else {
-        // Fallback if GSAP is not loaded
         activePanel.classList.remove("active-panel");
         targetPanel.classList.add("active-panel");
       }
@@ -1036,3 +1143,222 @@ function initializeServicesStepper() {
   });
 }
 
+// 7. Global Upgrades Function
+function initializeGlobalUpgrades() {
+  // --- A. Custom Cursor ---
+  if (window.innerWidth >= 992) {
+    const cursor = document.createElement("div");
+    cursor.classList.add("custom-cursor");
+    document.body.appendChild(cursor);
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener("mousemove", e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    gsap.ticker.add(() => {
+      cursorX += (mouseX - cursorX) * 0.08;
+      cursorY += (mouseY - cursorY) * 0.08;
+      gsap.set(cursor, { x: cursorX, y: cursorY, xPercent: -50, yPercent: -50 });
+    });
+
+    document.querySelectorAll(".btn, a, .card, .office-card, .homepage-blog-card, .role-card, .s_tab_btn, .stepper-btn, .phase-node").forEach(el => {
+      el.addEventListener("mouseenter", () => cursor.classList.add("cursor-hover"));
+      el.addEventListener("mouseleave", () => cursor.classList.remove("cursor-hover"));
+    });
+  }
+
+  // --- B. Page Transitions ---
+  document.body.style.opacity = "0";
+  requestAnimationFrame(() => {
+    document.body.style.transition = "opacity 300ms ease-in-out";
+    document.body.style.opacity = "1";
+  });
+
+  const links = document.querySelectorAll("a:not([href^='#']):not([target='_blank']):not([href^='tel:']):not([href^='mailto:'])");
+  links.forEach(link => {
+    link.addEventListener("click", e => {
+      if (link.hostname === window.location.hostname && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+        const href = link.getAttribute("href");
+        if (href && !href.startsWith("javascript:")) {
+          e.preventDefault();
+          document.body.classList.add("page-fade-out");
+          setTimeout(() => {
+            window.location.href = href;
+          }, 300);
+        }
+      }
+    });
+  });
+
+  // --- C. Glass Navbar past 80px ---
+  const navbar = document.querySelector(".navbar");
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add("navbar-glass");
+      } else {
+        navbar.classList.remove("navbar-glass");
+      }
+    });
+  }
+
+  // --- D. Stagger reveals for standard sections ---
+  document.querySelectorAll("section:not(.hero-parallax-section):not(#roadmap-section):not(#testimonials):not(.services-hero):not(.services-content):not(.services-cta):not(#booking):not(#benefits-section)").forEach(section => {
+    const listOrGrid = section.querySelectorAll(".row, .grid, ul, ol");
+    if (listOrGrid.length > 0) {
+      listOrGrid.forEach(container => {
+        const children = Array.from(container.children).filter(child => !child.classList.contains("timeline-progress-line-container") && !animatedElements.has(child));
+        if (children.length > 0) {
+          children.forEach(el => animatedElements.add(el));
+          gsap.from(children, {
+            opacity: 0,
+            y: 40,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: container,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            }
+          });
+        }
+      });
+    } else {
+      const sectionChildren = Array.from(section.children).filter(child => !animatedElements.has(child));
+      if (sectionChildren.length > 0) {
+        sectionChildren.forEach(el => animatedElements.add(el));
+        gsap.from(sectionChildren, {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+      }
+    }
+  });
+
+  // --- E. Typing animations on Hero H1s (TextPlugin) ---
+  document.querySelectorAll(".hero-parallax-section h1, .services-hero h1").forEach(h1 => {
+    const textContent = h1.innerText.trim();
+    const isServiceHero = h1.closest(".services-hero") !== null;
+    if (isServiceHero || textContent.length < 60) {
+      h1.innerText = "";
+      gsap.to(h1, {
+        text: textContent,
+        duration: textContent.length * 0.05,
+        ease: "none",
+        scrollTrigger: {
+          trigger: h1,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        }
+      });
+    }
+  });
+
+  // --- F. Specialties Cards Perspective Tilt ---
+  const tiltCards = document.querySelectorAll(".specialty-card");
+  tiltCards.forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rX = -(y / (rect.height / 2)) * 10;
+      const rY = (x / (rect.width / 2)) * 10;
+      card.style.setProperty("--rx", `${rX}deg`);
+      card.style.setProperty("--ry", `${rY}deg`);
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.setProperty("--rx", `0deg`);
+      card.style.setProperty("--ry", `0deg`);
+    });
+  });
+
+  // --- G. Careers timeline and drawing line ---
+  const timelineProgress = document.querySelector(".timeline-progress-line");
+  if (timelineProgress) {
+    gsap.fromTo(timelineProgress, 
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".timeline-wrapper",
+          start: "top 60%",
+          end: "bottom 80%",
+          scrub: true
+        }
+      }
+    );
+  }
+
+  // --- H. Testimonials mobile carousel auto-advance ---
+  initializeTestimonialsCarousel();
+}
+
+// Mobile Testimonials Carousel Auto-advance
+function initializeTestimonialsCarousel() {
+  const testimonialCards = document.querySelectorAll(".testimonial-card");
+  if (testimonialCards.length === 0) return;
+
+  let activeTestimonialIndex = 0;
+  let testimonialInterval;
+
+  function showTestimonial(index) {
+    testimonialCards.forEach((card, idx) => {
+      if (idx === index) {
+        card.style.display = "block";
+        gsap.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+  function startTestimonialsCarousel() {
+    if (window.innerWidth < 992) {
+      showTestimonial(0);
+      testimonialInterval = setInterval(() => {
+        activeTestimonialIndex = (activeTestimonialIndex + 1) % testimonialCards.length;
+        const activeCard = testimonialCards[activeTestimonialIndex];
+        
+        let prevCard;
+        testimonialCards.forEach(c => {
+          if (c.style.display === "block") prevCard = c;
+        });
+
+        if (prevCard && activeCard) {
+          gsap.to(prevCard, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+              prevCard.style.display = "none";
+              activeCard.style.display = "block";
+              gsap.fromTo(activeCard, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+            }
+          });
+        }
+      }, 5000);
+    } else {
+      testimonialCards.forEach(card => card.style.display = "");
+      clearInterval(testimonialInterval);
+    }
+  }
+
+  startTestimonialsCarousel();
+  window.addEventListener("resize", () => {
+    clearInterval(testimonialInterval);
+    startTestimonialsCarousel();
+  });
+}

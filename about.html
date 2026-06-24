@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <style>
     /* Global Map Styling */
@@ -156,8 +157,9 @@
 
   <main>
     <!-- Section 1: Hero Banner (About Us & Mission) -->
-    <section class="position-relative overflow-hidden py-5 bg-custom-gradient" data-aos="fade">
-      <div class="container px-md-5 py-4 py-md-5">
+    <section class="position-relative overflow-hidden py-5" style="background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; position: relative;" data-aos="fade">
+      <div class="hero-overlay"></div>
+      <div class="container px-md-5 py-4 py-md-5 position-relative z-1">
         <div class="row align-items-center gy-5">
           <div class="col-lg-7 text-start">
             <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">WHO WE ARE</span>
@@ -168,21 +170,15 @@
               We design, build, deploy, and audit B2B products. No messy outsourcing, no coordinating multiple communication channels. Just a unified team shipping high-performance code.
             </p>
             <div class="d-flex flex-wrap gap-3 badges-list mb-4">
-              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-shield-check text-warning me-1"></i>NDA Protected</span>
-              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-check-circle text-info me-1"></i>100% IP Ownership</span>
-              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-safe-fill text-success me-1"></i>SOC2 / HIPAA baselines</span>
+              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-shield-check me-1" style="color: #00C9A7;"></i>NDA Protected</span>
+              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-check-circle me-1" style="color: #4B7BF5;"></i>100% IP Ownership</span>
+              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-safe-fill me-1" style="color: #9B59B6;"></i>SOC2 / HIPAA baselines</span>
+              <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2"><i class="bi bi-calendar-check me-1" style="color: #E67E22;"></i>Scoped Deliverables</span>
             </div>
             <a class="btn btn-primary rounded-pill px-5 py-2 fw-semibold" href="contacts.html">Schedule a Call</a>
           </div>
-          <div class="col-lg-5">
-            <div class="row g-3">
-              <div class="col-6">
-                <img loading="lazy" class="img-fluid rounded-4 shadow-sm" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Avanta developers collaborating">
-              </div>
-              <div class="col-6 mt-4">
-                <img loading="lazy" class="img-fluid rounded-4 shadow-sm" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="UI UX Design process">
-              </div>
-            </div>
+          <div class="col-lg-5 text-center">
+            <img loading="lazy" class="img-fluid rounded-4 shadow-lg w-100" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Avanta developers collaborating" style="max-height: 380px; object-fit: cover;">
           </div>
         </div>
       </div>
@@ -197,25 +193,15 @@
             <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3 text-primary-emphasis fw-semibold">GLOBAL REACH</span>
             <h2 class="display-5 fw-bold mb-3 text-white-contrast">Helping clients across the globe.</h2>
             <p class="lead fs-6 text-muted-contrast mb-5">
-              Founded in Dallas, Texas, Avanta AI Solutions expanded its design and compliance infrastructure to Amsterdam, Netherlands. Today, our distributed engineering hubs build scalable platforms for teams worldwide.
+              Avanta AI Solutions serves global clients with a remote-first distributed team. Today, our architects collaborate across time zones to build and scale premium platforms for teams worldwide.
             </p>
             <div class="d-flex flex-column gap-4">
-              <!-- Office 1 -->
+              <!-- Remote Notice -->
               <div class="d-flex align-items-center gap-3 p-3 office-card">
-                <img loading="lazy" class="office-img" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=120&q=80" alt="Dera Ghazi Khan office">
+                <div class="fs-3 text-primary"><i class="ti ti-world"></i></div>
                 <div>
-                  <h3 class="h6 fw-bold mb-1 text-white-contrast">Office - Pakistan</h3>
-                  <a href="#" class="small text-decoration-none text-primary fw-semibold d-block mb-1">2JMR+V23 Sangam chowk, Dera Ghazi Khan, Pakistan</a>
-                  <span class="small text-muted d-block">Phone: +92 307 7067880</span>
-                </div>
-              </div>
-              <!-- Office 2 -->
-              <div class="d-flex align-items-center gap-3 p-3 office-card">
-                <img loading="lazy" class="office-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=120&q=80" alt="Amsterdam office">
-                <div>
-                  <h3 class="h6 fw-bold mb-1 text-white-contrast">Office - Netherlands</h3>
-                  <a href="#" class="small text-decoration-none text-primary fw-semibold d-block mb-1">Amsterdam, Weesperplein 61, 1018 VN</a>
-                  <span class="small text-muted d-block">Phone: +31 619 82 34 44</span>
+                  <h3 class="h6 fw-bold mb-1 text-white-contrast">Remote-First Studio</h3>
+                  <span class="small text-muted d-block text-wrap">Our engineering architects work asynchronously across global timezone hubs in North America, Europe, and Asia to ensure continuous product development.</span>
                 </div>
               </div>
             </div>
@@ -224,8 +210,8 @@
           <div class="col-lg-6">
             <div class="map-container">
               <!-- Pulses representing offices -->
-              <div class="pulsing-node node-us" title="Dallas Office"></div>
-              <div class="pulsing-node node-nl" title="Amsterdam Office"></div>
+              <div class="pulsing-node node-us" title="US Engineering Hub"></div>
+              <div class="pulsing-node node-nl" title="Europe Engineering Hub"></div>
               <!-- Futuristic Vector Map Outline -->
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1008 651" fill="none" class="w-100 opacity-75">
                 <path d="M141.5 174C137 165.5 125 163.5 119 161.5C113 159.5 98.5 165.5 92.5 167C86.5 168.5 83 176.5 73.5 178C64 179.5 56 167 48 174C40 181 48 193 42.5 198C37 203 26 195 24 204C22 213 32.5 214.5 35 224C37.5 233.5 33 241 39.5 247C46 253 59.5 251 68 251C76.5 251 86 261 97.5 256.5C109 252 110.5 237 122.5 235.5C134.5 234 140 238.5 147.5 229C155 219.5 146 182.5 141.5 174Z" fill="currentColor" opacity="0.15"/>
@@ -293,23 +279,21 @@
     </section>
 
     <!-- Section 4: Your Team (Premium Glass Cards) -->
-    <section class="py-5 bg-custom-gradient text-white overflow-hidden position-relative" style="background: linear-gradient(135deg, #0f0c31 0%, #05041a 100%) !important; border-top: 1px solid rgba(106, 79, 226, 0.2); border-bottom: 1px solid rgba(106, 79, 226, 0.2);">
+    <section class="py-5 team-section overflow-hidden position-relative">
       <div class="container px-md-5">
         <div class="row mb-5 text-center">
           <div class="col-lg-8 mx-auto">
-            <span class="badge bg-white bg-opacity-20 text-white rounded-pill p-2 mb-3 px-3">YOUR TEAM</span>
-            <h2 class="display-5 fw-bold mb-3 text-white">Supporting and guiding your digital products</h2>
+            <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-3">YOUR TEAM</span>
+            <h2 class="display-5 fw-bold mb-3">Supporting and guiding your digital products</h2>
             <p class="lead fs-6 opacity-90">Meet the certified software architects, compliance professionals, and full-stack builders assigned to your product cycles.</p>
           </div>
         </div>
-        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4">
+        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4 team-members-row">
           <!-- Member 1 -->
           <div class="col">
-            <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
-              <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar3.jpg" alt="Dr. Sarah L.">
-              </div>
-              <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
+            <div class="card h-100 border-0 shadow p-0 bg-transparent team-member-card" style="border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
+              <div class="team-avatar-initials" style="background: #E74C3C;">SL</div>
+              <div class="p-3" style="background: rgba(9, 10, 31, 0.85); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">Dr. Sarah L.</strong>
                 <span class="small text-warning">Telehealth Architect</span>
               </div>
@@ -317,11 +301,9 @@
           </div>
           <!-- Member 2 -->
           <div class="col">
-            <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
-              <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar2.jpg" alt="Mark T.">
-              </div>
-              <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
+            <div class="card h-100 border-0 shadow p-0 bg-transparent team-member-card" style="border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
+              <div class="team-avatar-initials" style="background: #3498DB;">MT</div>
+              <div class="p-3" style="background: rgba(9, 10, 31, 0.85); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">Mark T.</strong>
                 <span class="small text-warning">Tech Lead</span>
               </div>
@@ -329,11 +311,9 @@
           </div>
           <!-- Member 3 -->
           <div class="col">
-            <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
-              <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar1.jpg" alt="Elena R.">
-              </div>
-              <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
+            <div class="card h-100 border-0 shadow p-0 bg-transparent team-member-card" style="border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
+              <div class="team-avatar-initials" style="background: #27AE60;">ER</div>
+              <div class="p-3" style="background: rgba(9, 10, 31, 0.85); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">Elena R.</strong>
                 <span class="small text-warning">UX &amp; UI Lead</span>
               </div>
@@ -341,11 +321,9 @@
           </div>
           <!-- Member 4 -->
           <div class="col">
-            <div class="card h-100 border-0 shadow p-0 bg-transparent" style="height: 380px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
-              <div class="position-absolute inset-0 w-100 h-100" style="z-index: 1;">
-                <img loading="lazy" class="w-100 h-100 object-fit-cover" src="assets/img/avatars/avatar2.jpg" alt="David K.">
-              </div>
-              <div class="position-absolute bottom-0 left-0 right-0 p-3" style="z-index: 2; background: linear-gradient(to bottom, transparent 0%, rgba(9, 10, 31, 0.85) 50%, rgba(9, 10, 31, 0.98) 100%); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
+            <div class="card h-100 border-0 shadow p-0 bg-transparent team-member-card" style="border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08) !important;">
+              <div class="team-avatar-initials" style="background: #9B59B6;">DK</div>
+              <div class="p-3" style="background: rgba(9, 10, 31, 0.85); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.08);">
                 <strong class="text-white d-block mb-1">David K.</strong>
                 <span class="small text-warning">Compliance Officer</span>
               </div>
@@ -374,65 +352,72 @@
     </section>
   </main>
 
-  <footer class="py-5">
+  <footer class="site-footer">
+  <!-- Top: large brand statement -->
+  <div class="footer-top">
     <div class="container">
-      <div class="row g-4 mb-4">
-        <!-- Column 1: About Company -->
-        <div class="col-12 col-md-6 col-lg-3">
-          <h4 class="footer-heading text-white">About Company</h4>
-          <p class="text-muted small mb-3">Avanta AI Solutions engineers modern web applications, cross-platform mobile experiences, and secure software systems tailored for startup, healthcare, and enterprise teams globally.</p>
-          <div class="fs-5 d-flex gap-3 social-links">
-            <a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-            <a class="link-body-emphasis" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+      <div class="footer-brand-row">
+        <div class="footer-brand-left">
+          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
           </div>
         </div>
-        <!-- Column 2: Services -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Services</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="services-web-development.html">Web Development</a></li>
-            <li class="mb-2"><a href="services-mobile-apps.html">Mobile Apps</a></li>
-            <li class="mb-2"><a href="services-custom-software.html">Custom Software</a></li>
-          </ul>
-        </div>
-        <!-- Column 3: Industries & Solutions -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Industries &amp; Solutions</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="industry-healthcare-tech.html">Healthcare Tech</a></li>
-            <li class="mb-2"><a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
-            <li class="mb-2"><a href="expert.html">Book a Consultation</a></li>
-            <li class="mb-2"><a href="contacts.html#faq">Client Support</a></li>
-          </ul>
-        </div>
-        <!-- Column 4: Quick Links -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Quick Links</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="careers.html">Careers</a></li>
-            <li class="mb-2"><a href="authors.html">Our Team</a></li>
-            <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
-            <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-light-subtle d-flex flex-column justify-content-between align-items-center flex-lg-row pt-4 border-top">
-        <p class="text-muted mb-2 mb-lg-0"><small>© 2026 Avanta AI Solutions. All rights reserved.</small></p>
-        <div class="d-flex justify-content-center align-items-center flex-wrap justify-content-sm-start">
-          <a class="text-reset mx-2" href="privacy.html">Privacy Policy</a>
-          <a class="text-reset mx-2" href="terms.html">Terms of Service</a>
-          <a class="text-reset mx-2" href="cookies.html">Cookie Policy</a>
+        <div class="footer-links-grid">
+          <!-- 4 columns: Services | Industries | Company | Legal -->
+          <div class="footer-col">
+            <div class="footer-col-title">Services</div>
+            <a href="services-web-development.html">Web Development</a>
+            <a href="services-mobile-apps.html">Mobile Apps</a>
+            <a href="services-custom-software.html">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Industries</div>
+            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+            <a href="expert.html">Book Consultation</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="authors.html">Our Team</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-row">
+        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+        <span class="footer-made-with">Built by engineers, for engineers.</span>
+      </div>
+    </div>
+  </div>
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
 </body>

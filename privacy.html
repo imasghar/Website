@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
@@ -137,65 +138,72 @@
     </section>
   </main>
 
-  <footer class="py-5">
+  <footer class="site-footer">
+  <!-- Top: large brand statement -->
+  <div class="footer-top">
     <div class="container">
-      <div class="row g-4 mb-4">
-        <!-- Column 1: About Company -->
-        <div class="col-12 col-md-6 col-lg-3">
-          <h4 class="footer-heading text-white">About Company</h4>
-          <p class="text-muted small mb-3">Avanta AI Solutions engineers modern web applications, cross-platform mobile experiences, and secure software systems tailored for startup, healthcare, and enterprise teams globally.</p>
-          <div class="fs-5 d-flex gap-3 social-links">
-            <a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-            <a class="link-body-emphasis" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+      <div class="footer-brand-row">
+        <div class="footer-brand-left">
+          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
           </div>
         </div>
-        <!-- Column 2: Services -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Services</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="services-web-development.html">Web Development</a></li>
-            <li class="mb-2"><a href="services-mobile-apps.html">Mobile Apps</a></li>
-            <li class="mb-2"><a href="services-custom-software.html">Custom Software</a></li>
-          </ul>
-        </div>
-        <!-- Column 3: Industries & Solutions -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Industries &amp; Solutions</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="industry-healthcare-tech.html">Healthcare Tech</a></li>
-            <li class="mb-2"><a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
-            <li class="mb-2"><a href="expert.html">Book a Consultation</a></li>
-            <li class="mb-2"><a href="contacts.html#faq">Client Support</a></li>
-          </ul>
-        </div>
-        <!-- Column 4: Quick Links -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Quick Links</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="careers.html">Careers</a></li>
-            <li class="mb-2"><a href="authors.html">Our Team</a></li>
-            <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
-            <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-light-subtle d-flex flex-column justify-content-between align-items-center flex-lg-row pt-4 border-top">
-        <p class="text-muted mb-2 mb-lg-0"><small>Â© 2026 Avanta AI Solutions. All rights reserved.</small></p>
-        <div class="d-flex justify-content-center align-items-center flex-wrap justify-content-sm-start">
-          <a class="text-reset mx-2" href="privacy.html">Privacy Policy</a>
-          <a class="text-reset mx-2" href="terms.html">Terms of Service</a>
-          <a class="text-reset mx-2" href="cookies.html">Cookie Policy</a>
+        <div class="footer-links-grid">
+          <!-- 4 columns: Services | Industries | Company | Legal -->
+          <div class="footer-col">
+            <div class="footer-col-title">Services</div>
+            <a href="services-web-development.html">Web Development</a>
+            <a href="services-mobile-apps.html">Mobile Apps</a>
+            <a href="services-custom-software.html">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Industries</div>
+            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+            <a href="expert.html">Book Consultation</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="authors.html">Our Team</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-row">
+        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+        <span class="footer-made-with">Built by engineers, for engineers.</span>
+      </div>
+    </div>
+  </div>
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
 </body>

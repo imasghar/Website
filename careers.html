@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <style>
     /* Recruitment Timeline Styling */
@@ -30,6 +31,24 @@
       width: 2px;
       background: rgba(106, 79, 226, 0.18);
       transform: translateX(-50%);
+    }
+    .timeline-progress-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #6a4fe2, #9c6cfd);
+      transform-origin: top;
+      z-index: 1;
+      transform: scaleY(0);
+      transform: translateX(-50%);
+    }
+    @media (max-width: 767.98px) {
+      .timeline-progress-line {
+        left: 20px;
+        transform: none;
+      }
     }
     html[data-bs-theme="dark"] .timeline-wrapper::before {
       background: rgba(255, 255, 255, 0.08);
@@ -169,7 +188,7 @@
 
   <main>
     <!-- Section 1: Hero Banner (Parallax stacked) -->
-    <section class="position-relative overflow-hidden py-5 hero-parallax-section bg-custom-gradient" data-hero-parallax="">
+    <section class="position-relative overflow-hidden py-5 hero-parallax-section" style="background: linear-gradient(135deg, rgba(10, 10, 30, 0.88) 0%, rgba(20, 20, 60, 0.75) 100%), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; position: relative;" data-hero-parallax="">
       <div class="hero-overlay-curtain"></div>
       <div class="hero-parallax" aria-hidden="true">
         <span class="parallax-shape shape-one" data-direction="1" data-speed="0.08"></span>
@@ -206,35 +225,35 @@
             </div>
           </div>
           
-          <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4">
+          <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4 culture-cards-row">
             <!-- Card 1 -->
-            <div class="col">
-              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-                <div class="icon-circle bg-primary-subtle text-primary mb-3"><i class="bi bi-person-fill-check"></i></div>
+            <div class="col culture-card-col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm culture-card">
+                <div class="icon-circle bg-primary-subtle text-primary mb-3"><i class="ti ti-shield-check"></i></div>
                 <h4 class="fw-bold h5 mb-3">High Autonomy</h4>
                 <p class="small text-muted mb-0">We hire seasoned engineers and trust them to run. No arbitrary timelines or micromanagement.</p>
               </div>
             </div>
             <!-- Card 2 -->
-            <div class="col">
-              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-                <div class="icon-circle bg-success-subtle text-success mb-3"><i class="bi bi-code-square"></i></div>
+            <div class="col culture-card-col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm culture-card">
+                <div class="icon-circle bg-success-subtle text-success mb-3"><i class="ti ti-bolt"></i></div>
                 <h4 class="fw-bold h5 mb-3">Clean Velocity</h4>
                 <p class="small text-muted mb-0">We move fast, but we prioritize robust engineering, modular designs, automated tests, and compliance baselines.</p>
               </div>
             </div>
             <!-- Card 3 -->
-            <div class="col">
-              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-                <div class="icon-circle bg-info-subtle text-info mb-3"><i class="bi bi-globe-americas"></i></div>
+            <div class="col culture-card-col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm culture-card">
+                <div class="icon-circle bg-info-subtle text-info mb-3"><i class="ti ti-home"></i></div>
                 <h4 class="fw-bold h5 mb-3">Remote-First</h4>
                 <p class="small text-muted mb-0">Collaborate with architects from anywhere. We support asynchronous workflows, flexible hours, and home setups.</p>
               </div>
             </div>
             <!-- Card 4 -->
-            <div class="col">
-              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm">
-                <div class="icon-circle bg-warning-subtle text-warning mb-3"><i class="bi bi-arrow-up-circle"></i></div>
+            <div class="col culture-card-col">
+              <div class="card h-100 p-4 border-0 card-hover-lift shadow-sm culture-card">
+                <div class="icon-circle bg-warning-subtle text-warning mb-3"><i class="ti ti-chart-line"></i></div>
                 <h4 class="fw-bold h5 mb-3">Continuous Growth</h4>
                 <p class="small text-muted mb-0">Dedicated annual learning budgets, tech talk Fridays, and a collaborative team that pushes your technical limits.</p>
               </div>
@@ -257,7 +276,7 @@
           <div class="row g-4 justify-content-center">
             <!-- Role 1 -->
             <div class="col-lg-10">
-              <div class="card p-4 border-0 role-card shadow-sm">
+              <div class="card p-4 border-0 role-card shadow-sm job-card-web">
                 <div class="row align-items-center g-4">
                   <div class="col-md-8">
                     <span class="badge bg-primary-subtle text-primary mb-2">Web Engineering</span>
@@ -274,7 +293,7 @@
 
             <!-- Role 2 -->
             <div class="col-lg-10">
-              <div class="card p-4 border-0 role-card shadow-sm">
+              <div class="card p-4 border-0 role-card shadow-sm job-card-ai">
                 <div class="row align-items-center g-4">
                   <div class="col-md-8">
                     <span class="badge bg-success-subtle text-success mb-2">AI Integrations</span>
@@ -291,7 +310,7 @@
 
             <!-- Role 3 -->
             <div class="col-lg-10">
-              <div class="card p-4 border-0 role-card shadow-sm">
+              <div class="card p-4 border-0 role-card shadow-sm job-card-db">
                 <div class="row align-items-center g-4">
                   <div class="col-md-8">
                     <span class="badge bg-warning-subtle text-warning mb-2">Database &amp; Compliance</span>
@@ -308,7 +327,7 @@
 
             <!-- Role 4 -->
             <div class="col-lg-10">
-              <div class="card p-4 border-0 role-card shadow-sm">
+              <div class="card p-4 border-0 role-card shadow-sm job-card-mobile">
                 <div class="row align-items-center g-4">
                   <div class="col-md-8">
                     <span class="badge bg-info-subtle text-info mb-2">Mobile Apps</span>
@@ -337,8 +356,9 @@
             </div>
           </div>
           <div class="timeline-wrapper position-relative">
+            <div class="timeline-progress-line"></div>
             <!-- Step 1 -->
-            <div class="timeline-item row g-4 align-items-center">
+            <div class="timeline-item row g-4 align-items-center careers-timeline-item">
               <div class="col-md-6 text-md-end pe-md-5">
                 <span class="badge bg-primary-subtle text-primary mb-2">STEP 01</span>
                 <h3 class="fw-bold h4 text-white-contrast">Resume Screening</h3>
@@ -350,7 +370,7 @@
               </div>
             </div>
             <!-- Step 2 -->
-            <div class="timeline-item row g-4 align-items-center">
+            <div class="timeline-item row g-4 align-items-center careers-timeline-item">
               <div class="col-md-6 text-md-end pe-md-5">
                 <div class="timeline-dot bg-success"></div>
                 <span class="text-muted small"><i class="bi bi-chat-dots me-1"></i> 30-Minute Google Meet</span>
@@ -362,7 +382,7 @@
               </div>
             </div>
             <!-- Step 3 -->
-            <div class="timeline-item row g-4 align-items-center">
+            <div class="timeline-item row g-4 align-items-center careers-timeline-item">
               <div class="col-md-6 text-md-end pe-md-5">
                 <span class="badge bg-info-subtle text-info mb-2">STEP 03</span>
                 <h3 class="fw-bold h4 text-white-contrast">Practical Deep Dive</h3>
@@ -374,7 +394,7 @@
               </div>
             </div>
             <!-- Step 4 -->
-            <div class="timeline-item row g-4 align-items-center">
+            <div class="timeline-item row g-4 align-items-center careers-timeline-item">
               <div class="col-md-6 text-md-end pe-md-5">
                 <div class="timeline-dot bg-warning"></div>
                 <span class="text-muted small"><i class="bi bi-envelope-heart me-1"></i> Decisive Feedback</span>
@@ -394,53 +414,55 @@
         <div class="container px-md-5">
           <div class="row justify-content-center">
             <div class="col-xl-8">
-              <div class="contact-highlight p-4 p-md-5 shadow-lg">
-                <div class="text-center mb-4">
+              <div class="card border-0 shadow-lg overflow-hidden" style="border-radius: 24px;">
+                <div class="p-4 p-md-5 text-center text-white" style="background: linear-gradient(135deg, #0a0a1e, #1a0a3e);">
                   <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-2"><i class="bi bi-send-fill text-warning me-1"></i> QUICK APPLY</span>
-                  <h2 class="display-6 fw-bold mb-2 text-white-contrast">Submit Your Application</h2>
-                  <p class="text-muted-contrast mb-0">Fill in the fields below. Our recruiting team responds to qualified candidates within 48 business hours.</p>
+                  <h2 class="display-6 fw-bold mb-2 text-white">Ready to Build With Us?</h2>
+                  <p class="text-muted mb-0" style="color: rgba(255,255,255,0.7) !important;">Fill in the fields below. Our recruiting team responds to qualified candidates within 48 business hours.</p>
                 </div>
-                <form id="careersForm" action="success.html" method="GET">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label for="applyName" class="form-label small fw-bold">Full Name</label>
-                      <input type="text" class="form-control rounded-pill px-3" id="applyName" required placeholder="Enter Name">
+                <div class="p-4 p-md-5 theme-form-panel">
+                  <form id="careersForm" action="success.html" method="GET">
+                    <div class="row g-4">
+                      <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="applyName" required placeholder=" ">
+                        <label for="applyName">Full Name</label>
+                      </div>
+                      <div class="col-md-6 form-floating">
+                        <input type="email" class="form-control" id="applyEmail" required placeholder=" ">
+                        <label for="applyEmail">Email Address</label>
+                      </div>
+                      <div class="col-md-6 form-floating">
+                        <input type="tel" class="form-control" id="applyPhone" placeholder=" ">
+                        <label for="applyPhone">Phone Number</label>
+                      </div>
+                      <div class="col-md-6 form-floating">
+                        <select class="form-select" id="applyRole" required>
+                          <option value="" disabled selected hidden></option>
+                          <option value="nextjs-engineer">Senior React / Next.js Engineer</option>
+                          <option value="ai-architect">Lead AI/LLM Integration Architect</option>
+                          <option value="db-specialist">Senior Database Security Specialist</option>
+                          <option value="flutter-developer">Senior Flutter Developer</option>
+                        </select>
+                        <label for="applyRole">Role of Interest</label>
+                      </div>
+                      <div class="col-12 form-floating">
+                        <input type="url" class="form-control" id="applyPortfolio" required placeholder=" ">
+                        <label for="applyPortfolio">Portfolio or LinkedIn URL</label>
+                      </div>
+                      <div class="col-12 form-floating">
+                        <input type="url" class="form-control" id="applyResume" required placeholder=" ">
+                        <label for="applyResume">Link to Resume (Google Drive, Dropbox, PDF)</label>
+                      </div>
+                      <div class="col-12 form-floating">
+                        <textarea class="form-control" id="applyNote" rows="3" placeholder=" "></textarea>
+                        <label for="applyNote">Short Note (Optional)</label>
+                      </div>
+                      <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-semibold w-100" style="background: linear-gradient(135deg, #6a4fe2, #9c6cfd); border: none;">Submit My Application</button>
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                      <label for="applyEmail" class="form-label small fw-bold">Email Address</label>
-                      <input type="email" class="form-control rounded-pill px-3" id="applyEmail" required placeholder="Enter Email">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="applyPhone" class="form-label small fw-bold">Phone Number</label>
-                      <input type="tel" class="form-control rounded-pill px-3" id="applyPhone" placeholder="Enter Phone Number">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="applyRole" class="form-label small fw-bold">Role of Interest</label>
-                      <select class="form-select rounded-pill px-3" id="applyRole" required>
-                        <option value="">-- Select a Position --</option>
-                        <option value="nextjs-engineer">Senior React / Next.js Engineer</option>
-                        <option value="ai-architect">Lead AI/LLM Integration Architect</option>
-                        <option value="db-specialist">Senior Database Security Specialist</option>
-                        <option value="flutter-developer">Senior Flutter Developer</option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label for="applyPortfolio" class="form-label small fw-bold">Portfolio or LinkedIn URL</label>
-                      <input type="url" class="form-control rounded-pill px-3" id="applyPortfolio" required placeholder="Enter LinkedIn Profile Link">
-                    </div>
-                    <div class="col-12">
-                      <label for="applyResume" class="form-label small fw-bold">Link to Resume (Google Drive, Dropbox, PDF)</label>
-                      <input type="url" class="form-control rounded-pill px-3" id="applyResume" required placeholder="Enter Resume Link">
-                    </div>
-                    <div class="col-12">
-                      <label for="applyNote" class="form-label small fw-bold">Short Note (Optional)</label>
-                      <textarea class="form-control p-3 rounded-4" id="applyNote" rows="3" placeholder="Tell us why you're a great fit..."></textarea>
-                    </div>
-                    <div class="col-12 text-center mt-4">
-                      <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 fw-semibold" data-bss-hover-animate="pulse">Submit My Application</button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -449,68 +471,74 @@
     </div>
   </main>
 
-  <footer class="py-5">
+  <footer class="site-footer">
+  <!-- Top: large brand statement -->
+  <div class="footer-top">
     <div class="container">
-      <div class="row g-4 mb-4">
-        <!-- Column 1: About Company -->
-        <div class="col-12 col-md-6 col-lg-3">
-          <h4 class="footer-heading text-white">About Company</h4>
-          <p class="text-muted small mb-3">Avanta AI Solutions engineers modern web applications, cross-platform mobile experiences, and secure software systems tailored for startup, healthcare, and enterprise teams globally.</p>
-          <div class="fs-5 d-flex gap-3 social-links">
-            <a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-            <a class="link-body-emphasis" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+      <div class="footer-brand-row">
+        <div class="footer-brand-left">
+          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
           </div>
         </div>
-        <!-- Column 2: Services -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Services</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="services-web-development.html">Web Development</a></li>
-            <li class="mb-2"><a href="services-mobile-apps.html">Mobile Apps</a></li>
-            <li class="mb-2"><a href="services-custom-software.html">Custom Software</a></li>
-          </ul>
-        </div>
-        <!-- Column 3: Industries & Solutions -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Industries &amp; Solutions</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="industry-healthcare-tech.html">Healthcare Tech</a></li>
-            <li class="mb-2"><a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a></li>
-            <li class="mb-2"><a href="expert.html">Book a Consultation</a></li>
-            <li class="mb-2"><a href="contacts.html#faq">Client Support</a></li>
-          </ul>
-        </div>
-        <!-- Column 4: Quick Links -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <h4 class="footer-heading text-white">Quick Links</h4>
-          <ul class="list-unstyled footer-links">
-            <li class="mb-2"><a href="index.html">Home</a></li>
-            <li class="mb-2"><a href="about.html">About Us</a></li>
-            <li class="mb-2"><a href="careers.html">Careers</a></li>
-            <li class="mb-2"><a href="authors.html">Our Team</a></li>
-            <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
-            <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-light-subtle d-flex flex-column justify-content-between align-items-center flex-lg-row pt-4 border-top">
-        <p class="text-muted mb-2 mb-lg-0"><small>Â© 2026 Avanta AI Solutions. All rights reserved.</small></p>
-        <div class="d-flex justify-content-center align-items-center flex-wrap justify-content-sm-start">
-          <a class="text-reset mx-2" href="privacy.html">Privacy Policy</a>
-          <a class="text-reset mx-2" href="terms.html">Terms of Service</a>
-          <a class="text-reset mx-2" href="cookies.html">Cookie Policy</a>
+        <div class="footer-links-grid">
+          <!-- 4 columns: Services | Industries | Company | Legal -->
+          <div class="footer-col">
+            <div class="footer-col-title">Services</div>
+            <a href="services-web-development.html">Web Development</a>
+            <a href="services-mobile-apps.html">Mobile Apps</a>
+            <a href="services-custom-software.html">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Industries</div>
+            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+            <a href="expert.html">Book Consultation</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="authors.html">Our Team</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-row">
+        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+        <span class="footer-made-with">Built by engineers, for engineers.</span>
+      </div>
+    </div>
+  </div>
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
 </body>
 
 </html>
-
