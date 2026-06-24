@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
 <head>
@@ -16,6 +16,557 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+
+  <style>
+    /* ── DARK THEME (default) ── */
+    [data-bs-theme="dark"] {
+      --ct-bg:           #05050f;
+      --ct-bg-2:         #09091a;
+      --ct-bg-card:      rgba(255,255,255,0.04);
+      --ct-border:       rgba(255,255,255,0.08);
+      --ct-border-hover: rgba(255,255,255,0.22);
+      --ct-text-1:       #f9fafb;
+      --ct-text-2:       rgba(255,255,255,0.55);
+      --ct-text-3:       rgba(255,255,255,0.25);
+      --ct-accent:       #3b82f6;
+      --ct-accent-2:     #8b5cf6;
+      --ct-teal:         #14b8a6;
+      --ct-green:        #10b981;
+      --ct-input-bg:     rgba(255,255,255,0.05);
+      --ct-input-border: rgba(255,255,255,0.1);
+      --ct-glow:         rgba(59,130,246,0.12);
+      --ct-shadow:       rgba(0,0,0,0.5);
+    }
+
+    /* ── LIGHT THEME ── */
+    [data-bs-theme="light"] {
+      --ct-bg:           #f8f9ff;
+      --ct-bg-2:         #eef0fb;
+      --ct-bg-card:      #ffffff;
+      --ct-border:       #e5e7eb;
+      --ct-border-hover: #9ca3af;
+      --ct-text-1:       #111827;
+      --ct-text-2:       #4b5563;
+      --ct-text-3:       #9ca3af;
+      --ct-accent:       #2563eb;
+      --ct-accent-2:     #7c3aed;
+      --ct-teal:         #0d9488;
+      --ct-green:        #059669;
+      --ct-input-bg:     #ffffff;
+      --ct-input-border: #d1d5eb;
+      --ct-glow:         rgba(37,99,235,0.08);
+      --ct-shadow:       rgba(0,0,0,0.08);
+    }
+
+    /* Canvas */
+    #ct-canvas {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; opacity: 0.6;
+    }
+    [data-bs-theme="light"] #ct-canvas { opacity: 0.25; }
+
+    /* Hero */
+    .ct-hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+      background: var(--ct-bg);
+    }
+    .ct-hero-inner {
+      max-width: 860px;
+      padding-top: 140px; padding-bottom: 100px;
+    }
+
+    /* Eyebrow */
+    .ct-eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 13px; letter-spacing: 0.04em;
+      padding: 7px 18px; border-radius: 100px;
+      margin-bottom: 40px; font-family: inherit;
+      border: 1px solid var(--ct-border);
+      background: var(--ct-bg-card);
+      color: var(--ct-text-2);
+    }
+    .ct-eyebrow-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ct-green);
+      animation: ct-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes ct-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      50%      { box-shadow: 0 0 0 7px rgba(16,185,129,0); }
+    }
+
+    /* Headline */
+    .ct-headline {
+      font-size: clamp(52px, 8vw, 100px);
+      font-weight: 900; line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--ct-text-1);
+      margin-bottom: 28px;
+    }
+    .ct-headline-grad {
+      background: linear-gradient(110deg, var(--ct-accent), var(--ct-accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* Sub */
+    .ct-hero-sub {
+      font-size: 18px; line-height: 1.8;
+      color: var(--ct-text-2);
+      max-width: 560px; margin-bottom: 40px;
+    }
+
+    /* Trust chips */
+    .ct-trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+    .ct-trust-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; padding: 7px 16px; border-radius: 100px;
+      border: 1px solid var(--ct-border);
+      background: var(--ct-bg-card);
+      color: var(--ct-text-2);
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .ct-trust-chip i { color: var(--ct-accent); }
+    .ct-trust-chip:hover { border-color: var(--ct-border-hover); color: var(--ct-text-1); }
+
+    /* Scroll nudge */
+    .ct-scroll-nudge {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 14px; text-decoration: none;
+      color: var(--ct-text-2); border: 1px solid var(--ct-border);
+      padding: 13px 26px; border-radius: 100px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .ct-scroll-nudge:hover { color: var(--ct-text-1); border-color: var(--ct-border-hover); }
+    .ct-scroll-arrow { animation: ct-bounce 1.6s ease infinite; display: inline-block; }
+    @keyframes ct-bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(7px); }
+    }
+
+    /* Vertical rotated text */
+    .ct-vertical-text {
+      position: absolute; right: 32px; top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-size: 10px; letter-spacing: 0.3em;
+      color: var(--ct-text-3); font-family: monospace;
+      text-transform: uppercase; white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Split section */
+    .ct-split-section {
+      position: relative; z-index: 1;
+      padding: 100px 0 120px;
+      background: var(--ct-bg);
+    }
+
+    .ct-split-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* Section tag */
+    .ct-section-tag {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; font-family: monospace;
+      color: var(--ct-accent); margin-bottom: 20px;
+    }
+    .ct-tag-line { width: 28px; height: 1px; background: var(--ct-accent); flex-shrink: 0; }
+
+    .ct-form-title {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+      letter-spacing: -0.03em; color: var(--ct-text-1);
+      line-height: 1.15; margin-bottom: 44px;
+    }
+
+    /* ── FORM FIELDS ── */
+    .ct-form-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 16px;
+    }
+    .ct-field { position: relative; margin-bottom: 16px; }
+    .ct-field-full { grid-column: span 2; }
+
+    .ct-field input,
+    .ct-field textarea,
+    .ct-field select {
+      width: 100%;
+      background: var(--ct-input-bg);
+      border: 1px solid var(--ct-input-border);
+      border-radius: 12px;
+      padding: 22px 44px 10px 16px;
+      font-size: 15px;
+      color: var(--ct-text-1);
+      font-family: inherit;
+      outline: none;
+      resize: none;
+      appearance: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s;
+    }
+    .ct-field input:focus,
+    .ct-field textarea:focus,
+    .ct-field select:focus {
+      border-color: var(--ct-accent);
+      box-shadow: 0 0 0 4px var(--ct-glow);
+      background: var(--ct-bg-card);
+    }
+
+    /* Floating labels */
+    .ct-field label {
+      position: absolute; left: 16px; top: 16px;
+      font-size: 14px; color: var(--ct-text-3);
+      pointer-events: none; transition: all 0.22s ease;
+    }
+    .ct-field input:focus       ~ label,
+    .ct-field input:not(:placeholder-shown) ~ label,
+    .ct-field textarea:focus    ~ label,
+    .ct-field textarea:not(:placeholder-shown) ~ label {
+      top: 7px; font-size: 10px; color: var(--ct-accent);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    /* Select float label — toggled via JS */
+    .ct-field select.has-value ~ .ct-select-label,
+    .ct-field select:focus     ~ .ct-select-label {
+      top: 7px; font-size: 10px; color: var(--ct-accent);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .ct-select-label {
+      position: absolute; left: 16px; top: 16px;
+      font-size: 14px; color: var(--ct-text-3);
+      pointer-events: none; transition: all 0.22s ease;
+    }
+
+    /* Field icons */
+    .ct-field-icon {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 17px; color: var(--ct-text-3);
+      pointer-events: none;
+    }
+    .ct-field textarea + .ct-field-icon { display: none; }
+
+    /* Budget chips */
+    .ct-budget-row { margin-bottom: 16px; }
+    .ct-budget-label {
+      font-size: 12px; color: var(--ct-text-2); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 6px;
+      font-family: monospace;
+    }
+    .ct-budget-label i { color: var(--ct-accent); }
+    .ct-budget-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ct-budget-chip {
+      cursor: pointer; font-size: 13px; padding: 7px 16px;
+      border-radius: 100px; border: 1px solid var(--ct-input-border);
+      background: var(--ct-input-bg); color: var(--ct-text-2);
+      transition: all 0.2s ease; user-select: none;
+    }
+    .ct-budget-chip input { display: none; }
+    .ct-budget-chip:hover { border-color: var(--ct-border-hover); color: var(--ct-text-1); }
+    .ct-budget-chip:has(input:checked) {
+      background: var(--ct-accent) !important;
+      border-color: var(--ct-accent) !important;
+      color: #fff !important;
+    }
+
+    /* Submit button */
+    .ct-submit-wrap { margin-top: 28px; }
+    .ct-submit-btn {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px; border-radius: 100px;
+      background: var(--ct-accent); color: #fff;
+      border: none; font-size: 16px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s;
+    }
+    .ct-submit-btn:hover {
+      background: var(--ct-accent-2);
+      box-shadow: 0 16px 40px rgba(59,130,246,0.35);
+      transform: translateY(-2px);
+    }
+    .ct-submit-btn:active { transform: translateY(0); }
+    .ct-btn-glow {
+      position: absolute; inset: 0; border-radius: 100px;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
+        rgba(255,255,255,0.18), transparent 60%);
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .ct-submit-btn:hover .ct-btn-glow { opacity: 1; }
+    .ct-submit-note {
+      margin-top: 12px; font-size: 12px;
+      color: var(--ct-text-3); display: flex; align-items: center; gap: 6px;
+    }
+    .ct-submit-note i { color: var(--ct-teal); }
+    @keyframes ct-spin { to { transform: rotate(360deg); } }
+    .ct-spin { display: inline-block; animation: ct-spin 0.8s linear infinite; }
+
+    /* ── SUCCESS STATE ── */
+    .ct-success {
+      text-align: center; padding: 60px 20px;
+    }
+    .ct-success-icon {
+      font-size: 64px; color: var(--ct-green);
+      margin-bottom: 20px; line-height: 1;
+    }
+    .ct-success h3 {
+      font-size: 28px; font-weight: 800; color: var(--ct-text-1); margin-bottom: 12px;
+    }
+    .ct-success p { color: var(--ct-text-2); margin-bottom: 28px; }
+    .ct-success-back {
+      font-size: 14px; color: var(--ct-accent); text-decoration: none;
+    }
+    .ct-success-back:hover { text-decoration: underline; }
+
+    /* ── INFO COLUMN ── */
+    .ct-info-col { display: flex; flex-direction: column; gap: 28px; }
+
+    /* Status card */
+    .ct-status-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 22px; border-radius: 14px;
+      background: var(--ct-bg-card);
+      border: 1px solid var(--ct-border);
+    }
+    .ct-status-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--ct-green); flex-shrink: 0;
+      animation: ct-pulse 2s ease-in-out infinite;
+    }
+    .ct-status-title {
+      display: block; font-size: 14px; font-weight: 600; color: var(--ct-text-1);
+    }
+    .ct-status-sub {
+      display: block; font-size: 12px; color: var(--ct-text-3);
+      font-family: monospace; margin-top: 3px;
+    }
+
+    /* Detail cards */
+    .ct-detail-cards { display: flex; flex-direction: column; gap: 12px; }
+    .ct-detail-card {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px; border-radius: 14px;
+      border: 1px solid var(--ct-border);
+      background: var(--ct-bg-card);
+      text-decoration: none;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .ct-detail-card:not(.ct-detail-card--static):hover {
+      border-color: var(--ct-border-hover);
+      transform: translateX(6px);
+      box-shadow: 0 8px 32px var(--ct-shadow);
+    }
+    .ct-detail-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--ct-glow); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; color: var(--ct-accent);
+      flex-shrink: 0;
+    }
+    .ct-detail-label { font-size: 11px; color: var(--ct-text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+    .ct-detail-value { font-size: 15px; font-weight: 600; color: var(--ct-text-1); }
+    .ct-detail-sub   { font-size: 12px; color: var(--ct-teal); margin-top: 3px; }
+    .ct-detail-arrow { margin-left: auto; font-size: 16px; color: var(--ct-text-3); opacity: 0; transition: opacity 0.2s, transform 0.2s; }
+    .ct-detail-card:hover .ct-detail-arrow { opacity: 1; transform: translate(3px,-3px); }
+
+    /* Social */
+    .ct-social-row { display: flex; align-items: center; gap: 16px; }
+    .ct-social-label { font-size: 12px; color: var(--ct-text-3); font-family: monospace; white-space: nowrap; }
+    .ct-social-icons { display: flex; gap: 10px; }
+    .ct-social-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--ct-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; color: var(--ct-text-2); text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .ct-social-icon:hover {
+      color: var(--ct-text-1); border-color: var(--ct-border-hover);
+      background: var(--ct-bg-card); transform: translateY(-3px);
+    }
+
+    /* Mini process */
+    .ct-process-mini {
+      padding: 24px; border-radius: 14px;
+      border: 1px solid var(--ct-border); background: var(--ct-bg-card);
+    }
+    .ct-process-title {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--ct-text-3); margin-bottom: 20px;
+      font-family: monospace;
+    }
+    .ct-process-steps { display: flex; flex-direction: column; gap: 0; }
+    .ct-ps { display: flex; align-items: flex-start; gap: 14px; padding: 6px 0; }
+    .ct-ps-num {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: var(--ct-glow); border: 1px solid var(--ct-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-family: monospace;
+      color: var(--ct-accent);
+    }
+    .ct-ps-text { font-size: 14px; color: var(--ct-text-2); line-height: 1.5; padding-top: 4px; }
+    .ct-ps-connector {
+      width: 1px; height: 18px; background: var(--ct-border); margin-left: 13px;
+    }
+
+    .ct-faq-section {
+      padding: 120px 20px;
+      background: var(--ct-bg-2);
+      position: relative; z-index: 1;
+    }
+    .ct-faq-title {
+      font-size: clamp(28px, 4vw, 46px); font-weight: 800;
+      letter-spacing: -0.03em; color: var(--ct-text-1);
+      text-align: center; margin-bottom: 60px; line-height: 1.2;
+    }
+    .ct-faq-list { display: flex; flex-direction: column; gap: 0; }
+
+    .ct-faq-item {
+      border-bottom: 1px solid var(--ct-border);
+      overflow: hidden;
+    }
+    .ct-faq-item:first-child { border-top: 1px solid var(--ct-border); }
+
+    .ct-faq-q {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 4px; background: none; border: none;
+      font-size: 17px; font-weight: 600; color: var(--ct-text-1);
+      cursor: pointer; text-align: left; gap: 20px;
+      font-family: inherit; transition: color 0.2s;
+    }
+    .ct-faq-q:hover { color: var(--ct-accent); }
+    .ct-faq-icon {
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--ct-border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 15px; color: var(--ct-text-2);
+      transition: all 0.3s ease;
+    }
+    .ct-faq-item.open .ct-faq-icon {
+      background: var(--ct-accent); border-color: var(--ct-accent);
+      color: #fff; transform: rotate(45deg);
+    }
+
+    .ct-faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .ct-faq-item.open .ct-faq-a { max-height: 300px; }
+    .ct-faq-a p {
+      padding: 0 4px 24px;
+      color: var(--ct-text-2); font-size: 15px; line-height: 1.8;
+      margin: 0;
+    }
+
+    .ct-map-section { padding: 0 0 120px; position: relative; z-index: 1; background: var(--ct-bg); }
+
+    .ct-map-wrap {
+      position: relative; max-width: 1200px; margin: 0 auto;
+      border-radius: 24px; overflow: hidden;
+      border: 1px solid var(--ct-border);
+      box-shadow: 0 40px 80px var(--ct-shadow);
+      height: 440px;
+    }
+    .ct-map-iframe {
+      width: 100%; height: 100%; border: none; display: block;
+      filter: grayscale(60%) contrast(1.1);
+      transition: filter 0.4s ease;
+    }
+    .ct-map-wrap:hover .ct-map-iframe { filter: grayscale(0%) contrast(1); }
+
+    /* Overlay card */
+    .ct-map-overlay-card {
+      position: absolute; top: 24px; left: 24px; z-index: 2;
+      display: flex; align-items: center; gap: 14px;
+      background: var(--ct-bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--ct-border);
+      border-radius: 16px; padding: 18px 20px;
+      box-shadow: 0 12px 40px var(--ct-shadow);
+    }
+    .ct-map-card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--ct-glow); color: var(--ct-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .ct-map-card-title { font-size: 14px; font-weight: 700; color: var(--ct-text-1); }
+    .ct-map-card-addr  { font-size: 12px; color: var(--ct-text-2); line-height: 1.5; margin-top: 3px; }
+    .ct-map-card-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; padding: 8px 16px;
+      border-radius: 100px; background: var(--ct-accent);
+      color: #fff; text-decoration: none; white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .ct-map-card-btn:hover {
+      background: var(--ct-accent-2); transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(59,130,246,0.35);
+    }
+
+    .ct-bottom-cta {
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #060616 0%, #0e063a 50%, #060616 100%);
+      position: relative; z-index: 1; overflow: hidden;
+    }
+    /* Always dark — intentional brand anchor, works on both themes */
+    .ct-bottom-cta::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ct-cta-eyebrow {
+      font-size: 11px; letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.3); font-family: monospace;
+      margin-bottom: 16px;
+    }
+    .ct-cta-h2 {
+      font-size: clamp(30px, 5vw, 56px); font-weight: 900;
+      letter-spacing: -0.03em; color: #fff; margin-bottom: 18px;
+    }
+    .ct-cta-sub {
+      color: rgba(255,255,255,0.55); max-width: 500px;
+      margin: 0 auto 40px; font-size: 16px; line-height: 1.7;
+    }
+    .ct-cta-main-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px; border-radius: 100px;
+      background: #fff; color: #060616;
+      font-size: 16px; font-weight: 700;
+      text-decoration: none; transition: all 0.25s ease;
+    }
+    .ct-cta-main-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(255,255,255,0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .ct-split-grid { grid-template-columns: 1fr; gap: 60px; }
+      .ct-info-col { order: -1; } /* Info above form on mobile */
+      .ct-form-row { grid-template-columns: 1fr; }
+      .ct-map-overlay-card { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 575px) {
+      .ct-headline { font-size: clamp(40px, 12vw, 64px); }
+      .ct-vertical-text { display: none; }
+      .ct-budget-chips { gap: 6px; }
+      .ct-budget-chip { font-size: 12px; padding: 6px 12px; }
+      .ct-map-wrap { height: 320px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -88,280 +639,638 @@
   </header>
 
   <main>
-    <!-- Section 1: Page Banner -->
-    <section class="py-5 contact-banner position-relative overflow-hidden">
-      <div class="container py-4 position-relative z-1">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-6">
-            <span class="badge text-uppercase fw-semibold glassy-lightning-badge mb-3"><i class="bi bi-chat-left-dots-fill text-warning me-1"></i> Contact Us</span>
-            <h1 class="display-4 fw-bold mb-3">Contact Us</h1>
-            <p class="lead small mb-0">Avanta AI Solutions' main goal is to provide facility and convenience to our partners. And that too, with a touch of personalization, effective communication, and mutual understanding.</p>
-          </div>
-          <div class="col-lg-6 text-center text-lg-end contact-banner-img-col">
-            <img loading="lazy" src="assets/img/contact-banner-support.png" alt="Customer Support Desk" class="img-fluid contact-banner-img rounded-4 shadow-lg">
-          </div>
+    <!-- Animated particle canvas behind hero -->
+    <canvas id="ct-canvas"></canvas>
+
+    <section class="ct-hero">
+      <div class="ct-hero-inner container">
+        <!-- Eyebrow label -->
+        <div class="ct-eyebrow">
+          <span class="ct-eyebrow-dot"></span>
+          Let's talk — response within 24 hours
         </div>
+
+        <!-- SplitText headline -->
+        <h1 class="ct-headline">
+          Tell us what<br>
+          you're <span class="ct-headline-grad">building.</span>
+        </h1>
+
+        <p class="ct-hero-sub">
+          Whether you have a full brief or just a raw idea — we help you scope,
+          architect, and ship software that lasts. No fluff, no lock-in.
+        </p>
+
+        <!-- Three trust chips -->
+        <div class="ct-trust-row">
+          <span class="ct-trust-chip">
+            <i class="ti ti-shield-check"></i> NDA on request
+          </span>
+          <span class="ct-trust-chip">
+            <i class="ti ti-clock"></i> Reply within 24h
+          </span>
+          <span class="ct-trust-chip">
+            <i class="ti ti-lock"></i> 100% IP ownership
+          </span>
+        </div>
+
+        <!-- Scroll nudge -->
+        <a href="#ct-form-section" class="ct-scroll-nudge">
+          <span>Start the conversation</span>
+          <span class="ct-scroll-arrow">↓</span>
+        </a>
       </div>
+
+      <!-- Decorative vertical text (right edge) -->
+      <div class="ct-vertical-text">AVANTA · AI SOLUTIONS · 2026 ·</div>
     </section>
 
-    <!-- Section 2: Contact Form & Info Grid -->
-    <section class="py-5">
-      <div class="container px-md-5">
-        <div class="row g-5 align-items-start">
-          <!-- Left Column: Form -->
-          <div class="col-lg-7" data-aos="fade-right">
-            <div class="contact-highlight p-4 p-md-5 shadow-sm">
-              <form method="get" action="success.html">
-                <div class="mb-4">
-                  <label class="form-label small fw-bold text-uppercase">Your Name</label>
-                  <input class="form-control" type="text" name="name" placeholder="Enter Your Name" required>
+    <section id="ct-form-section" class="ct-split-section">
+      <div class="container-xl">
+        <div class="ct-split-grid">
+
+          <!-- ══ LEFT: CONTACT FORM ══ -->
+          <div class="ct-form-col">
+            <div class="ct-form-header">
+              <div class="ct-section-tag">
+                <span class="ct-tag-line"></span> Send a message
+              </div>
+              <h2 class="ct-form-title">We read every<br>message personally.</h2>
+            </div>
+
+            <form class="ct-form" id="contactForm" novalidate>
+              <!-- Row: Name + Email -->
+              <div class="ct-form-row">
+                <div class="ct-field">
+                  <input type="text" id="ct-name" placeholder=" " required autocomplete="name">
+                  <label for="ct-name">Your Name *</label>
+                  <span class="ct-field-icon"><i class="ti ti-user"></i></span>
                 </div>
-                <div class="mb-4">
-                  <label class="form-label small fw-bold text-uppercase">Your Email</label>
-                  <input class="form-control" type="email" name="email" placeholder="Enter Your Email" required>
+                <div class="ct-field">
+                  <input type="email" id="ct-email" placeholder=" " required autocomplete="email">
+                  <label for="ct-email">Email Address *</label>
+                  <span class="ct-field-icon"><i class="ti ti-mail"></i></span>
                 </div>
-                <div class="mb-4">
-                  <label class="form-label small fw-bold text-uppercase">Phone Number</label>
-                  <input class="form-control" type="tel" name="phone" placeholder="Enter Your Phone Number" required>
+              </div>
+
+              <!-- Row: Phone + Subject -->
+              <div class="ct-form-row">
+                <div class="ct-field">
+                  <input type="tel" id="ct-phone" placeholder=" " autocomplete="tel">
+                  <label for="ct-phone">Phone (optional)</label>
+                  <span class="ct-field-icon"><i class="ti ti-phone"></i></span>
                 </div>
-                <div class="mb-4">
-                  <label class="form-label small fw-bold text-uppercase">Subject</label>
-                  <input class="form-control" type="text" name="subject" placeholder="Enter Your Subject" required>
+                <div class="ct-field">
+                  <select id="ct-subject" required>
+                    <option value="" disabled selected hidden></option>
+                    <option>Web Development</option>
+                    <option>Mobile App Development</option>
+                    <option>Custom Software</option>
+                    <option>Healthcare IT</option>
+                    <option>Enterprise Dashboard</option>
+                    <option>AI Integration</option>
+                    <option>General Inquiry</option>
+                  </select>
+                  <label for="ct-subject" class="ct-select-label">Subject *</label>
+                  <span class="ct-field-icon"><i class="ti ti-chevron-down"></i></span>
                 </div>
-                <div class="mb-4">
-                  <label class="form-label small fw-bold text-uppercase">Your Message (Optional)</label>
-                  <textarea class="form-control" name="message" rows="5" placeholder="Enter Your Message"></textarea>
+              </div>
+
+              <!-- Budget range -->
+              <div class="ct-budget-row">
+                <div class="ct-budget-label">
+                  <i class="ti ti-cash"></i> Approximate budget
                 </div>
-                <button class="btn btn-primary w-100 py-3 fw-bold text-uppercase" type="submit">Submit</button>
-              </form>
+                <div class="ct-budget-chips">
+                  <label class="ct-budget-chip">
+                    <input type="radio" name="budget" value="&lt;5k"> Under $5K
+                  </label>
+                  <label class="ct-budget-chip">
+                    <input type="radio" name="budget" value="5-15k"> $5K–$15K
+                  </label>
+                  <label class="ct-budget-chip">
+                    <input type="radio" name="budget" value="15-50k"> $15K–$50K
+                  </label>
+                  <label class="ct-budget-chip">
+                    <input type="radio" name="budget" value="50k+"> $50K+
+                  </label>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="ct-field ct-field-full">
+                <textarea id="ct-message" rows="5" placeholder=" "></textarea>
+                <label for="ct-message">Tell us about your project</label>
+              </div>
+
+              <!-- Submit (magnetic button) -->
+              <div class="ct-submit-wrap">
+                <button type="submit" class="ct-submit-btn" id="ctSubmitBtn">
+                  <span class="ct-btn-text">Send Message</span>
+                  <span class="ct-btn-icon"><i class="ti ti-send"></i></span>
+                  <span class="ct-btn-loading" style="display:none">
+                    <i class="ti ti-loader-2 ct-spin"></i> Sending…
+                  </span>
+                  <div class="ct-btn-glow"></div>
+                </button>
+                <p class="ct-submit-note">
+                  <i class="ti ti-shield-lock"></i>
+                  Your data is never sold or shared.
+                </p>
+              </div>
+            </form>
+
+            <!-- Success state (hidden by default) -->
+            <div class="ct-success" id="ctSuccess" style="display:none">
+              <div class="ct-success-icon"><i class="ti ti-circle-check"></i></div>
+              <h3>Message sent!</h3>
+              <p>We'll get back to you within 24 hours on your next business day.</p>
+              <a href="#" class="ct-success-back" onclick="document.getElementById('ctSuccess').style.display='none';document.getElementById('contactForm').style.display='block';return false;">
+                Send another message
+              </a>
             </div>
           </div>
 
-          <!-- Right Column: Info Cards & Map -->
-          <div class="col-lg-5" data-aos="fade-left">
-            <h2 class="fw-bold mb-3">Reach Our Expert Team</h2>
-            <p class="small mb-4">So feel free to contact Avanta AI Solutions software development team with your queries, suggestions, or anything else.</p>
-            
-            <!-- Card 1: Post Address -->
-            <div class="contact-highlight contact-info-card">
-              <div class="icon-box">
-                <i class="bi bi-geo-alt-fill"></i>
-              </div>
-              <div>
-                <h4 class="fs-6 fw-bold mb-1">Post Address</h4>
-                <p class="mb-0 small"><strong class="card-label">Corporate Headquarter:</strong> <span class="card-value">2JMR+V23 Sangam chowk, Dera Ghazi Khan, Pakistan</span></p>
+          <!-- ══ RIGHT: CONTACT INFO ══ -->
+          <div class="ct-info-col">
+            <!-- Availability status card -->
+            <div class="ct-status-card">
+              <div class="ct-status-dot"></div>
+              <div class="ct-status-text">
+                <span class="ct-status-title">Currently accepting projects</span>
+                <span class="ct-status-sub">Mon – Fri, 09:00 – 18:00 PKT</span>
               </div>
             </div>
 
-            <!-- Card 2: General Inquiries -->
-            <div class="contact-highlight contact-info-card">
-              <div class="icon-box">
-                <i class="bi bi-telephone-fill"></i>
-              </div>
-              <div>
-                <h4 class="fs-6 fw-bold mb-1">General Inquiries</h4>
-                <p class="mb-1 small"><strong class="card-label">Phone:</strong> <span class="card-value"><a href="tel:+923077067880">+92 307 7067880</a></span></p>
-                <p class="mb-0 small"><strong class="card-label">Email:</strong> <span class="card-value"><a href="mailto:ghulamasghar7678@gmail.com">ghulamasghar7678@gmail.com</a></span></p>
+            <!-- Contact detail cards -->
+            <div class="ct-detail-cards">
+              <a href="tel:+923077067880" class="ct-detail-card">
+                <div class="ct-detail-icon">
+                  <i class="ti ti-phone"></i>
+                </div>
+                <div class="ct-detail-body">
+                  <div class="ct-detail-label">Phone / WhatsApp</div>
+                  <div class="ct-detail-value">+92 307 7067880</div>
+                </div>
+                <i class="ti ti-arrow-up-right ct-detail-arrow"></i>
+              </a>
+
+              <a href="mailto:ghulamasghar7678@gmail.com" class="ct-detail-card">
+                <div class="ct-detail-icon">
+                  <i class="ti ti-mail"></i>
+                </div>
+                <div class="ct-detail-body">
+                  <div class="ct-detail-label">Email address</div>
+                  <div class="ct-detail-value">ghulamasghar7678@gmail.com</div>
+                </div>
+                <i class="ti ti-arrow-up-right ct-detail-arrow"></i>
+              </a>
+
+              <div class="ct-detail-card ct-detail-card--static">
+                <div class="ct-detail-icon">
+                  <i class="ti ti-map-pin"></i>
+                </div>
+                <div class="ct-detail-body">
+                  <div class="ct-detail-label">Headquarters</div>
+                  <div class="ct-detail-value">Dera Ghazi Khan, Punjab, Pakistan</div>
+                  <div class="ct-detail-sub">Remote-first · Serving global clients</div>
+                </div>
               </div>
             </div>
 
-            <!-- Card 3: Operation Hours -->
-            <div class="contact-highlight contact-info-card">
-              <div class="icon-box">
-                <i class="bi bi-clock-fill"></i>
-              </div>
-              <div>
-                <h4 class="fs-6 fw-bold mb-1">Operation Hours</h4>
-                <p class="mb-1 small"><strong class="card-label">Mon-Fri:</strong> <span class="card-value">09:00 AM to 06:00 PM</span></p>
-                <p class="mb-0 small"><strong class="card-label">Sat-Sun:</strong> <span class="card-value">Closed</span></p>
+            <!-- Social row -->
+            <div class="ct-social-row">
+              <span class="ct-social-label">Follow us</span>
+              <div class="ct-social-icons">
+                <a href="#" class="ct-social-icon" title="LinkedIn (coming soon)"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="#" class="ct-social-icon" title="X / Twitter (coming soon)"><i class="ti ti-brand-x"></i></a>
+                <a href="#" class="ct-social-icon" title="Instagram (coming soon)"><i class="ti ti-brand-instagram"></i></a>
+                <a href="#" class="ct-social-icon" title="Facebook (coming soon)"><i class="ti ti-brand-facebook"></i></a>
               </div>
             </div>
 
-            <!-- Social Media Badges -->
-            <div class="d-flex gap-2 mt-4 contact-social-row">
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-              <a href="https://x.com/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-              <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-              <a href="https://pinterest.com/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: Full-Width Google Map -->
-    <section class="contact-full-map-section py-0">
-      <div class="container-fluid px-0">
-        <div class="contact-map-wrapper full-width-map">
-          <iframe src="https://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Horizontal Info Cards -->
-    <section class="py-5 bg-body-tertiary-tint">
-      <div class="container px-md-5">
-        <div class="row g-4 justify-content-center contact-horizontal-row">
-          <!-- Card 1 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="contact-highlight contact-info-card h-100">
-              <div class="icon-box">
-                <i class="bi bi-geo-alt-fill"></i>
-              </div>
-              <div>
-                <h4 class="fs-6 fw-bold mb-2">Post Address</h4>
-                <p class="mb-0 small"><strong class="card-label">Corporate Headquarter:</strong> <span class="card-value">2JMR+V23 Sangam chowk, Dera Ghazi Khan, Pakistan</span></p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="contact-highlight contact-info-card h-100">
-              <div class="icon-box">
-                <i class="bi bi-telephone-fill"></i>
-              </div>
-              <div>
-                <h4 class="fs-6 fw-bold mb-2">General Inquiries</h4>
-                <p class="mb-1 small"><strong class="card-label">Phone:</strong> <span class="card-value"><a href="tel:+923077067880">+92 307 7067880</a></span></p>
-                <p class="mb-0 small"><strong class="card-label">Email:</strong> <span class="card-value"><a href="mailto:ghulamasghar7678@gmail.com">ghulamasghar7678@gmail.com</a></span></p>
+            <!-- Mini process reminder -->
+            <div class="ct-process-mini">
+              <div class="ct-process-title">What happens next?</div>
+              <div class="ct-process-steps">
+                <div class="ct-ps">
+                  <div class="ct-ps-num">01</div>
+                  <div class="ct-ps-text">We review your message within 24h</div>
+                </div>
+                <div class="ct-ps-connector"></div>
+                <div class="ct-ps">
+                  <div class="ct-ps-num">02</div>
+                  <div class="ct-ps-text">Schedule a free 30-min discovery call</div>
+                </div>
+                <div class="ct-ps-connector"></div>
+                <div class="ct-ps">
+                  <div class="ct-ps-num">03</div>
+                  <div class="ct-ps-text">Receive a scoped proposal & timeline</div>
+                </div>
               </div>
             </div>
           </div>
-          <!-- Card 3 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="contact-highlight contact-info-card h-100">
-              <div class="icon-box">
-                <i class="bi bi-clock-fill"></i>
-              </div>
-              <div>
-                <h4 class="fs-6 fw-bold mb-2">Operation Hours</h4>
-                <p class="mb-1 small"><strong class="card-label">Mon-Fri:</strong> <span class="card-value">09:00 AM to 06:00 PM</span></p>
-                <p class="mb-0 small"><strong class="card-label">Sat-Sun:</strong> <span class="card-value">Closed</span></p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="bg-body-tertiary py-5" id="faq">
-      <div class="container px-md-5">
-        <div class="row mb-4 mb-lg-5">
-          <div class="col-md-10 text-center mx-auto">
-            <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">FAQ</span>
-            <h2 class="display-5 fw-bold mb-3">Frequently Asked Questions</h2>
-            <p class="lead fs-5 mx-auto">A few practical details before we start.</p>
-          </div>
+    <section class="ct-faq-section">
+      <div class="container" style="max-width:800px">
+        <div class="ct-section-tag" style="justify-content:center; margin-bottom:16px">
+          <span class="ct-tag-line"></span> FAQ <span class="ct-tag-line"></span>
         </div>
-        <div class="accordion mx-auto" id="contactFaq" style="max-width:800px;">
-          <div class="accordion-item">
-            <h3 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#contactFaqOne" aria-expanded="true" aria-controls="contactFaqOne">What technologies do you specialize in?</button>
-            </h3>
-            <div id="contactFaqOne" class="accordion-collapse collapse show" data-bs-parent="#contactFaq">
-              <div class="accordion-body">
-                React, Angular, Node.js, .NET, SQL, MongoDB, React Native, Flutter, WordPress, and AI/API integrations.
-              </div>
+        <h2 class="ct-faq-title">A few practical details<br>before we start.</h2>
+
+        <div class="ct-faq-list" id="ctFaq">
+          <div class="ct-faq-item">
+            <button class="ct-faq-q">
+              <span>What technologies do you specialize in?</span>
+              <span class="ct-faq-icon"><i class="ti ti-plus"></i></span>
+            </button>
+            <div class="ct-faq-a">
+              <p>Our core stack is the MEAN stack (MongoDB, Express, Angular, Node.js) plus React for frontend,
+              React Native and Flutter for mobile. We also integrate AI APIs (OpenAI, Whisper, LangChain),
+              cloud platforms (AWS, GCP), and healthcare protocols where needed.</p>
             </div>
           </div>
-          <div class="accordion-item">
-            <h3 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactFaqTwo" aria-expanded="false" aria-controls="contactFaqTwo">Can you work from an existing idea or codebase?</button>
-            </h3>
-            <div id="contactFaqTwo" class="accordion-collapse collapse" data-bs-parent="#contactFaq">
-              <div class="accordion-body">
-                Yes. We can assess an existing system, identify high-value changes, and define a phased plan before writing production code.
-              </div>
+
+          <div class="ct-faq-item">
+            <button class="ct-faq-q">
+              <span>Can you work from an existing idea or codebase?</span>
+              <span class="ct-faq-icon"><i class="ti ti-plus"></i></span>
+            </button>
+            <div class="ct-faq-a">
+              <p>Absolutely. We regularly audit existing codebases, identify technical debt, and define a
+              phased improvement plan before writing a single line of production code. We can join your
+              stack, not replace it.</p>
             </div>
           </div>
-          <div class="accordion-item">
-            <h3 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactFaqThree" aria-expanded="false" aria-controls="contactFaqThree">How soon can we start?</button>
-            </h3>
-            <div id="contactFaqThree" class="accordion-collapse collapse" data-bs-parent="#contactFaq">
-              <div class="accordion-body">
-                Most projects begin with a discovery session, followed by a scoped proposal and delivery plan based on complexity and availability.
-              </div>
+
+          <div class="ct-faq-item">
+            <button class="ct-faq-q">
+              <span>How soon can we start?</span>
+              <span class="ct-faq-icon"><i class="ti ti-plus"></i></span>
+            </button>
+            <div class="ct-faq-a">
+              <p>Most projects begin within 1–2 weeks of a signed agreement. We start every engagement with a
+              free 30-minute discovery call, then a scoped proposal with timeline and pricing — no
+              commitments until you're confident.</p>
+            </div>
+          </div>
+
+          <div class="ct-faq-item">
+            <button class="ct-faq-q">
+              <span>Do you sign NDAs?</span>
+              <span class="ct-faq-icon"><i class="ti ti-plus"></i></span>
+            </button>
+            <div class="ct-faq-a">
+              <p>Yes — on request, before any discovery conversation. Your idea, data, and business logic
+              stay yours. We also transfer full IP upon project completion with every engagement.</p>
+            </div>
+          </div>
+
+          <div class="ct-faq-item">
+            <button class="ct-faq-q">
+              <span>Do you work with healthcare data and HIPAA requirements?</span>
+              <span class="ct-faq-icon"><i class="ti ti-plus"></i></span>
+            </button>
+            <div class="ct-faq-a">
+              <p>Yes. We've built EHR systems, patient portals, billing platforms, and telehealth products.
+              We apply end-to-end encryption, role-based access, immutable audit trails, and consent
+              workflows aligned with HIPAA best practices.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Map Section -->
+    <section class="ct-map-section">
+      <div class="ct-map-wrap">
+        <div class="ct-map-overlay-card">
+          <div class="ct-map-card-icon"><i class="ti ti-building-skyscraper"></i></div>
+          <div class="ct-map-card-body">
+            <div class="ct-map-card-title">Avanta AI Solutions</div>
+            <div class="ct-map-card-addr">Sangam Chowk, Dera Ghazi Khan,<br>Punjab, Pakistan</div>
+          </div>
+          <a href="https://maps.google.com/?q=2JMR%2BV23+Sangam+chowk,+Dera+Ghazi+Khan,+Pakistan"
+             target="_blank" class="ct-map-card-btn">
+            <i class="ti ti-map-2"></i> Open in Maps
+          </a>
+        </div>
+        <iframe
+          src="https://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          class="ct-map-iframe"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Avanta AI Solutions location">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="ct-bottom-cta">
+      <div class="container text-center">
+        <p class="ct-cta-eyebrow">NOT READY TO SEND A MESSAGE?</p>
+        <h2 class="ct-cta-h2">Book a free discovery call instead.</h2>
+        <p class="ct-cta-sub">30 minutes. No commitment. Walk us through your idea — we'll tell you honestly what it takes to build it.</p>
+        <a href="expert.html" class="ct-cta-main-btn">
+          <i class="ti ti-calendar-event"></i>
+          Book Discovery Call
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-  <!-- Top: large brand statement -->
-  <div class="footer-top">
-    <div class="container">
-      <div class="footer-brand-row">
-        <div class="footer-brand-left">
-          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
-          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
-          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
-          <div class="footer-social">
-            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
-            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
-            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+    <!-- Top: large brand statement -->
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-brand-row">
+          <div class="footer-brand-left">
+            <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+            <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+            <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+              <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+              <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+            </div>
           </div>
-        </div>
-        <div class="footer-links-grid">
-          <!-- 4 columns: Services | Industries | Company | Legal -->
-          <div class="footer-col">
-            <div class="footer-col-title">Services</div>
-            <a href="services-web-development.html">Web Development</a>
-            <a href="services-mobile-apps.html">Mobile Apps</a>
-            <a href="services-custom-software.html">Custom Software</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Industries</div>
-            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
-            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
-            <a href="expert.html">Book Consultation</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Company</div>
-            <a href="about.html">About Us</a>
-            <a href="careers.html">Careers</a>
-            <a href="authors.html">Our Team</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Legal</div>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="cookies.html">Cookie Policy</a>
+          <div class="footer-links-grid">
+            <!-- 4 columns: Services | Industries | Company | Legal -->
+            <div class="footer-col">
+              <div class="footer-col-title">Services</div>
+              <a href="services-web-development.html">Web Development</a>
+              <a href="services-mobile-apps.html">Mobile Apps</a>
+              <a href="services-custom-software.html">Custom Software</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Industries</div>
+              <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+              <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+              <a href="expert.html">Book Consultation</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Company</div>
+              <a href="about.html">About Us</a>
+              <a href="careers.html">Careers</a>
+              <a href="authors.html">Our Team</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Legal</div>
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="terms.html">Terms of Service</a>
+              <a href="cookies.html">Cookie Policy</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bottom bar -->
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="footer-bottom-row">
-        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="cookies.html">Cookies</a>
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-row">
+          <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="cookies.html">Cookies</a>
+          </div>
+          <span class="footer-made-with">Built by engineers, for engineers.</span>
         </div>
-        <span class="footer-made-with">Built by engineers, for engineers.</span>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      /* ── PARTICLE CANVAS ── */
+      (function () {
+        const canvas = document.getElementById('ct-canvas');
+        const ctx    = canvas.getContext('2d');
+        let W, H, particles = [];
+
+        function resize() {
+          W = canvas.width  = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const COUNT = 90;
+        for (let i = 0; i < COUNT; i++) {
+          particles.push({
+            x: Math.random() * 2000 - 1000,
+            y: Math.random() * 1200 - 600,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            r:  Math.random() * 1.5 + 0.4,
+            o:  Math.random() * 0.5 + 0.2
+          });
+        }
+
+        const LINK_DIST = 130;
+
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          const isDark = document.documentElement.getAttribute('data-bs-theme') !== 'light';
+          const pColor = isDark ? '255,255,255' : '59,130,246';
+
+          // Draw links
+          for (let i = 0; i < COUNT; i++) {
+            for (let j = i + 1; j < COUNT; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const d  = Math.sqrt(dx * dx + dy * dy);
+              if (d < LINK_DIST) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(${pColor},${(1 - d / LINK_DIST) * 0.15})`;
+                ctx.lineWidth = 0.6;
+                ctx.moveTo(particles[i].x + W/2, particles[i].y + H/2);
+                ctx.lineTo(particles[j].x + W/2, particles[j].y + H/2);
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Draw dots
+          particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (Math.abs(p.x) > W/2 + 20)  p.vx *= -1;
+            if (Math.abs(p.y) > H/2 + 20)  p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x + W/2, p.y + H/2, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${pColor},${p.o})`;
+            ctx.fill();
+          });
+
+          requestAnimationFrame(draw);
+        }
+        draw();
+      })();
+
+      /* ── HERO GSAP ENTRANCE ── */
+      (function () {
+        const tl = gsap.timeline({ delay: 0.15 });
+
+        const split = new SplitText('.ct-headline', { type: 'lines, words' });
+
+        tl.from('.ct-eyebrow',    { y: 24, opacity: 0, duration: 0.6, ease: 'power3.out' })
+          .from(split.words,      { y: 70, opacity: 0, stagger: 0.06, duration: 0.75, ease: 'power3.out' }, '-=0.3')
+          .from('.ct-hero-sub',   { y: 24, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.35')
+          .from('.ct-trust-chip', { y: 16, opacity: 0, stagger: 0.1, duration: 0.5 }, '-=0.25')
+          .from('.ct-scroll-nudge',{ y: 16, opacity: 0, duration: 0.5 }, '-=0.2')
+          .from('.ct-vertical-text',{ opacity: 0, duration: 1 }, '-=0.5');
+      })();
+
+      /* ── FORM INTERACTIVITY ── */
+
+      // Select floating label
+      const ctSubject = document.getElementById('ct-subject');
+      if (ctSubject) {
+        ctSubject.addEventListener('change', function () {
+          this.classList.toggle('has-value', this.value !== '');
+        });
+      }
+
+      // Magnetic glow on submit button
+      const submitBtn = document.getElementById('ctSubmitBtn');
+      if (submitBtn) {
+        submitBtn.addEventListener('mousemove', function (e) {
+          const r   = this.getBoundingClientRect();
+          const mx  = ((e.clientX - r.left) / r.width)  * 100;
+          const my  = ((e.clientY - r.top)  / r.height) * 100;
+          this.querySelector('.ct-btn-glow').style.setProperty('--mx', mx + '%');
+          this.querySelector('.ct-btn-glow').style.setProperty('--my', my + '%');
+        });
+      }
+
+      // Form submit (demo)
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const btnText    = submitBtn.querySelector('.ct-btn-text');
+          const btnIcon    = submitBtn.querySelector('.ct-btn-icon');
+          const btnLoading = submitBtn.querySelector('.ct-btn-loading');
+
+          if (btnText) btnText.style.display    = 'none';
+          if (btnIcon) btnIcon.style.display    = 'none';
+          if (btnLoading) btnLoading.style.display = 'inline-flex';
+          submitBtn.disabled       = true;
+
+          setTimeout(() => {
+            contactForm.style.display = 'none';
+            const success = document.getElementById('ctSuccess');
+            if (success) {
+              success.style.display = 'block';
+              gsap.from(success, { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' });
+            }
+          }, 1800);
+        });
+      }
+
+      /* FAQ accordion */
+      document.querySelectorAll('.ct-faq-q').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const item = this.closest('.ct-faq-item');
+          const isOpen = item.classList.contains('open');
+
+          document.querySelectorAll('.ct-faq-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) {
+            item.classList.add('open');
+            gsap.from(item.querySelector('.ct-faq-a p'), {
+              y: 12, opacity: 0, duration: 0.4, ease: 'power2.out'
+            });
+          }
+        });
+      });
+
+      /* ── SCROLL ANIMATIONS ── */
+      gsap.from('.ct-form-header', {
+        y: 40, opacity: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-split-section', start: 'top 80%' }
+      });
+      gsap.from('.ct-field', {
+        y: 24, opacity: 0, stagger: 0.07, duration: 0.55, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-form', start: 'top 85%' }
+      });
+      gsap.from('.ct-budget-row', {
+        y: 20, opacity: 0, duration: 0.5,
+        scrollTrigger: { trigger: '.ct-budget-row', start: 'top 88%' }
+      });
+      gsap.from('.ct-submit-wrap', {
+        y: 20, opacity: 0, duration: 0.5,
+        scrollTrigger: { trigger: '.ct-submit-wrap', start: 'top 90%' }
+      });
+      gsap.from('.ct-status-card', {
+        x: 40, opacity: 0, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-info-col', start: 'top 82%' }
+      });
+      gsap.from('.ct-detail-card', {
+        x: 40, opacity: 0, stagger: 0.12, duration: 0.55, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-detail-cards', start: 'top 85%' }
+      });
+      gsap.from('.ct-process-mini', {
+        y: 24, opacity: 0, duration: 0.55,
+        scrollTrigger: { trigger: '.ct-process-mini', start: 'top 88%' }
+      });
+      gsap.from('.ct-social-icon', {
+        scale: 0.6, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'back.out(1.6)',
+        scrollTrigger: { trigger: '.ct-social-row', start: 'top 90%' }
+      });
+
+      /* FAQ scroll in */
+      gsap.from('.ct-faq-item', {
+        y: 30, opacity: 0, stagger: 0.1, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-faq-list', start: 'top 80%' }
+      });
+      const splitFaqTitle = new SplitText('.ct-faq-title', { type: 'lines' });
+      gsap.from(splitFaqTitle.lines, {
+        y: 40, opacity: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-faq-title', start: 'top 80%' }
+      });
+
+      /* Map slide-up */
+      gsap.from('.ct-map-wrap', {
+        y: 50, opacity: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-map-section', start: 'top 80%' }
+      });
+      gsap.from('.ct-map-overlay-card', {
+        x: -30, opacity: 0, duration: 0.7, delay: 0.3, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-map-wrap', start: 'top 80%' }
+      });
+
+      /* Bottom CTA entrance */
+      const splitCta = new SplitText('.ct-cta-h2', { type: 'lines' });
+      gsap.from(splitCta.lines, {
+        y: 50, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-bottom-cta', start: 'top 80%' }
+      });
+      gsap.from('.ct-cta-sub, .ct-cta-main-btn, .ct-cta-eyebrow', {
+        y: 24, opacity: 0, stagger: 0.12, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-bottom-cta', start: 'top 82%' }
+      });
+    });
+  </script>
 </body>
 
 </html>
-

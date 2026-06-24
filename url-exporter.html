@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>URL Exporter - Avanta AI Solutions</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/styles.min.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    body {
+      background-color: var(--bs-body-bg, #05050f);
+      color: var(--bs-body-color, #f9fafb);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .exporter-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+    [data-bs-theme="light"] .exporter-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+    }
+    .url-container {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 15px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      height: 350px;
+      overflow-y: auto;
+      white-space: pre;
+      margin-bottom: 20px;
+      color: var(--ct-text-2, rgba(255, 255, 255, 0.7));
+    }
+    [data-bs-theme="light"] .url-container {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      color: #374151;
+    }
+    .copy-btn {
+      background: #3b82f6;
+      border: none;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+    .copy-btn:hover {
+      background: #8b5cf6;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59,130,246,0.3);
+    }
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+    .header-logo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .logo-container img {
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="exporter-card">
+    <div class="header-logo-row">
+      <div class="logo-container">
+        <img src="assets/img/avanta-logo-light.svg" class="d-dark-only" alt="Avanta">
+        <img src="assets/img/avanta-logo-dark.svg" class="d-light-only" alt="Avanta">
+      </div>
+      <span class="badge bg-primary text-white">101 Unique Links</span>
+    </div>
+    
+    <h3 class="mb-2">Website URL Exporter</h3>
+    <p class="text-muted small mb-4">This container lists all unique URLs, internal links, static assets, and protocol endpoints referenced in the Avanta AI Solutions codebase (one link per line, no file references).</p>
+    
+    <div class="url-container" id="urlBox">#
+#apply
+#booking
+#capabilities
+#ct-form-section
+#ex-form
+#roles
+#showcase
+..
+about.html
+assets/bootstrap/css/bootstrap.min.css
+assets/css/animations.css
+assets/css/styles.min.css
+assets/fonts/Inter-2083c91140e7bbb7db951151ac57a155.woff2
+assets/fonts/Inter-69ef5cde33d6fd526d060fcf78a34c88.woff2
+assets/img/ai-stepper-mockup.png
+assets/img/avanta-logo-dark.svg
+assets/img/avanta-logo-light.svg
+assets/img/enterprise-stepper-mockup.png
+assets/img/favicon.svg
+assets/img/mobile-stepper-mockup.png
+assets/img/security-stepper-mockup.png
+assets/img/web-stepper-mockup.png
+assets/js/animations.js
+assets/js/script.min.js
+authors.html
+careers.html
+contacts.html
+cookies.html
+expert.html
+http://www.w3.org/2000/svg
+http://www.w3.org/2000/svg\nhttps://cdn.jsdelivr.gh/devicons/devicon/icons/react/react-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg\nhttps://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css\nhttps://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js\nhttps://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\nhttps://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\nhttps://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js\nhttps://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js\nhttps://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap\nhttps://getbootstrap.com/\nhttps://github.com/twbs/bootstrap/blob/main/LICENSE\nhttps://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=800&amp;q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://imasghar.github.io/Website/\nhttps://imasghar.github.io/Website/assets/img/avanta-ai-log.png\nhttps://maps.google.com/?q=2JMR%2BV23+Sangam+chowk,+Dera+Ghazi+Khan,+Pakistan\nhttps://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed\nhttps://schema.org\nhttps://unpkg.com/lenis@1.1.13/dist/lenis.min.js\nhttps://wa.me/923077067880?text=Hi,%20I%20am%20interested%20in%20Avanta%20AI%20Solutions!\nindex.html\nindustry-enterprise-dashboards.html\nindustry-healthcare-tech.html\nmailto:ghulamasghar7678@gmail.com\nprivacy.html\nservices-custom-software.html\nservices-mobile-apps.html\nservices-web-development.html\nservices.html\ntel:+923077067880\nterms.html
+https://cdn.jsdelivr.gh/devicons/devicon/icons/react/react-original.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg
+https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg
+https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js
+https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
+https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
+https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css
+https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css
+https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css
+https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css
+https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js
+https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js
+https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js
+https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js
+https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;amp;display=swap
+https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap
+https://getbootstrap.com/
+https://github.com/twbs/bootstrap/blob/main/LICENSE
+https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;amp;fit=crop&amp;amp;w=1600&amp;amp;q=80
+https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1600&amp;q=80
+https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;amp;fit=crop&amp;amp;w=900&amp;amp;q=80
+https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=900&amp;q=80
+https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&amp;amp;fit=crop&amp;amp;w=900&amp;amp;q=80
+https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&amp;fit=crop&amp;w=900&amp;q=80
+https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;amp;fit=crop&amp;amp;w=1600&amp;amp;q=80
+https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;w=1600&amp;q=80
+https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;amp;fit=crop&amp;amp;w=1600&amp;amp;q=80
+https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=1600&amp;q=80
+https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;amp;fit=crop&amp;amp;w=900&amp;amp;q=80
+https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=900&amp;q=80
+https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;amp;fit=crop&amp;amp;w=800&amp;amp;q=80
+https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;amp;fit=crop&amp;amp;w=900&amp;amp;q=80
+https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=800&amp;q=80
+https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=900&amp;q=80
+https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;amp;fit=crop&amp;amp;w=900&amp;amp;q=80
+https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=900&amp;q=80
+https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&amp;amp;fit=crop&amp;amp;w=1600&amp;amp;q=80
+https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&amp;fit=crop&amp;w=1600&amp;q=80
+https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&amp;amp;fit=crop&amp;amp;w=900&amp;amp;q=80
+https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&amp;fit=crop&amp;w=900&amp;q=80
+https://imasghar.github.io/Website/
+https://imasghar.github.io/Website/assets/img/avanta-ai-log.png
+https://maps.google.com/?q=2JMR%2BV23+Sangam+chowk,+Dera+Ghazi+Khan,+Pakistan
+https://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&amp;amp;t=&amp;amp;z=15&amp;amp;ie=UTF8&amp;amp;iwloc=&amp;amp;output=embed
+https://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed
+https://schema.org
+https://unpkg.com/lenis@1.1.13/dist/lenis.min.js
+https://wa.me/923077067880?text=Hi,%20I%20am%20interested%20in%20Avanta%20AI%20Solutions!
+index.html
+industry-enterprise-dashboards.html
+industry-healthcare-tech.html
+mailto:ghulamasghar7678@gmail.com
+privacy.html
+services-custom-software.html
+services-mobile-apps.html
+services-web-development.html
+services.html
+tel:+923077067880
+terms.html</div>
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="copy-btn" id="copyBtn">
+        <i class="ti ti-copy"></i>
+        <span id="copyBtnText">Copy All URLs</span>
+      </button>
+      <a href="index.html" class="text-decoration-none text-muted small"><i class="ti ti-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      const textToCopy = `#\n#apply\n#booking\n#capabilities\n#ct-form-section\n#ex-form\n#roles\n#showcase\n..\nabout.html\nassets/bootstrap/css/bootstrap.min.css\nassets/css/animations.css\nassets/css/styles.min.css\nassets/fonts/Inter-2083c91140e7bbb7db951151ac57a155.woff2\nassets/fonts/Inter-69ef5cde33d6fd526d060fcf78a34c88.woff2\nassets/img/ai-stepper-mockup.png\nassets/img/avanta-logo-dark.svg\nassets/img/avanta-logo-light.svg\nassets/img/enterprise-stepper-mockup.png\nassets/img/favicon.svg\nassets/img/mobile-stepper-mockup.png\nassets/img/security-stepper-mockup.png\nassets/img/web-stepper-mockup.png\nassets/js/animations.js\nassets/js/script.min.js\nauthors.html\ncareers.html\ncontacts.html\ncookies.html\nexpert.html\nhttp://www.w3.org/2000/svg\nhttp://www.w3.org/2000/svg\nhttps://cdn.jsdelivr.gh/devicons/devicon/icons/react/react-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg\nhttps://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css\nhttps://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js\nhttps://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\nhttps://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\nhttps://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js\nhttps://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js\nhttps://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap\nhttps://getbootstrap.com/\nhttps://github.com/twbs/bootstrap/blob/main/LICENSE\nhttps://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=80\nhttps://imasghar.github.io/Website/\nhttps://imasghar.github.io/Website/assets/img/avanta-ai-log.png\nhttps://maps.google.com/?q=2JMR%2BV23+Sangam+chowk,+Dera+Ghazi+Khan,+Pakistan\nhttps://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed\nhttps://schema.org\nhttps://unpkg.com/lenis@1.1.13/dist/lenis.min.js\nhttps://wa.me/923077067880?text=Hi,%20I%20am%20interested%20in%20Avanta%20AI%20Solutions!\nindex.html\nindustry-enterprise-dashboards.html\nindustry-healthcare-tech.html\nmailto:ghulamasghar7678@gmail.com\nprivacy.html\nservices-custom-software.html\nservices-mobile-apps.html\nservices-web-development.html\nservices.html\ntel:+923077067880\nterms.html\nhttps://cdn.jsdelivr.gh/devicons/devicon/icons/react/react-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg\nhttps://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg\nhttps://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css\nhttps://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js\nhttps://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\nhttps://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\nhttps://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js\nhttps://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js\nhttps://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap\nhttps://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap\nhttps://getbootstrap.com/\nhttps://github.com/twbs/bootstrap/blob/main/LICENSE\nhttps://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=800&amp;q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80\nhttps://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80\nhttps://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&amp;fit=crop&amp;w=1600&amp;q=80\nhttps://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80\nhttps://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&amp;fit=crop&amp;w=900&amp;q=80\nhttps://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=80\nhttps://imasghar.github.io/Website/\nhttps://imasghar.github.io/Website/assets/img/avanta-ai-log.png\nhttps://maps.google.com/?q=2JMR%2BV23+Sangam+chowk,+Dera+Ghazi+Khan,+Pakistan\nhttps://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed\nhttps://maps.google.com/maps?q=2JMR%2BV23%20Sangam%20chowk,%20Dera%20Ghazi%20Khan,%20Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed\nhttps://schema.org\nhttps://unpkg.com/lenis@1.1.13/dist/lenis.min.js\nhttps://wa.me/923077067880?text=Hi,%20I%20am%20interested%20in%20Avanta%20AI%20Solutions!\nindex.html\nindustry-enterprise-dashboards.html\nindustry-healthcare-tech.html\nmailto:ghulamasghar7678@gmail.com\nprivacy.html\nservices-custom-software.html\nservices-mobile-apps.html\nservices-web-development.html\nservices.html\ntel:+923077067880\nterms.html`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const textSpan = document.getElementById('copyBtnText');
+        const icon = btn.querySelector('i');
+        
+        btn.style.background = '#10b981';
+        textSpan.textContent = 'Copied!';
+        icon.className = 'ti ti-check';
+        
+        setTimeout(() => {
+          btn.style.background = '';
+          textSpan.textContent = 'Copy All URLs';
+          icon.className = 'ti ti-copy';
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        alert('Failed to copy to clipboard.');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
 <head>
@@ -16,6 +16,637 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+
+  <style>
+    /* ── DARK THEME (default) ── */
+    [data-bs-theme="dark"] {
+      --ex-bg:           #05050f;
+      --ex-bg-2:         #09091a;
+      --ex-bg-card:      rgba(255,255,255,0.04);
+      --ex-border:       rgba(255,255,255,0.08);
+      --ex-border-hover: rgba(255,255,255,0.22);
+      --ex-text-1:       #f9fafb;
+      --ex-text-2:       rgba(255,255,255,0.55);
+      --ex-text-3:       rgba(255,255,255,0.25);
+      --ex-accent:       #3b82f6;
+      --ex-accent-2:     #8b5cf6;
+      --ex-teal:         #14b8a6;
+      --ex-green:        #10b981;
+      --ex-amber:        #f59e0b;
+      --ex-input-bg:     rgba(255,255,255,0.05);
+      --ex-input-border: rgba(255,255,255,0.1);
+      --ex-glow:         rgba(59,130,246,0.12);
+      --ex-shadow:       rgba(0,0,0,0.5);
+    }
+
+    /* ── LIGHT THEME ── */
+    [data-bs-theme="light"] {
+      --ex-bg:           #f8f9ff;
+      --ex-bg-2:         #eef0fb;
+      --ex-bg-card:      #ffffff;
+      --ex-border:       #e5e7eb;
+      --ex-border-hover: #9ca3af;
+      --ex-text-1:       #111827;
+      --ex-text-2:       #4b5563;
+      --ex-text-3:       #9ca3af;
+      --ex-accent:       #2563eb;
+      --ex-accent-2:     #7c3aed;
+      --ex-teal:         #0d9488;
+      --ex-green:        #059669;
+      --ex-amber:        #d97706;
+      --ex-input-bg:     #ffffff;
+      --ex-input-border: #d1d5eb;
+      --ex-glow:         rgba(37,99,235,0.08);
+      --ex-shadow:       rgba(0,0,0,0.08);
+    }
+
+    body { background: var(--ex-bg); }
+
+    /* Hero */
+    .ex-hero {
+      position: relative; overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 140px 0 80px;
+      background: var(--ex-bg);
+    }
+
+    /* Ambient orb */
+    .ex-hero-orb {
+      position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(59,130,246,0.10) 0%,
+        rgba(139,92,246,0.07) 40%,
+        transparent 70%);
+      pointer-events: none;
+      animation: ex-orb-drift 8s ease-in-out infinite alternate;
+    }
+    @keyframes ex-orb-drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(-40px, 30px) scale(1.08); }
+    }
+    [data-bs-theme="light"] .ex-hero-orb {
+      background: radial-gradient(circle,
+        rgba(37,99,235,0.07) 0%,
+        rgba(124,58,237,0.05) 40%,
+        transparent 70%);
+    }
+
+    .ex-hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px; align-items: center;
+    }
+
+    /* Eyebrow */
+    .ex-eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 13px; padding: 7px 18px; border-radius: 100px;
+      border: 1px solid var(--ex-border);
+      background: var(--ex-bg-card);
+      color: var(--ex-text-2); margin-bottom: 32px;
+      font-family: inherit;
+    }
+    .ex-eyebrow-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ex-green);
+      animation: ex-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes ex-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      50%      { box-shadow: 0 0 0 7px rgba(16,185,129,0); }
+    }
+
+    /* Headline */
+    .ex-headline {
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -0.04em; color: var(--ex-text-1);
+      margin-bottom: 24px;
+    }
+    .ex-headline-grad {
+      background: linear-gradient(110deg, var(--ex-accent), var(--ex-accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .ex-hero-sub {
+      font-size: 17px; line-height: 1.8;
+      color: var(--ex-text-2); max-width: 520px; margin-bottom: 44px;
+    }
+
+    /* Value props */
+    .ex-props { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 48px; }
+    .ex-prop {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 16px; border-radius: 14px;
+      background: var(--ex-bg-card); border: 1px solid var(--ex-border);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .ex-prop:hover { border-color: var(--ex-border-hover); transform: translateY(-3px); }
+    .ex-prop-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--ex-glow); color: var(--ex-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .ex-prop-title { font-size: 14px; font-weight: 600; color: var(--ex-text-1); }
+    .ex-prop-sub   { font-size: 12px; color: var(--ex-text-3); margin-top: 2px; }
+
+    /* Scroll CTA */
+    .ex-scroll-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 600;
+      color: var(--ex-accent); text-decoration: none;
+      border: 1px solid var(--ex-accent);
+      padding: 12px 28px; border-radius: 100px;
+      transition: all 0.25s ease;
+      width: fit-content;
+    }
+    .ex-scroll-btn:hover {
+      background: var(--ex-accent); color: #fff;
+      box-shadow: 0 12px 32px var(--ex-glow);
+      transform: translateY(-2px);
+    }
+    .ex-scroll-btn i { transition: transform 0.3s ease; }
+    .ex-scroll-btn:hover i { transform: translateY(4px); }
+
+    /* Availability widget */
+    .ex-availability-widget {
+      background: var(--ex-bg-card);
+      border: 1px solid var(--ex-border);
+      border-radius: 24px; padding: 32px;
+      box-shadow: 0 32px 80px var(--ex-shadow);
+      position: relative; overflow: hidden;
+    }
+    .ex-availability-widget::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--ex-accent), var(--ex-accent-2), var(--ex-teal));
+    }
+
+    .ex-widget-header { margin-bottom: 20px; }
+    .ex-widget-label {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: monospace; color: var(--ex-text-3);
+      margin-bottom: 8px;
+    }
+    .ex-live-clock {
+      font-size: 42px; font-weight: 800; font-family: monospace;
+      color: var(--ex-text-1); letter-spacing: -0.02em; line-height: 1;
+    }
+    .ex-widget-tz {
+      font-size: 12px; color: var(--ex-teal);
+      font-family: monospace; margin-top: 6px;
+    }
+    .ex-widget-divider {
+      height: 1px; background: var(--ex-border); margin: 20px 0;
+    }
+    .ex-widget-avail-label {
+      font-size: 12px; color: var(--ex-text-3); text-transform: uppercase;
+      letter-spacing: 0.1em; font-family: monospace;
+      margin-bottom: 14px;
+    }
+
+    /* Slots */
+    .ex-slot-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+    .ex-slot {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 14px; border-radius: 10px;
+      border: 1px solid var(--ex-border);
+      font-size: 14px; color: var(--ex-text-2);
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+    .ex-slot i { color: var(--ex-accent); font-size: 15px; flex-shrink: 0; }
+    .ex-slot span:nth-child(2) { flex: 1; }
+    .ex-slot--open:hover {
+      border-color: var(--ex-accent);
+      background: var(--ex-glow); color: var(--ex-text-1); cursor: pointer;
+    }
+    .ex-slot--selected {
+      border-color: var(--ex-accent) !important;
+      background: var(--ex-glow) !important;
+      color: var(--ex-text-1) !important;
+    }
+    .ex-slot--taken { opacity: 0.45; }
+    .ex-slot-badge {
+      font-size: 11px; padding: 3px 10px; border-radius: 100px;
+      font-family: monospace; font-weight: 600;
+    }
+    .ex-slot-badge.open   { background: rgba(16,185,129,0.12); color: var(--ex-green); }
+    .ex-slot-badge.taken  { background: rgba(239,68,68,0.1);   color: #ef4444; }
+
+    /* Expert avatars */
+    .ex-experts-row {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .ex-expert-avatars { display: flex; }
+    .ex-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: #fff;
+      border: 2px solid var(--ex-bg-card);
+      margin-left: -8px; font-family: monospace;
+    }
+    .ex-avatar:first-child { margin-left: 0; }
+    .ex-experts-title { display: block; font-size: 14px; font-weight: 600; color: var(--ex-text-1); }
+    .ex-experts-sub   { display: block; font-size: 12px; color: var(--ex-text-3); margin-top: 2px; }
+
+    /* Response badge */
+    .ex-response-badge {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 18px; font-size: 13px; color: var(--ex-text-2);
+      padding: 10px 14px; border-radius: 100px;
+      background: rgba(16,185,129,0.07);
+      border: 1px solid rgba(16,185,129,0.18);
+    }
+    .ex-resp-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ex-green); flex-shrink: 0;
+      animation: ex-pulse 2s ease-in-out infinite;
+    }
+    .ex-response-badge strong { color: var(--ex-green); }
+
+    /* Step progress bar */
+    .ex-steps-section {
+      padding: 48px 20px;
+      background: var(--ex-bg-2);
+      border-top: 1px solid var(--ex-border);
+      border-bottom: 1px solid var(--ex-border);
+    }
+    .ex-steps {
+      display: flex; align-items: flex-start; gap: 0;
+    }
+    .ex-step {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      position: relative;
+    }
+    .ex-step--last { flex: 0 0 auto; }
+    .ex-step-num {
+      font-size: 11px; font-family: monospace;
+      color: var(--ex-text-3); letter-spacing: 0.1em;
+    }
+    .ex-step.active .ex-step-num { color: var(--ex-accent); }
+    .ex-step-track {
+      width: 100%; height: 2px;
+      background: var(--ex-border); border-radius: 2px; overflow: hidden;
+      position: relative;
+    }
+    .ex-step-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--ex-accent), var(--ex-accent-2));
+      border-radius: 2px;
+      transition: width 1.2s ease;
+    }
+    .ex-step.active .ex-step-fill { width: 100%; }
+    .ex-step-label {
+      font-size: 13px; color: var(--ex-text-2); text-align: center;
+      white-space: nowrap;
+    }
+    .ex-step.active .ex-step-label { color: var(--ex-text-1); font-weight: 600; }
+
+    /* Form section */
+    .ex-form-section {
+      padding: 100px 0 120px;
+      background: var(--ex-bg);
+    }
+    .ex-form-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 70px; align-items: start;
+    }
+
+    /* Step indicator */
+    .ex-form-steps-indicator {
+      display: flex; align-items: center; margin-bottom: 44px;
+    }
+    .ex-fsi-item {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .ex-fsi-connector {
+      flex: 1; height: 1px; background: var(--ex-border); margin: 0 12px; margin-bottom: 20px;
+    }
+    .ex-fsi-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--ex-border); background: var(--ex-bg-card);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: var(--ex-text-3);
+      transition: all 0.3s ease;
+    }
+    .ex-fsi-item span {
+      font-size: 11px; color: var(--ex-text-3);
+      font-family: monospace; letter-spacing: 0.08em;
+    }
+    .ex-fsi-item.active .ex-fsi-dot {
+      background: var(--ex-accent); border-color: var(--ex-accent); color: #fff;
+      box-shadow: 0 0 0 4px var(--ex-glow);
+    }
+    .ex-fsi-item.active span { color: var(--ex-accent); }
+    .ex-fsi-item.done .ex-fsi-dot { background: var(--ex-green); border-color: var(--ex-green); color: #fff; }
+
+    .ex-step-header { margin-bottom: 32px; }
+    .ex-form-title {
+      font-size: clamp(24px, 3.5vw, 36px); font-weight: 800;
+      letter-spacing: -0.03em; color: var(--ex-text-1); margin-bottom: 8px;
+    }
+    .ex-form-sub { color: var(--ex-text-2); font-size: 15px; }
+
+    /* Fields */
+    .ex-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .ex-field { position: relative; margin-bottom: 14px; }
+
+    .ex-field input,
+    .ex-field textarea,
+    .ex-field select {
+      width: 100%; background: var(--ex-input-bg);
+      border: 1px solid var(--ex-input-border); border-radius: 12px;
+      padding: 22px 44px 10px 16px;
+      font-size: 15px; color: var(--ex-text-1);
+      font-family: inherit; outline: none; resize: none; appearance: none;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .ex-field input:focus,
+    .ex-field textarea:focus,
+    .ex-field select:focus {
+      border-color: var(--ex-accent);
+      box-shadow: 0 0 0 4px var(--ex-glow);
+      background: var(--ex-bg-card);
+    }
+    .ex-field label, .ex-sel-label {
+      position: absolute; left: 16px; top: 16px;
+      font-size: 14px; color: var(--ex-text-3);
+      pointer-events: none; transition: all 0.22s ease;
+    }
+    .ex-field input:focus ~ label,
+    .ex-field input:not(:placeholder-shown) ~ label,
+    .ex-field textarea:focus ~ label,
+    .ex-field textarea:not(:placeholder-shown) ~ label,
+    .ex-field select.has-value ~ .ex-sel-label,
+    .ex-field select:focus ~ .ex-sel-label {
+      top: 7px; font-size: 10px; color: var(--ex-accent);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .ex-field-ico {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 17px; color: var(--ex-text-3); pointer-events: none;
+    }
+
+    /* Topic grid */
+    .ex-topic-label,
+    .ex-stage-label,
+    .ex-time-label,
+    .ex-calltype-label {
+      font-size: 12px; color: var(--ex-text-3); text-transform: uppercase;
+      letter-spacing: 0.1em; font-family: monospace;
+      margin-bottom: 12px;
+    }
+    .ex-topic-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 24px; }
+    .ex-topic-card { cursor: pointer; }
+    .ex-topic-card input { display: none; }
+    .ex-topic-inner {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; padding: 18px 12px; border-radius: 14px;
+      border: 1px solid var(--ex-border);
+      background: var(--ex-bg-card);
+      font-size: 13px; color: var(--ex-text-2);
+      transition: all 0.22s ease; text-align: center;
+    }
+    .ex-topic-inner i { font-size: 22px; color: var(--ex-text-3); transition: color 0.2s; }
+    .ex-topic-card:hover .ex-topic-inner { border-color: var(--ex-border-hover); color: var(--ex-text-1); }
+    .ex-topic-card input:checked ~ .ex-topic-inner {
+      border-color: var(--ex-accent) !important;
+      background: var(--ex-glow) !important;
+      color: var(--ex-text-1) !important;
+      box-shadow: 0 0 0 3px var(--ex-glow);
+    }
+    .ex-topic-card input:checked ~ .ex-topic-inner i { color: var(--ex-accent) !important; }
+
+    /* Stage + time chips */
+    .ex-stage-chips, .ex-time-chips {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    }
+    .ex-stage-chip, .ex-time-chip {
+      cursor: pointer; font-size: 13px; padding: 8px 18px;
+      border-radius: 100px; border: 1px solid var(--ex-input-border);
+      background: var(--ex-input-bg); color: var(--ex-text-2);
+      transition: all 0.2s ease; user-select: none;
+    }
+    .ex-stage-chip input, .ex-time-chip input { display: none; }
+    .ex-stage-chip:hover, .ex-time-chip:hover { border-color: var(--ex-border-hover); color: var(--ex-text-1); }
+    .ex-stage-chip:has(input:checked),
+    .ex-time-chip:has(input:checked) {
+      background: var(--ex-accent) !important; border-color: var(--ex-accent) !important; color: #fff !important;
+    }
+
+    /* Call platform grid */
+    .ex-call-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .ex-call-card { cursor: pointer; }
+    .ex-call-card input { display: none; }
+    .ex-call-inner {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 16px; border-radius: 12px;
+      border: 1px solid var(--ex-border); background: var(--ex-bg-card);
+      font-size: 14px; color: var(--ex-text-2);
+      transition: all 0.22s ease;
+    }
+    .ex-call-inner i { font-size: 18px; color: var(--ex-text-3); }
+    .ex-call-card:hover .ex-call-inner { border-color: var(--ex-border-hover); color: var(--ex-text-1); }
+    .ex-call-card input:checked ~ .ex-call-inner {
+      border-color: var(--ex-accent) !important; background: var(--ex-glow) !important; color: var(--ex-text-1) !important;
+    }
+    .ex-call-card input:checked ~ .ex-call-inner i { color: var(--ex-accent) !important; }
+
+    /* NDA toggle */
+    .ex-nda-toggle {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-top: 24px; cursor: pointer;
+    }
+    .ex-nda-toggle input { display: none; }
+    .ex-nda-box {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      border: 1.5px solid var(--ex-input-border);
+      background: var(--ex-input-bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; margin-top: 1px;
+    }
+    .ex-nda-box i { font-size: 13px; color: #fff; opacity: 0; transition: opacity 0.2s; }
+    .ex-nda-toggle input:checked ~ .ex-nda-box {
+      background: var(--ex-accent); border-color: var(--ex-accent);
+    }
+    .ex-nda-toggle input:checked ~ .ex-nda-box i { opacity: 1; }
+    .ex-nda-text { font-size: 14px; color: var(--ex-text-2); line-height: 1.6; }
+    .ex-nda-text strong { color: var(--ex-text-1); }
+
+    /* Nav buttons */
+    .ex-nav-btns { display: flex; gap: 14px; margin-top: 28px; align-items: center; }
+    .ex-back-btn {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--ex-text-2); background: none;
+      border: 1px solid var(--ex-border); padding: 12px 22px;
+      border-radius: 100px; cursor: pointer; font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    .ex-back-btn:hover { color: var(--ex-text-1); border-color: var(--ex-border-hover); }
+
+    .ex-next-btn, .ex-submit-btn {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border-radius: 100px;
+      background: var(--ex-accent); color: #fff;
+      border: none; font-size: 15px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .ex-next-btn { margin-top: 28px; }
+    .ex-next-btn:hover, .ex-submit-btn:hover {
+      background: var(--ex-accent-2);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px var(--ex-glow);
+    }
+    .ex-btn-glow {
+      position: absolute; inset: 0; border-radius: 100px;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
+        rgba(255,255,255,0.18), transparent 60%);
+      pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    }
+    .ex-submit-btn:hover .ex-btn-glow { opacity: 1; }
+    .ex-submit-note {
+      margin-top: 12px; font-size: 12px; color: var(--ex-text-3);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ex-submit-note i { color: var(--ex-teal); }
+    @keyframes ex-spin { to { transform: rotate(360deg); } }
+    .ex-spin { display: inline-block; animation: ex-spin 0.8s linear infinite; }
+
+    /* SUCCESS */
+    .ex-success { text-align: center; padding: 40px 20px; }
+    .ex-success-animation {
+      position: relative; width: 80px; height: 80px;
+      margin: 0 auto 28px;
+    }
+    .ex-success-ring {
+      position: absolute; inset: 0; border-radius: 50%;
+      border: 2px solid var(--ex-green);
+      animation: ex-ring-grow 0.6s ease forwards;
+    }
+    @keyframes ex-ring-grow {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    .ex-success-check {
+      position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 32px; color: var(--ex-green);
+      animation: ex-check-pop 0.5s 0.3s ease both;
+    }
+    @keyframes ex-check-pop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .ex-success-title {
+      font-size: 32px; font-weight: 800; color: var(--ex-text-1); margin-bottom: 14px;
+    }
+    .ex-success-msg {
+      color: var(--ex-text-2); font-size: 16px; line-height: 1.7; margin-bottom: 32px;
+    }
+    .ex-success-msg strong { color: var(--ex-green); }
+    .ex-success-next { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .ex-snext-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; color: var(--ex-text-2); text-align: left;
+    }
+    .ex-snext-item i { font-size: 18px; color: var(--ex-accent); flex-shrink: 0; }
+    .ex-success-home {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--ex-accent); text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .ex-success-home:hover { gap: 12px; }
+
+    /* ── TRUST SIDEBAR ── */
+    .ex-trust-col { display: flex; flex-direction: column; gap: 20px; }
+
+    .ex-trust-card {
+      background: var(--ex-bg-card); border: 1px solid var(--ex-border);
+      border-radius: 18px; padding: 24px;
+    }
+    .ex-tc-header {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--ex-text-3); font-family: monospace;
+      margin-bottom: 20px;
+    }
+    .ex-tc-items { display: flex; flex-direction: column; gap: 18px; }
+    .ex-tc-item { display: flex; align-items: flex-start; gap: 14px; }
+    .ex-tc-ico {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .ex-tc-ico.teal   { background: rgba(20,184,166,0.12); color: var(--ex-teal); }
+    .ex-tc-ico.blue   { background: var(--ex-glow); color: var(--ex-accent); }
+    .ex-tc-ico.purple { background: rgba(139,92,246,0.12); color: var(--ex-accent-2); }
+    .ex-tc-title { font-size: 14px; font-weight: 600; color: var(--ex-text-1); margin-bottom: 4px; }
+    .ex-tc-desc  { font-size: 13px; color: var(--ex-text-2); line-height: 1.6; }
+
+    /* Stats card */
+    .ex-stat-row { display: flex; align-items: center; }
+    .ex-stat { flex: 1; text-align: center; padding: 8px; }
+    .ex-stat-num { font-size: 30px; font-weight: 800; color: var(--ex-text-1); line-height: 1; }
+    .ex-stat-label { font-size: 11px; color: var(--ex-text-3); margin-top: 5px; font-family: monospace; }
+    .ex-stat-divider { width: 1px; height: 44px; background: var(--ex-border); flex-shrink: 0; }
+
+    /* Quote card */
+    .ex-quote-stars { color: var(--ex-amber); font-size: 15px; margin-bottom: 12px; letter-spacing: 2px; }
+    .ex-quote-text  { font-size: 14px; color: var(--ex-text-2); line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+    .ex-quote-author { display: flex; align-items: center; gap: 12px; }
+    .ex-quote-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: #fff;
+      font-family: monospace; flex-shrink: 0;
+    }
+    .ex-qa-name { font-size: 14px; font-weight: 600; color: var(--ex-text-1); }
+    .ex-qa-role { font-size: 12px; color: var(--ex-text-3); }
+
+    /* Security note */
+    .ex-security-note {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 16px; border-radius: 12px;
+      background: var(--ex-bg-card); border: 1px solid var(--ex-border);
+      font-size: 13px;
+    }
+    .ex-security-note > i { font-size: 20px; color: var(--ex-teal); flex-shrink: 0; margin-top: 1px; }
+    .ex-sn-title { font-size: 13px; font-weight: 600; color: var(--ex-text-1); margin-bottom: 4px; }
+    .ex-sn-desc  { color: var(--ex-text-3); line-height: 1.6; }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .ex-hero-grid { grid-template-columns: 1fr; gap: 50px; }
+      .ex-hero-left { text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .ex-hero-sub { margin-left: auto; margin-right: auto; }
+      .ex-props { grid-template-columns: 1fr; max-width: 500px; width: 100%; margin-left: auto; margin-right: auto; }
+      .ex-form-grid { grid-template-columns: 1fr; gap: 50px; }
+      .ex-trust-col { order: 2; }
+      .ex-scroll-btn { margin: 0 auto; }
+    }
+    @media (max-width: 575px) {
+      .ex-headline { font-size: clamp(36px, 10vw, 56px); }
+      .ex-topic-grid { grid-template-columns: repeat(2, 1fr); }
+      .ex-field-row { grid-template-columns: 1fr; }
+      .ex-steps { flex-direction: column; gap: 15px; align-items: flex-start; }
+      .ex-step-track { display: none; }
+      .ex-step { align-items: flex-start; }
+      .ex-props { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -87,160 +718,804 @@
     </nav>
   </header>
 
-  <section class="py-5">
-    <div class="container px-md-5">
-      <div class="row mb-4">
-        <div class="col-md-10 text-center mx-auto">
-          <span class="badge bg-light rounded-pill shadow-sm p-2 mb-3 px-3">Free Consultation</span>
-          <h1 class="display-5 fw-bold mb-3">Talk to an Expert</h1>
-          <p class="lead fs-5 mx-auto">Schedule a quick call with our engineering experts to discuss your business goals, technical requirements, and how we can help you scale.</p>
-        </div>
-      </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-auto col-md-5 col-xl-4">
-          <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
-            <div class="d-flex align-items-center p-3">
-              <div class="fs-4 lh-1 text-white bg-primary rounded-circle p-3"><svg class="bi bi-telephone" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"></path>
-                </svg></div>
-              <div class="ps-3">
-                <h6 class="fw-bold mb-0">Phone</h6>
-                <p class="mb-0">Available after consultation request</p>
+  <main>
+    <!-- SECTION 1 — HERO -->
+    <section class="ex-hero">
+      <!-- Ambient gradient orb -->
+      <div class="ex-hero-orb"></div>
+
+      <div class="container-xl">
+        <div class="ex-hero-grid">
+
+          <!-- LEFT: Copy -->
+          <div class="ex-hero-left">
+            <div class="ex-eyebrow">
+              <span class="ex-eyebrow-dot"></span>
+              Free · 30 minutes · No commitment
+            </div>
+
+            <h1 class="ex-headline">
+              Talk to an<br>
+              <span class="ex-headline-grad">engineer,</span><br>
+              not a salesperson.
+            </h1>
+
+            <p class="ex-hero-sub">
+              Book a free 30-minute discovery call with our senior engineers.
+              We'll review your idea, give you honest technical feedback, and
+              outline exactly what it would take to build it — before you
+              spend a single dollar.
+            </p>
+
+            <!-- Value props row -->
+            <div class="ex-props">
+              <div class="ex-prop">
+                <div class="ex-prop-icon"><i class="ti ti-clock"></i></div>
+                <div>
+                  <div class="ex-prop-title">30-minute call</div>
+                  <div class="ex-prop-sub">Focused, no fluff</div>
+                </div>
+              </div>
+              <div class="ex-prop">
+                <div class="ex-prop-icon"><i class="ti ti-shield-check"></i></div>
+                <div>
+                  <div class="ex-prop-title">NDA on request</div>
+                  <div class="ex-prop-sub">Before we discuss anything</div>
+                </div>
+              </div>
+              <div class="ex-prop">
+                <div class="ex-prop-icon"><i class="ti ti-bulb"></i></div>
+                <div>
+                  <div class="ex-prop-title">Real advice</div>
+                  <div class="ex-prop-sub">Honest scope & cost estimate</div>
+                </div>
+              </div>
+              <div class="ex-prop">
+                <div class="ex-prop-icon"><i class="ti ti-arrow-right"></i></div>
+                <div>
+                  <div class="ex-prop-title">No obligation</div>
+                  <div class="ex-prop-sub">Zero pressure, zero pitch</div>
+                </div>
               </div>
             </div>
-            <div class="d-flex align-items-center p-3">
-              <div class="fs-4 lh-1 text-white bg-primary rounded-circle p-3"><svg class="bi bi-envelope" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"></path>
-                </svg></div>
-              <div class="ps-3">
-                <h6 class="fw-bold mb-0">Email</h6>
-                <p class="mb-0">ghulamasghar7678@gmail.com</p>
+
+            <!-- Scroll anchor -->
+            <a href="#ex-form" class="ex-scroll-btn">
+              Book your free call <i class="ti ti-arrow-down"></i>
+            </a>
+          </div>
+
+          <!-- RIGHT: Live clock + availability widget -->
+          <div class="ex-hero-right">
+            <div class="ex-availability-widget">
+              <!-- Live clock -->
+              <div class="ex-widget-header">
+                <div class="ex-widget-label">Our local time</div>
+                <div class="ex-live-clock" id="exClock">--:-- --</div>
+                <div class="ex-widget-tz">PKT · UTC+5</div>
               </div>
-            </div>
-            <div class="d-flex align-items-center p-3">
-              <div class="fs-4 lh-1 text-white bg-primary rounded-circle p-3"><svg class="bi bi-pin" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A6 6 0 0 1 5 6.708V2.277a3 3 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354m1.58 1.408-.002-.001zm-.002-.001.002.001A.5.5 0 0 1 6 2v5a.5.5 0 0 1-.276.447h-.002l-.012.007-.054.03a5 5 0 0 0-.827.58c-.318.278-.585.596-.725.936h7.792c-.14-.34-.407-.658-.725-.936a5 5 0 0 0-.881-.61l-.012-.006h-.002A.5.5 0 0 1 10 7V2a.5.5 0 0 1 .295-.458 1.8 1.8 0 0 0 .351-.271c.08-.08.155-.17.214-.271H5.14q.091.15.214.271a1.8 1.8 0 0 0 .37.282"></path>
-                </svg></div>
-              <div class="ps-3">
-                <h6 class="fw-bold mb-0">Location</h6>
-                <p class="mb-0">Remote-first delivery team</p>
+
+              <div class="ex-widget-divider"></div>
+
+              <!-- Today's availability (static display) -->
+              <div class="ex-widget-avail-label">Next available slots</div>
+              <div class="ex-slot-list">
+                <div class="ex-slot ex-slot--open">
+                  <i class="ti ti-calendar-event"></i>
+                  <span>Tomorrow · 10:00 AM PKT</span>
+                  <span class="ex-slot-badge open">Open</span>
+                </div>
+                <div class="ex-slot ex-slot--open">
+                  <i class="ti ti-calendar-event"></i>
+                  <span>Tomorrow · 02:00 PM PKT</span>
+                  <span class="ex-slot-badge open">Open</span>
+                </div>
+                <div class="ex-slot ex-slot--taken">
+                  <i class="ti ti-calendar-event"></i>
+                  <span>Wed · 11:00 AM PKT</span>
+                  <span class="ex-slot-badge taken">Taken</span>
+                </div>
+                <div class="ex-slot ex-slot--open">
+                  <i class="ti ti-calendar-event"></i>
+                  <span>Wed · 03:00 PM PKT</span>
+                  <span class="ex-slot-badge open">Open</span>
+                </div>
+              </div>
+
+              <div class="ex-widget-divider"></div>
+
+              <!-- Expert avatars -->
+              <div class="ex-experts-row">
+                <div class="ex-expert-avatars">
+                  <div class="ex-avatar" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">AA</div>
+                  <div class="ex-avatar" style="background:linear-gradient(135deg,#14b8a6,#3b82f6)">MR</div>
+                  <div class="ex-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">SR</div>
+                </div>
+                <div class="ex-experts-text">
+                  <span class="ex-experts-title">Meet the team</span>
+                  <span class="ex-experts-sub">Senior engineers, not junior reps</span>
+                </div>
+              </div>
+
+              <!-- Response time badge -->
+              <div class="ex-response-badge">
+                <span class="ex-resp-dot"></span>
+                Avg. response time: <strong>under 3 hours</strong>
               </div>
             </div>
           </div>
+
         </div>
-        <div class="col-12 col-md-6 col-xl-5">
-          <div>
-            <form class="p-3 p-xl-4" method="get" action="success.html">
-              <div class="row gx-3">
-                <div class="col-md-6 mb-3">
-                  <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
+      </div>
+    </section>
+
+    <!-- SECTION 2 — STEP PROGRESS BAR -->
+    <section class="ex-steps-section">
+      <div class="container" style="max-width:900px">
+        <div class="ex-steps">
+          <div class="ex-step active">
+            <div class="ex-step-num">01</div>
+            <div class="ex-step-track"><div class="ex-step-fill"></div></div>
+            <div class="ex-step-label">Fill the brief</div>
+          </div>
+
+          <div class="ex-step">
+            <div class="ex-step-num">02</div>
+            <div class="ex-step-track"><div class="ex-step-fill"></div></div>
+            <div class="ex-step-label">We confirm within 3h</div>
+          </div>
+
+          <div class="ex-step">
+            <div class="ex-step-num">03</div>
+            <div class="ex-step-track"><div class="ex-step-fill"></div></div>
+            <div class="ex-step-label">30-min discovery call</div>
+          </div>
+
+          <div class="ex-step ex-step--last">
+            <div class="ex-step-num">04</div>
+            <div class="ex-step-label">Scoped proposal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 — MULTI-STEP BOOKING FORM -->
+    <section class="ex-form-section" id="ex-form">
+      <div class="container-xl">
+        <div class="ex-form-grid">
+
+          <!-- ══ LEFT: THE FORM ══ -->
+          <div class="ex-form-col">
+            <!-- Step indicator -->
+            <div class="ex-form-steps-indicator">
+              <div class="ex-fsi-item active" data-step="1">
+                <div class="ex-fsi-dot"><i class="ti ti-user"></i></div>
+                <span>You</span>
+              </div>
+              <div class="ex-fsi-connector"></div>
+              <div class="ex-fsi-item" data-step="2">
+                <div class="ex-fsi-dot"><i class="ti ti-code"></i></div>
+                <span>Project</span>
+              </div>
+              <div class="ex-fsi-connector"></div>
+              <div class="ex-fsi-item" data-step="3">
+                <div class="ex-fsi-dot"><i class="ti ti-calendar"></i></div>
+                <span>Schedule</span>
+              </div>
+            </div>
+
+            <form id="expertBookingForm" novalidate>
+              <!-- STEP 1: Personal info -->
+              <div class="ex-form-step" id="exStep1">
+                <div class="ex-step-header">
+                  <h2 class="ex-form-title">Let's start with you.</h2>
+                  <p class="ex-form-sub">Basic info so we know who we're talking to.</p>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <input class="form-control" type="text" name="last_name" placeholder="Last Name" required>
+
+                <div class="ex-field-row">
+                  <div class="ex-field">
+                    <input type="text" id="ex-name" placeholder=" " required autocomplete="name">
+                    <label for="ex-name">Full Name *</label>
+                    <span class="ex-field-ico"><i class="ti ti-user"></i></span>
+                  </div>
+                  <div class="ex-field">
+                    <input type="text" id="ex-company" placeholder=" " autocomplete="organization">
+                    <label for="ex-company">Company / Startup</label>
+                    <span class="ex-field-ico"><i class="ti ti-building"></i></span>
+                  </div>
+                </div>
+
+                <div class="ex-field-row">
+                  <div class="ex-field">
+                    <input type="email" id="ex-email" placeholder=" " required autocomplete="email">
+                    <label for="ex-email">Work Email *</label>
+                    <span class="ex-field-ico"><i class="ti ti-mail"></i></span>
+                  </div>
+                  <div class="ex-field">
+                    <input type="tel" id="ex-phone" placeholder=" " autocomplete="tel">
+                    <label for="ex-phone">Phone / WhatsApp</label>
+                    <span class="ex-field-ico"><i class="ti ti-phone"></i></span>
+                  </div>
+                </div>
+
+                <div class="ex-field">
+                  <select id="ex-role" required>
+                    <option value="" disabled selected hidden></option>
+                    <option>Founder / CEO</option>
+                    <option>CTO / Technical Lead</option>
+                    <option>Product Manager</option>
+                    <option>Engineering Manager</option>
+                    <option>Individual / Freelancer</option>
+                    <option>Other</option>
+                  </select>
+                  <label for="ex-role" class="ex-sel-label">Your Role *</label>
+                  <span class="ex-field-ico"><i class="ti ti-id-badge"></i></span>
+                </div>
+
+                <button class="ex-next-btn" id="exNext1" type="button">
+                  Continue <i class="ti ti-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- STEP 2: Project brief -->
+              <div class="ex-form-step" id="exStep2" style="display:none">
+                <div class="ex-step-header">
+                  <h2 class="ex-form-title">Tell us about your project.</h2>
+                  <p class="ex-form-sub">More context = better call. Even rough ideas are fine.</p>
+                </div>
+
+                <!-- Topic selector -->
+                <div class="ex-topic-label">What do you need help with? *</div>
+                <div class="ex-topic-grid">
+                  <label class="ex-topic-card">
+                    <input type="radio" name="ex-topic" value="web" checked>
+                    <div class="ex-topic-inner">
+                      <i class="ti ti-layout-2"></i>
+                      <span>Web Application</span>
+                    </div>
+                  </label>
+                  <label class="ex-topic-card">
+                    <input type="radio" name="ex-topic" value="mobile">
+                    <div class="ex-topic-inner">
+                      <i class="ti ti-device-mobile"></i>
+                      <span>Mobile App</span>
+                    </div>
+                  </label>
+                  <label class="ex-topic-card">
+                    <input type="radio" name="ex-topic" value="ai">
+                    <div class="ex-topic-inner">
+                      <i class="ti ti-brain"></i>
+                      <span>AI Integration</span>
+                    </div>
+                  </label>
+                  <label class="ex-topic-card">
+                    <input type="radio" name="ex-topic" value="healthcare">
+                    <div class="ex-topic-inner">
+                      <i class="ti ti-heartbeat"></i>
+                      <span>Healthcare IT</span>
+                    </div>
+                  </label>
+                  <label class="ex-topic-card">
+                    <input type="radio" name="ex-topic" value="dashboard">
+                    <div class="ex-topic-inner">
+                      <i class="ti ti-dashboard"></i>
+                      <span>Dashboard / POS</span>
+                    </div>
+                  </label>
+                  <label class="ex-topic-card">
+                    <input type="radio" name="ex-topic" value="other">
+                    <div class="ex-topic-inner">
+                      <i class="ti ti-dots"></i>
+                      <span>Other</span>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- Stage -->
+                <div class="ex-stage-label">Project stage</div>
+                <div class="ex-stage-chips">
+                  <label class="ex-stage-chip">
+                    <input type="radio" name="ex-stage" value="idea" checked> 💡 Just an idea
+                  </label>
+                  <label class="ex-stage-chip">
+                    <input type="radio" name="ex-stage" value="design"> 🎨 Have designs
+                  </label>
+                  <label class="ex-stage-chip">
+                    <input type="radio" name="ex-stage" value="existing"> 🔧 Existing codebase
+                  </label>
+                  <label class="ex-stage-chip">
+                    <input type="radio" name="ex-stage" value="scaling"> 🚀 Need to scale
+                  </label>
+                </div>
+
+                <div class="ex-field" style="margin-top:20px">
+                  <textarea id="ex-brief" rows="4" placeholder=" "></textarea>
+                  <label for="ex-brief">Describe your project (optional)</label>
+                </div>
+
+                <div class="ex-nav-btns">
+                  <button class="ex-back-btn" type="button" id="exBack1">
+                    <i class="ti ti-arrow-left"></i> Back
+                  </button>
+                  <button class="ex-next-btn" id="exNext2" type="button">
+                    Continue <i class="ti ti-arrow-right"></i>
+                  </button>
                 </div>
               </div>
-              <div class="mb-3">
-                <input class="form-control" type="email" name="email" placeholder="Work Email" required>
-              </div>
-              <div class="mb-3">
-                <input class="form-control" type="text" name="company" placeholder="Company Name" required>
-              </div>
-              <div class="mb-3">
-                <select class="form-select" name="topic" required>
-                  <option value="" selected disabled>What would you like to discuss?</option>
-                  <option value="web">Web Application Development</option>
-                  <option value="mobile">Cross-Platform Mobile Apps</option>
-                  <option value="ai">AI & Smart Integrations</option>
-                  <option value="healthcare">Healthcare IT Systems</option>
-                  <option value="enterprise">Enterprise Dashboards & POS</option>
-                  <option value="other">Other / General Consultation</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <textarea class="form-control" name="message" rows="6" placeholder="Tell us a little about your project, current stack, or technical challenges..." required></textarea>
-              </div>
-              <div>
-                <button class="btn btn-primary w-100 d-block" type="submit">Request Consultation</button>
-              </div>
-              <div class="text-center mt-3">
-                <small class="text-muted"><i class="bi bi-lock-fill me-1"></i> Your information is secure. We never share your data.</small>
+
+              <!-- STEP 3: Schedule + submit -->
+              <div class="ex-form-step" id="exStep3" style="display:none">
+                <div class="ex-step-header">
+                  <h2 class="ex-form-title">Pick a preferred time.</h2>
+                  <p class="ex-form-sub">We'll confirm via email with a calendar invite.</p>
+                </div>
+
+                <!-- Hidden preferred slot -->
+                <input type="hidden" id="exPreferredSlot">
+
+                <!-- Preferred time of day -->
+                <div class="ex-time-label">Best time for you (PKT)</div>
+                <div class="ex-time-chips">
+                  <label class="ex-time-chip">
+                    <input type="radio" name="ex-time" value="morning" checked>
+                    🌅 Morning (9–12)
+                  </label>
+                  <label class="ex-time-chip">
+                    <input type="radio" name="ex-time" value="afternoon">
+                    ☀️ Afternoon (12–3)
+                  </label>
+                  <label class="ex-time-chip">
+                    <input type="radio" name="ex-time" value="evening">
+                    🌆 Evening (3–6)
+                  </label>
+                </div>
+
+                <!-- Call type -->
+                <div class="ex-calltype-label" style="margin-top:24px">Preferred call platform</div>
+                <div class="ex-call-grid">
+                  <label class="ex-call-card">
+                    <input type="radio" name="ex-calltype" value="google-meet" checked>
+                    <div class="ex-call-inner">
+                      <i class="ti ti-brand-google"></i>
+                      <span>Google Meet</span>
+                    </div>
+                  </label>
+                  <label class="ex-call-card">
+                    <input type="radio" name="ex-calltype" value="zoom">
+                    <div class="ex-call-inner">
+                      <i class="ti ti-video"></i>
+                      <span>Zoom</span>
+                    </div>
+                  </label>
+                  <label class="ex-call-card">
+                    <input type="radio" name="ex-calltype" value="phone">
+                    <div class="ex-call-inner">
+                      <i class="ti ti-phone"></i>
+                      <span>Phone call</span>
+                    </div>
+                  </label>
+                  <label class="ex-call-card">
+                    <input type="radio" name="ex-calltype" value="whatsapp">
+                    <div class="ex-call-inner">
+                      <i class="ti ti-brand-whatsapp"></i>
+                      <span>WhatsApp</span>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- NDA toggle -->
+                <label class="ex-nda-toggle">
+                  <input type="checkbox" id="exNda">
+                  <span class="ex-nda-box"><i class="ti ti-check"></i></span>
+                  <span class="ex-nda-text">
+                    <strong>Request NDA</strong> — I'd like to sign a Non-Disclosure Agreement
+                    before discussing project details.
+                  </span>
+                </label>
+
+                <div class="ex-nav-btns">
+                  <button class="ex-back-btn" type="button" id="exBack2">
+                    <i class="ti ti-arrow-left"></i> Back
+                  </button>
+                  <!-- MAGNETIC SUBMIT -->
+                  <button class="ex-submit-btn" id="exSubmitBtn" type="submit">
+                    <span class="ex-sbtn-text">
+                      <i class="ti ti-calendar-event"></i>
+                      Book My Free Call
+                    </span>
+                    <span class="ex-sbtn-loading" style="display:none">
+                      <i class="ti ti-loader-2 ex-spin"></i> Booking…
+                    </span>
+                    <div class="ex-btn-glow"></div>
+                  </button>
+                </div>
+
+                <p class="ex-submit-note">
+                  <i class="ti ti-shield-lock"></i>
+                  Your data is private. We never sell or share it.
+                </p>
               </div>
             </form>
+
+            <!-- SUCCESS STATE -->
+            <div class="ex-success" id="exSuccess" style="display:none">
+              <div class="ex-success-animation">
+                <div class="ex-success-ring"></div>
+                <div class="ex-success-check"><i class="ti ti-check"></i></div>
+              </div>
+              <h2 class="ex-success-title">You're booked! 🎉</h2>
+              <p class="ex-success-msg">
+                We've received your consultation request. Expect a confirmation email
+                within <strong>3 hours</strong> with your calendar invite.
+              </p>
+              <div class="ex-success-next">
+                <div class="ex-snext-item">
+                  <i class="ti ti-mail-check"></i>
+                  <span>Check your email for confirmation</span>
+                </div>
+                <div class="ex-snext-item">
+                  <i class="ti ti-clock"></i>
+                  <span>We'll reach out within 3 hours</span>
+                </div>
+                <div class="ex-snext-item">
+                  <i class="ti ti-video"></i>
+                  <span>Calendar invite sent before the call</span>
+                </div>
+              </div>
+              <a href="index.html" class="ex-success-home">
+                Back to homepage <i class="ti ti-home"></i>
+              </a>
+            </div>
           </div>
+
+          <!-- ══ RIGHT: TRUST SIDEBAR ══ -->
+          <div class="ex-trust-col">
+            <!-- What to expect -->
+            <div class="ex-trust-card">
+              <div class="ex-tc-header">
+                <i class="ti ti-info-circle"></i>
+                What happens in the call
+              </div>
+              <div class="ex-tc-items">
+                <div class="ex-tc-item">
+                  <div class="ex-tc-ico teal"><i class="ti ti-ear"></i></div>
+                  <div>
+                    <div class="ex-tc-title">We listen first</div>
+                    <div class="ex-tc-desc">You walk us through your idea or challenge — we ask smart questions, not sales questions.</div>
+                  </div>
+                </div>
+                <div class="ex-tc-item">
+                  <div class="ex-tc-ico blue"><i class="ti ti-clipboard-text"></i></div>
+                  <div>
+                    <div class="ex-tc-title">Technical assessment</div>
+                    <div class="ex-tc-desc">We give you honest technical feedback — feasibility, risks, and the right approach.</div>
+                  </div>
+                </div>
+                <div class="ex-tc-item">
+                  <div class="ex-tc-ico purple"><i class="ti ti-package"></i></div>
+                  <div>
+                    <div class="ex-tc-title">Rough scope + cost</div>
+                    <div class="ex-tc-desc">You leave with a ballpark estimate and a clear next step — no ambiguity.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social proof mini -->
+            <div class="ex-trust-card ex-trust-stat-card">
+              <div class="ex-stat-row">
+                <div class="ex-stat">
+                  <div class="ex-stat-num" data-target="47" data-suffix="+">0+</div>
+                  <div class="ex-stat-label">Calls booked</div>
+                </div>
+                <div class="ex-stat-divider"></div>
+                <div class="ex-stat">
+                  <div class="ex-stat-num" data-target="94" data-suffix="%">0%</div>
+                  <div class="ex-stat-label">Lead to proposal</div>
+                </div>
+                <div class="ex-stat-divider"></div>
+                <div class="ex-stat">
+                  <div class="ex-stat-num" data-target="3" data-suffix="h">0h</div>
+                  <div class="ex-stat-label">Avg. response</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial snippet -->
+            <div class="ex-trust-card ex-quote-card">
+              <div class="ex-quote-stars">★★★★★</div>
+              <p class="ex-quote-text">
+                "The discovery call alone saved us weeks of wrong decisions.
+                They told us honestly what to build first and what to skip."
+              </p>
+              <div class="ex-quote-author">
+                <div class="ex-quote-avatar" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">JM</div>
+                <div>
+                  <div class="ex-qa-name">James M.</div>
+                  <div class="ex-qa-role">CTO · HealthLink SaaS</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security note -->
+            <div class="ex-security-note">
+              <i class="ti ti-lock"></i>
+              <div>
+                <div class="ex-sn-title">Enterprise-grade privacy</div>
+                <div class="ex-sn-desc">Your submission is encrypted. We delete prospect data on request. NDA available before any sensitive discussion.</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="site-footer">
-  <!-- Top: large brand statement -->
-  <div class="footer-top">
-    <div class="container">
-      <div class="footer-brand-row">
-        <div class="footer-brand-left">
-          <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
-          <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
-          <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
-          <div class="footer-social">
-            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
-            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
-            <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+    <!-- Top: large brand statement -->
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-brand-row">
+          <div class="footer-brand-left">
+            <img src="assets/img/avanta-logo-light.svg" class="footer-logo d-dark-only" alt="Avanta">
+            <img src="assets/img/avanta-logo-dark.svg" class="footer-logo d-light-only" alt="Avanta">
+            <p class="footer-tagline">Engineering the software that makes<br>your product <em>unstoppable</em>.</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+              <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="X (Twitter)"><i class="ti ti-brand-x"></i></a>
+              <a href="#" class="social-icon coming-soon" title="Coming soon" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+            </div>
           </div>
-        </div>
-        <div class="footer-links-grid">
-          <!-- 4 columns: Services | Industries | Company | Legal -->
-          <div class="footer-col">
-            <div class="footer-col-title">Services</div>
-            <a href="services-web-development.html">Web Development</a>
-            <a href="services-mobile-apps.html">Mobile Apps</a>
-            <a href="services-custom-software.html">Custom Software</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Industries</div>
-            <a href="industry-healthcare-tech.html">Healthcare Tech</a>
-            <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
-            <a href="expert.html">Book Consultation</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Company</div>
-            <a href="about.html">About Us</a>
-            <a href="careers.html">Careers</a>
-            <a href="authors.html">Our Team</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Legal</div>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="cookies.html">Cookie Policy</a>
+          <div class="footer-links-grid">
+            <!-- 4 columns: Services | Industries | Company | Legal -->
+            <div class="footer-col">
+              <div class="footer-col-title">Services</div>
+              <a href="services-web-development.html">Web Development</a>
+              <a href="services-mobile-apps.html">Mobile Apps</a>
+              <a href="services-custom-software.html">Custom Software</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Industries</div>
+              <a href="industry-healthcare-tech.html">Healthcare Tech</a>
+              <a href="industry-enterprise-dashboards.html">Enterprise Dashboards</a>
+              <a href="expert.html">Book Consultation</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Company</div>
+              <a href="about.html">About Us</a>
+              <a href="careers.html">Careers</a>
+              <a href="authors.html">Our Team</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Legal</div>
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="terms.html">Terms of Service</a>
+              <a href="cookies.html">Cookie Policy</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bottom bar -->
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="footer-bottom-row">
-        <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="cookies.html">Cookies</a>
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-row">
+          <span>© 2026 Avanta AI Solutions. All rights reserved.</span>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="cookies.html">Cookies</a>
+          </div>
+          <span class="footer-made-with">Built by engineers, for engineers.</span>
         </div>
-        <span class="footer-made-with">Built by engineers, for engineers.</span>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/js/script.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/animations.js" defer></script>
-</body>
-</html>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      /* Live clock — PKT is UTC+5 */
+      function updateClock() {
+        const now = new Date();
+        const pkt = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Karachi' }));
+        let h = pkt.getHours(), m = pkt.getMinutes(), s = pkt.getSeconds();
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        const clockEl = document.getElementById('exClock');
+        if (clockEl) {
+          clockEl.textContent =
+            `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} ${ampm}`;
+        }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      /* Hero GSAP entrance */
+      (function () {
+        const exSplit = new SplitText('.ex-headline', { type: 'lines, words' });
+        const exTl = gsap.timeline({ delay: 0.15 });
+        exTl
+          .from('.ex-eyebrow',       { y: 20, opacity: 0, duration: 0.55, ease: 'power3.out' })
+          .from(exSplit.words,       { y: 60, opacity: 0, stagger: 0.055, duration: 0.7, ease: 'power3.out' }, '-=0.25')
+          .from('.ex-hero-sub',      { y: 20, opacity: 0, duration: 0.55, ease: 'power3.out' }, '-=0.3')
+          .from('.ex-prop',          { y: 20, opacity: 0, stagger: 0.09, duration: 0.5 }, '-=0.2')
+          .from('.ex-scroll-btn',    { y: 16, opacity: 0, duration: 0.45 }, '-=0.2')
+          .from('.ex-availability-widget', { x: 50, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.7');
+      })();
+
+      /* Slot hover selection */
+      document.querySelectorAll('.ex-slot--open').forEach(slot => {
+        slot.addEventListener('click', function () {
+          document.querySelectorAll('.ex-slot--open').forEach(s => s.classList.remove('ex-slot--selected'));
+          this.classList.add('ex-slot--selected');
+          // Pre-fill hidden input in the form
+          const slotSpan = this.querySelector('span');
+          const prefInput = document.getElementById('exPreferredSlot');
+          if (slotSpan && prefInput) {
+            prefInput.value = slotSpan.textContent;
+          }
+        });
+      });
+
+      /* Animate step bars on scroll */
+      gsap.utils.toArray('.ex-step-fill').forEach((fill, i) => {
+        gsap.to(fill, {
+          width: '100%', duration: 0.8, ease: 'power2.out', delay: i * 0.25,
+          scrollTrigger: { trigger: '.ex-steps-section', start: 'top 85%', once: true }
+        });
+      });
+
+      /* ── MULTI-STEP FORM LOGIC ── */
+      function goToStep(from, to) {
+        const fromEl = document.getElementById('exStep' + from);
+        const toEl   = document.getElementById('exStep' + to);
+
+        gsap.to(fromEl, {
+          x: to > from ? -40 : 40, opacity: 0, duration: 0.3, ease: 'power2.in',
+          onComplete: () => {
+            fromEl.style.display = 'none';
+            toEl.style.display = 'block';
+            gsap.fromTo(toEl,
+              { x: to > from ? 40 : -40, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }
+            );
+          }
+        });
+
+        // Update step indicator
+        document.querySelectorAll('.ex-fsi-item').forEach((item, i) => {
+          const s = i + 1;
+          item.classList.remove('active', 'done');
+          if (s === to)   item.classList.add('active');
+          if (s < to)     item.classList.add('done');
+        });
+      }
+
+      const next1 = document.getElementById('exNext1');
+      const next2 = document.getElementById('exNext2');
+      const back1 = document.getElementById('exBack1');
+      const back2 = document.getElementById('exBack2');
+
+      if (next1) next1.addEventListener('click', () => {
+        // Basic validation for Step 1
+        const name = document.getElementById('ex-name');
+        const email = document.getElementById('ex-email');
+        const role = document.getElementById('ex-role');
+        if (!name.value || !email.value || !role.value) {
+          alert('Please fill out all required fields marked with *');
+          return;
+        }
+        goToStep(1, 2);
+      });
+
+      if (next2) next2.addEventListener('click', () => {
+        // Basic validation for Step 2
+        const topicChecked = document.querySelector('input[name="ex-topic"]:checked');
+        if (!topicChecked) {
+          alert('Please select a topic you need help with.');
+          return;
+        }
+        goToStep(2, 3);
+      });
+
+      if (back1) back1.addEventListener('click', () => goToStep(2, 1));
+      if (back2) back2.addEventListener('click', () => goToStep(3, 2));
+
+      // Select float label helper
+      document.querySelectorAll('.ex-field select').forEach(sel => {
+        sel.addEventListener('change', function () {
+          this.classList.toggle('has-value', this.value !== '');
+        });
+      });
+
+      // Magnetic glow on submit button
+      const exSubBtn = document.getElementById('exSubmitBtn');
+      if (exSubBtn) {
+        exSubBtn.addEventListener('mousemove', function (e) {
+          const r = this.getBoundingClientRect();
+          const mx = ((e.clientX - r.left) / r.width)  * 100;
+          const my = ((e.clientY - r.top)  / r.height) * 100;
+          this.querySelector('.ex-btn-glow').style.setProperty('--mx', mx + '%');
+          this.querySelector('.ex-btn-glow').style.setProperty('--my', my + '%');
+        });
+      }
+
+      // Handle form submission
+      const bookingForm = document.getElementById('expertBookingForm');
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const btn = document.getElementById('exSubmitBtn');
+          if (btn) {
+            const btnText = btn.querySelector('.ex-sbtn-text');
+            const btnLoading = btn.querySelector('.ex-sbtn-loading');
+            if (btnText) btnText.style.display = 'none';
+            if (btnLoading) btnLoading.style.display = 'inline-flex';
+            btn.disabled = true;
+          }
+
+          // Simulate API booking call delay
+          setTimeout(() => {
+            document.getElementById('exStep3').style.display = 'none';
+            // Hide the indicator as well
+            document.querySelector('.ex-form-steps-indicator').style.display = 'none';
+            const success = document.getElementById('exSuccess');
+            if (success) {
+              success.style.display = 'block';
+              gsap.from(success, { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' });
+            }
+          }, 2000);
+        });
+      }
+
+      /* ── COUNTER ANIMATION ── */
+      document.querySelectorAll('.ex-stat-num').forEach(el => {
+        const target = parseInt(el.getAttribute('data-target'));
+        const suffix = el.getAttribute('data-suffix') || '';
+        ScrollTrigger.create({
+          trigger: el, start: 'top 85%', once: true,
+          onEnter: () => {
+            gsap.to({ val: 0 }, {
+              val: target, duration: 1.8, ease: 'power2.out',
+              onUpdate: function () {
+                el.textContent = Math.round(this.targets()[0].val) + suffix;
+              }
+            });
+          }
+        });
+      });
+
+      /* ── SCROLL ANIMATIONS ── */
+      gsap.from('.ex-prop', {
+        y: 24, opacity: 0, stagger: 0.1, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ex-props', start: 'top 85%' }
+      });
+
+      gsap.from('.ex-trust-card', {
+        y: 30, opacity: 0, stagger: 0.15, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ex-trust-col', start: 'top 80%' }
+      });
+
+      gsap.from('.ex-security-note', {
+        y: 20, opacity: 0, duration: 0.5,
+        scrollTrigger: { trigger: '.ex-security-note', start: 'top 88%' }
+      });
+    });
+  </script>
+</body>
+
+</html>
